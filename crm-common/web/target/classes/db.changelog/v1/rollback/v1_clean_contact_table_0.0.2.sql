@@ -1,0 +1,2 @@
+ALTER SEQUENCE contact_seq RESTART WITH 1;
+DELETE FROM contact;
