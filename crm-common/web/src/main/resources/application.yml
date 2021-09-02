@@ -3,5 +3,5 @@ spring:
     active: @spring.profiles.active@
 
   liquibase:
-    enabled: false
+    enabled: true
     change-log: classpath:db.changelog/db.changelog-master.yml
