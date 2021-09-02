@@ -808,7 +808,7 @@ true posixrules
 13155||-9223372036854775808|U|G
 13155||10|U|G</Grants>
       <Owner>user</Owner>
-      <IntrospectionStateNumber>488</IntrospectionStateNumber>
+      <IntrospectionStateNumber>516</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <database id="3" parent="1" name="postgres">
@@ -878,7 +878,7 @@ true posixrules
       <Comment>standard public schema</Comment>
       <StateNumber>276</StateNumber>
       <Owner>user</Owner>
-      <IntrospectionStateNumber>489</IntrospectionStateNumber>
+      <IntrospectionStateNumber>517</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="18" parent="2" name="plpgsql">
