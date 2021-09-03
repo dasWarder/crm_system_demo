@@ -1,3 +1,4 @@
 com\example\CrmApplication.class
 com\example\controller\ContactController.class
+com\example\controller\AbstractContactController.class
 com\example\controller\UserContactController.class

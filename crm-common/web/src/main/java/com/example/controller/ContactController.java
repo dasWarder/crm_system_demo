@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.Contact;
 import com.example.ContactMapper;
 import com.example.dto.ContactDto;
+import com.example.dto.SaveContactDto;
 import com.example.exception.ContactNotFoundException;
 import com.example.service.ContactService;
 import org.springframework.data.domain.Page;
@@ -24,9 +25,9 @@ public class ContactController extends AbstractContactController {
     }
 
     @PostMapping("/contact")
-    public ResponseEntity<ContactDto> saveContact(@RequestBody ContactDto contactDto) {
+    public ResponseEntity<ContactDto> saveContact(@RequestBody SaveContactDto contactDto) {
 
-        Contact requestContact = contactMapper.contactDtoToContact(contactDto);
+        Contact requestContact = contactMapper.saveContactDtoToContact(contactDto);
         Contact storedContact = contactService.saveContact(requestContact);
         ContactDto responseContactDto = contactMapper.contactToContactDto(storedContact);
 
@@ -46,10 +47,10 @@ public class ContactController extends AbstractContactController {
 
     @PutMapping("/contact")
     public ResponseEntity<ContactDto> updateContactByEmail(@RequestParam("email") String email,
-                                                           @RequestBody ContactDto contactDto)
+                                                           @RequestBody SaveContactDto contactDto)
                                                                                     throws ContactNotFoundException {
 
-        Contact requestUpdateContact = contactMapper.contactDtoToContact(contactDto);
+        Contact requestUpdateContact = contactMapper.saveContactDtoToContact(contactDto);
         Contact updatedContact = contactService.updateContactByEmail(email, requestUpdateContact);
         ContactDto responseContactDto = contactMapper.contactToContactDto(updatedContact);
 

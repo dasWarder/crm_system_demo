@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Slf4j
@@ -18,6 +19,7 @@ public class ContactServiceImpl implements ContactService {
     private final ContactRepository contactRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public Page<Contact> findAllContacts(Pageable pageable) {
 
         log.info("Receiving a page for all contacts");
@@ -27,6 +29,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    @Transactional
     public Contact saveContact(Contact contact) {
 
         log.info("Storing a new contact");
@@ -36,6 +39,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    @Transactional
     public Contact updateContact(Long id, Contact contact) throws ContactNotFoundException {
 
         log.info("Updating a contact with id = {}", id);
@@ -49,6 +53,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    @Transactional
     public Contact updateContactByEmail(String email, Contact contact) throws ContactNotFoundException {
 
         log.info("Updating a contact by its email = {}", email);
@@ -62,6 +67,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Contact getContactById(Long id) throws ContactNotFoundException {
 
         log.info("Receiving a contact by its id = {}", id);
@@ -72,6 +78,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Contact getContactByEmail(String email) throws ContactNotFoundException {
 
         log.info("Receiving a contact by its email = {}", email);
@@ -82,6 +89,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Contact getContactByMobilePhone(String phoneNumber) throws ContactNotFoundException {
 
         log.info("Receiving a contact by its mobile phone number = {}", phoneNumber);
@@ -92,6 +100,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    @Transactional
     public void deleteContactById(Long id) {
 
         log.info("Removing a contact by its id = {}", id);
@@ -99,6 +108,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    @Transactional
     public void deleteContactByEmail(String email) {
 
         log.info("Removing a contact with email");
@@ -106,6 +116,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<Contact> getAllContactsByCompany(String company, Pageable pageable) {
 
         log.info("Receiving a page of contacts by a company = {}", company);
@@ -115,6 +126,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<Contact> getAllContactsByJobTitle(String jobTitle, Pageable pageable) {
 
         log.info("Receiving a page of contacts by a job title = {}", jobTitle);
