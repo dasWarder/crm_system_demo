@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.dto.ContactDetailsDto;
 import com.example.dto.ContactDto;
 import com.example.dto.SaveContactDto;
 import org.mapstruct.Mapper;
@@ -12,4 +13,6 @@ public interface ContactMapper {
     ContactDto contactToContactDto(Contact contact);
 
     Contact contactDtoToContact(ContactDto dto);
+
+    ContactDetailsDto contactToContactDetailsDto(Contact contact);
 }
