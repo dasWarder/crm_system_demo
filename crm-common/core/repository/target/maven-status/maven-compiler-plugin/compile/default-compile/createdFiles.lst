@@ -1,0 +1,3 @@
+com\example\exception\ContactNotFoundException.class
+com\example\exception\ContactNotValidException.class
+com\example\repository\ContactRepository.class
