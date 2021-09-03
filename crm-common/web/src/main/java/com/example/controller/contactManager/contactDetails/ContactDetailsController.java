@@ -2,9 +2,10 @@ package com.example.controller.contactManager.contactDetails;
 
 import com.example.Contact;
 import com.example.ContactMapper;
-import com.example.controller.AbstractContactController;
+import com.example.controller.contactManager.AbstractContactController;
 import com.example.dto.ContactDetailsDto;
 import com.example.exception.ContactNotFoundException;
+import com.example.service.ContactSearchingService;
 import com.example.service.ContactService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping( { "/manage/contacts", "/admin/manage/contacts" } )
 public class ContactDetailsController extends AbstractContactController {
 
-    public ContactDetailsController(ContactMapper contactMapper, ContactService contactService) {
-        super(contactMapper, contactService);
+    public ContactDetailsController(ContactMapper contactMapper, ContactService contactService, ContactSearchingService searchingService) {
+        super(contactMapper, contactService, searchingService);
     }
 
     @GetMapping("/contact/{id}")
