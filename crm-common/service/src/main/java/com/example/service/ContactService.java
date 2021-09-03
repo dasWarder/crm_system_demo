@@ -27,6 +27,8 @@ public interface ContactService {
 
     Page<Contact> findAllContacts(Pageable pageable);
 
+    Page<Contact> findAllByParam(final String filteredBy, final String query, final Pageable pageable);
+
     Page<Contact> getAllContactsByCompany(String company, Pageable pageable);
 
     Page<Contact> getAllContactsByJobTitle(String jobTitle, Pageable pageable);

@@ -5,7 +5,6 @@ import com.example.ContactMapper;
 import com.example.dto.ContactDto;
 import com.example.dto.SaveContactDto;
 import com.example.exception.ContactNotFoundException;
-import com.example.service.ContactSearchingService;
 import com.example.service.ContactService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,12 +17,12 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/admin/manage/contacts")
-public class ContactController extends AbstractContactController {
+public class AdminContactController extends AbstractContactController {
 
     private static final String BASE_URL = "http://localhost:8080/admin/manage/contacts";
 
-    public ContactController(ContactMapper contactMapper, ContactService contactService, ContactSearchingService searchingService) {
-        super(contactMapper, contactService, searchingService);
+    public AdminContactController(ContactMapper contactMapper, ContactService contactService) {
+        super(contactMapper, contactService);
     }
 
     @PostMapping("/contact")

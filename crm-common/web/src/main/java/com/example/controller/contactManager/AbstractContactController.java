@@ -5,7 +5,6 @@ import com.example.Contact;
 import com.example.ContactMapper;
 import com.example.dto.ContactDto;
 import com.example.exception.ContactNotFoundException;
-import com.example.service.ContactSearchingService;
 import com.example.service.ContactService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,8 +18,6 @@ public class AbstractContactController {
     protected final ContactMapper contactMapper;
 
     protected final ContactService contactService;
-
-    protected final ContactSearchingService searchingService;
 
     protected ContactDto receiveContactByEmail(String email) throws ContactNotFoundException {
 
@@ -39,10 +36,9 @@ public class AbstractContactController {
 
     protected Page<ContactDto> receiveCriteriaContact(String filterBy, String query, Pageable pageable) {
 
-        Page<Contact> filteredContacts = searchingService
-                                                        .findAllByParam(filterBy, query, pageable);
-        Page<ContactDto> responseContactsDto = filteredContacts
-                                                                .map(contactMapper::contactToContactDto);
+        Page<Contact> filteredContacts = contactService.findAllByParam(filterBy, query, pageable);
+        Page<ContactDto> responseContactsDto = filteredContacts.map(contactMapper::contactToContactDto);
+
         return responseContactsDto;
     }
 }

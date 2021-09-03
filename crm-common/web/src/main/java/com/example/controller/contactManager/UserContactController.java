@@ -3,7 +3,6 @@ package com.example.controller.contactManager;
 import com.example.ContactMapper;
 import com.example.dto.ContactDto;
 import com.example.exception.ContactNotFoundException;
-import com.example.service.ContactSearchingService;
 import com.example.service.ContactService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,9 +19,8 @@ import java.util.Objects;
 @RequestMapping("/manage/contacts")
 public class UserContactController extends AbstractContactController {
 
-
-    public UserContactController(ContactMapper contactMapper, ContactService contactService, ContactSearchingService searchingService) {
-        super(contactMapper, contactService, searchingService);
+    public UserContactController(ContactMapper contactMapper, ContactService contactService) {
+        super(contactMapper, contactService);
     }
 
     @GetMapping("/contact")

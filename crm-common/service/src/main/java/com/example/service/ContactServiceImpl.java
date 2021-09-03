@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.Contact;
 import com.example.exception.ContactNotFoundException;
 import com.example.repository.ContactRepository;
+import com.example.service.specification.ContactSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -26,6 +27,33 @@ public class ContactServiceImpl implements ContactService {
         Page<Contact> allContacts = contactRepository.findAll(pageable);
 
         return allContacts;
+    }
+
+    @Override
+    public Page<Contact> findAllByParam(String filteredBy, String query, Pageable pageable) {
+
+        log.info("Receiving a page with filtering by {} contacts", filteredBy);
+
+        switch (filteredBy.toLowerCase().trim()) {
+
+            case "fullname": {
+
+                String[] slicedFullName = query.split(" ");
+                int fullNameLength = slicedFullName.length;
+
+                String firstName = fullNameLength > 0? slicedFullName[0] : "";
+                String lastName = fullNameLength > 1? slicedFullName[fullNameLength - 1] : "";
+
+                return contactRepository.findAll(
+                        ContactSpecification
+                                .findContactsByFullName(firstName, lastName), pageable);
+            } default: {
+
+                return contactRepository.findAll(
+                        ContactSpecification
+                                .findContactsByParam(filteredBy, query), pageable);
+            }
+        }
     }
 
     @Override
