@@ -26,6 +26,7 @@
         <liquibase.version>4.3.5</liquibase.version>
         <snakeyaml.version>1.29</snakeyaml.version>
         <postgresql.version>42.2.22</postgresql.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
     </properties>
 
     <dependencies>
@@ -94,6 +95,11 @@
                                 <groupId>org.projectlombok</groupId>
                                 <artifactId>lombok</artifactId>
                                 <version>${lombok.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>1.4.2.Final</version>
                             </path>
                         </annotationProcessorPaths>
                         <compilerArgs>

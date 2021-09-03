@@ -1,0 +1,5 @@
+com\example\service\ContactSearchingCriteriaService.class
+com\example\service\ContactSearchingService.class
+com\example\service\specification\ContactSpecification.class
+com\example\service\ContactService.class
+com\example\service\ContactServiceImpl.class

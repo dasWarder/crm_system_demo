@@ -1,0 +1,5 @@
+com\example\ContactMapper.class
+com\example\dto\SaveContactDto.class
+com\example\ContactMapperImpl.class
+com\example\dto\ContactDetailsDto.class
+com\example\dto\ContactDto.class
