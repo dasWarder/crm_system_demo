@@ -37,38 +37,12 @@ public class AbstractContactController {
         return responseContacts;
     }
 
-    protected Page<ContactDto> receiveCompanyContacts(Pageable pageable, String company) {
-
-        Page<ContactDto> responseContactsByCompany = contactService.getAllContactsByCompany(company, pageable)
-                                                                    .map(contactMapper::contactToContactDto);
-        return responseContactsByCompany;
-    }
-
-    protected Page<ContactDto> receiveJobContacts(Pageable pageable, String jobName) {
-
-        Page<ContactDto> responseContactsByJobName = contactService.getAllContactsByJobTitle(jobName, pageable)
-                                                                    .map(contactMapper::contactToContactDto);
-        return responseContactsByJobName;
-    }
-
     protected Page<ContactDto> receiveCriteriaContact(String filterBy, String query, Pageable pageable) {
 
-        Page<Contact> filteredContacts = null;
-
-        switch (filterBy.toLowerCase().trim()) {
-            
-            case "fullName": {
-
-                String[] slicedFullName = query.split(" ");
-                int fullNameLength = slicedFullName.length;
-                filteredContacts = searchingService.findAllByFullName(fullNameLength == 0 ? "" : slicedFullName[0],
-                                                                fullNameLength == 1 ? "" : slicedFullName[1], pageable);
-                break;
-            }
-        }
-
-        Page<ContactDto> responseContactsDto = filteredContacts.map(contactMapper::contactToContactDto);
-
+        Page<Contact> filteredContacts = searchingService
+                                                        .findAllByParam(filterBy, query, pageable);
+        Page<ContactDto> responseContactsDto = filteredContacts
+                                                                .map(contactMapper::contactToContactDto);
         return responseContactsDto;
     }
 }

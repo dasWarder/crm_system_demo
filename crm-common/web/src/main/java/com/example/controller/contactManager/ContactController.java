@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/admin/manage/contacts")
@@ -68,28 +69,13 @@ public class ContactController extends AbstractContactController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ContactDto>> getAllContacts(@PageableDefault(size = 20, sort = "id")
+    public ResponseEntity<Page<ContactDto>> getAllContacts(@RequestParam(value = "filteredBy", required = false) String filteredBy,
+                                                           @RequestParam(value = "query", required = false) String query,
+                                                           @PageableDefault(size = 20, sort = "id")
                                                                                 Pageable pageable) {
-        Page<ContactDto> responseContacts = super.receiveContacts(pageable);
-
+        Page<ContactDto> responseContacts = Objects.isNull(filteredBy)?
+                                                                    super.receiveContacts(pageable) :
+                                                                    super.receiveCriteriaContact(filteredBy, query, pageable);
         return ResponseEntity.ok(responseContacts);
-    }
-
-    @GetMapping("/company")
-    public ResponseEntity<Page<ContactDto>> getAllContactsByCompany(@PageableDefault(size = 20, sort = "id") Pageable pageable,
-                                                                    @RequestParam("company") String company) {
-
-        Page<ContactDto> responseContactsByCompany = super.receiveCompanyContacts(pageable, company);
-
-        return ResponseEntity.ok(responseContactsByCompany);
-    }
-
-    @GetMapping("/job")
-    public ResponseEntity<Page<ContactDto>> getAllContactsByJob(@PageableDefault(size = 20, sort = "id") Pageable pageable,
-                                                                @RequestParam("jobName") String jobName) {
-
-        Page<ContactDto> responseContactsByJobName = super.receiveJobContacts(pageable, jobName);
-
-        return ResponseEntity.ok(responseContactsByJobName);
     }
 }

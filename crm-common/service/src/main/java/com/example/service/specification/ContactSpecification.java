@@ -7,21 +7,26 @@ import javax.persistence.criteria.*;
 
 public class ContactSpecification {
 
-    public static Specification<Contact> findContactByFullName(final String firstName, final String lastName) {
+    public static Specification<Contact> findContactsByFullName(final String firstName, final String lastName) {
 
-        return (root, criteriaQuery, criteriaBuilder) -> {
+        return (r, cq, cb) -> {
 
-            Predicate firstNamePredicate = criteriaBuilder.like(root.get("firstName"), firstName + "%");
-            Predicate lastNamePredicate = criteriaBuilder.like(root.get("lastName"), lastName + "%");
-            Predicate reversedSearchFirstName = criteriaBuilder.like(root.get("firstName"), lastName + "%");
-            Predicate reversedSearchLastName = criteriaBuilder.like(root.get("lastName"), firstName + "%");
+            Predicate firstNamePredicate = cb.like(r.get("firstName"), firstName + "%");
+            Predicate lastNamePredicate = cb.like(r.get("lastName"), lastName + "%");
+            Predicate reversedSearchFirstName = cb.like(r.get("firstName"), lastName + "%");
+            Predicate reversedSearchLastName = cb.like(r.get("lastName"), firstName + "%");
 
-            Predicate reversedOrderPredicate = criteriaBuilder.and(reversedSearchFirstName, reversedSearchLastName);
-            Predicate commonOrderPredicate = criteriaBuilder.and(firstNamePredicate, lastNamePredicate);
+            Predicate reversedOrderPredicate = cb.and(reversedSearchFirstName, reversedSearchLastName);
+            Predicate commonOrderPredicate = cb.and(firstNamePredicate, lastNamePredicate);
 
-            Predicate resultPredicate = criteriaBuilder.or(reversedOrderPredicate, commonOrderPredicate);
+            Predicate resultPredicate = cb.or(reversedOrderPredicate, commonOrderPredicate);
 
             return resultPredicate;
         };
+    }
+
+    public static Specification<Contact> findContactsByParam(final String filteredBy, String query) {
+
+        return (r, cq, cb) -> cb.like(r.get(filteredBy), "%" + query + "%");
     }
 }

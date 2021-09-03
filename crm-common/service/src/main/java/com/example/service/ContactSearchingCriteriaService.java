@@ -15,11 +15,31 @@ public class ContactSearchingCriteriaService implements ContactSearchingService 
     private final ContactRepository contactRepository;
 
     @Override
-    public Page<Contact> findAllByFullName(final String firstName, final String lastName, final Pageable pageable) {
+    public Page<Contact> findAllByParam(String filteredBy, String query, Pageable pageable) {
 
-        Page<Contact> filteredByFullName = contactRepository.findAll(
-                        ContactSpecification.findContactByFullName(firstName, lastName), pageable);
+        Page<Contact> filteredByParam = null;
 
-        return filteredByFullName;
+        switch (filteredBy.toLowerCase().trim()) {
+
+            case "fullname": {
+                String[] slicedFullName = query.split(" ");
+                int fullNameLength = slicedFullName.length;
+
+                String firstName = fullNameLength > 0? slicedFullName[0] : "";
+                String lastName = fullNameLength > 1? slicedFullName[fullNameLength - 1] : "";
+
+                filteredByParam = contactRepository.findAll(
+                                                          ContactSpecification
+                                                                .findContactsByFullName(firstName, lastName), pageable);
+                break;
+            } default: {
+                filteredByParam = contactRepository.findAll(
+                                                        ContactSpecification
+                                                                .findContactsByParam(filteredBy, query), pageable);
+                break;
+            }
+        }
+
+        return filteredByParam;
     }
 }

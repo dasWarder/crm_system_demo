@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface ContactSearchingService {
 
-    Page<Contact> findAllByFullName(final String firstName, final String lastName, final Pageable pageable);
+    Page<Contact> findAllByParam(final String filteredBy, final String query, final Pageable pageable);
 }
