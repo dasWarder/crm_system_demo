@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-09-06T11:23:09+0300",
+    date = "2021-09-06T13:53:30+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
@@ -88,5 +88,25 @@ public class ContactMapperImpl implements ContactMapper {
         contactDetailsDto.setMobilePhone( contact.getMobilePhone() );
 
         return contactDetailsDto;
+    }
+
+    @Override
+    public SaveContactDto contactToSaveContactDto(Contact contact) {
+        if ( contact == null ) {
+            return null;
+        }
+
+        SaveContactDto saveContactDto = new SaveContactDto();
+
+        saveContactDto.setId( contact.getId() );
+        saveContactDto.setFirstName( contact.getFirstName() );
+        saveContactDto.setLastName( contact.getLastName() );
+        saveContactDto.setJobTitle( contact.getJobTitle() );
+        saveContactDto.setCompany( contact.getCompany() );
+        saveContactDto.setEmail( contact.getEmail() );
+        saveContactDto.setCountry( contact.getCountry() );
+        saveContactDto.setMobilePhone( contact.getMobilePhone() );
+
+        return saveContactDto;
     }
 }

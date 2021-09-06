@@ -15,4 +15,6 @@ public interface ContactMapper {
     Contact contactDtoToContact(ContactDto dto);
 
     ContactDetailsDto contactToContactDetailsDto(Contact contact);
+
+    SaveContactDto contactToSaveContactDto(Contact contact);
 }

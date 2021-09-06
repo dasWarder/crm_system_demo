@@ -1,6 +1,7 @@
 package com.example.contactService.integration;
 
 
+import com.example.AbstractTest;
 import com.example.Contact;
 import com.example.exception.ContactNotFoundException;
 import com.example.service.ContactService;
@@ -21,8 +22,8 @@ import static com.example.contactService.data.TestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-@Sql(scripts = { "classpath:/db/customer/populate_contact.sql" })
-public class ContactServiceImplIntegrationTest extends AbstractIntegrationTest {
+@Sql(scripts = {"classpath:/db/contact/populate_contact.sql"})
+public class ContactServiceImplTest extends AbstractTest {
 
     @Autowired
     private ContactService contactService;

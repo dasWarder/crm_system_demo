@@ -1,2 +1,6 @@
-integration\contactService\AbstractIntegrationTest.class
-integration\contactService\ContactServiceImplIntegrationTest.class
+com\example\controller\AdminContactControllerTest.class
+com\example\AbstractTest.class
+com\example\contactService\data\TestContactData.class
+com\example\contactService\data\TestData.class
+com\example\controller\AbstractContextController.class
+com\example\contactService\integration\ContactServiceImplTest.class
