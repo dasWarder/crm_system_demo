@@ -27,6 +27,8 @@ public class ContactSpecification {
 
     public static Specification<Contact> findContactsByParam(final String filteredBy, String query) {
 
-        return (r, cq, cb) -> cb.like(r.get(filteredBy), "%" + query + "%");
+        Specification<Contact> contactSpecification = (r, cq, cb) -> cb.like(r.get(filteredBy), "%" + query + "%");
+
+        return contactSpecification;
     }
 }

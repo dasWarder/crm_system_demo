@@ -27,6 +27,7 @@
         <snakeyaml.version>1.29</snakeyaml.version>
         <postgresql.version>42.2.22</postgresql.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <spring.test.version>2.3.4.RELEASE</spring.test.version>
     </properties>
 
     <dependencies>
@@ -43,6 +44,11 @@
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>${liquibase.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring.test.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

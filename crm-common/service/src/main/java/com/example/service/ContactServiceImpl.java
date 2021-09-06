@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.example.service.specification.ContactSpecification.findContactsByParam;
+
 
 @Slf4j
 @Service
@@ -30,6 +32,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<Contact> findAllByParam(String filteredBy, String query, Pageable pageable) {
 
         log.info("Receiving a page with filtering by {} contacts", filteredBy);
@@ -44,14 +47,17 @@ public class ContactServiceImpl implements ContactService {
                 String firstName = fullNameLength > 0? slicedFullName[0] : "";
                 String lastName = fullNameLength > 1? slicedFullName[fullNameLength - 1] : "";
 
-                return contactRepository.findAll(
+                Page<Contact> contactsByFullname = contactRepository.findAll(
                         ContactSpecification
                                 .findContactsByFullName(firstName, lastName), pageable);
+
+                return contactsByFullname;
             } default: {
 
-                return contactRepository.findAll(
-                        ContactSpecification
-                                .findContactsByParam(filteredBy, query), pageable);
+                Page<Contact> contactsByParam = contactRepository.findAll(
+                                                            findContactsByParam(filteredBy, query), pageable);
+
+                return contactsByParam;
             }
         }
     }
@@ -64,20 +70,6 @@ public class ContactServiceImpl implements ContactService {
         Contact storedContact = contactRepository.save(contact);
 
         return storedContact;
-    }
-
-    @Override
-    @Transactional
-    public Contact updateContact(Long id, Contact contact) throws ContactNotFoundException {
-
-        log.info("Updating a contact with id = {}", id);
-        Contact databaseContact = contactRepository.findById(id)
-                                                    .orElseThrow(() -> new ContactNotFoundException(
-                                                            String.format("A contact with id=%d not found", id)));
-        contact.setId(databaseContact.getId());
-        Contact updatedContact = contactRepository.save(contact);
-
-        return updatedContact;
     }
 
     @Override
@@ -117,25 +109,6 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Contact getContactByMobilePhone(String phoneNumber) throws ContactNotFoundException {
-
-        log.info("Receiving a contact by its mobile phone number = {}", phoneNumber);
-        Contact validContactByPhone = contactRepository.getContactByMobilePhone(phoneNumber)
-                                                .orElseThrow(() -> new ContactNotFoundException(
-                                                     String.format("The contact with email = %s not found", phoneNumber)));
-        return validContactByPhone;
-    }
-
-    @Override
-    @Transactional
-    public void deleteContactById(Long id) {
-
-        log.info("Removing a contact by its id = {}", id);
-        contactRepository.deleteById(id);
-    }
-
-    @Override
     @Transactional
     public void deleteContactByEmail(String email) {
 
@@ -143,23 +116,4 @@ public class ContactServiceImpl implements ContactService {
         contactRepository.deleteContactByEmail(email);
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Contact> getAllContactsByCompany(String company, Pageable pageable) {
-
-        log.info("Receiving a page of contacts by a company = {}", company);
-        Page<Contact> contactsByCompany = contactRepository.getAllByCompany(company, pageable);
-
-        return contactsByCompany;
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Contact> getAllContactsByJobTitle(String jobTitle, Pageable pageable) {
-
-        log.info("Receiving a page of contacts by a job title = {}", jobTitle);
-        Page<Contact> contactsByJob = contactRepository.getAllByJobTitle(jobTitle, pageable);
-
-        return contactsByJob;
-    }
 }
