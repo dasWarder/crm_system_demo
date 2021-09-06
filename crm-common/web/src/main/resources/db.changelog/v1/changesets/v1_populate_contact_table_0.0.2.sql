@@ -5,4 +5,3 @@ INSERT INTO contact(id, first_name, last_name, job_title, company, country, emai
     (4, 'Martin', 'Laanpere', 'Software Engineer', 'TLU', 'Estonia', 'martin_laanpere@gmail.com', '+3724444444'),
     (5, 'Viktor', 'Volochay', 'Product manager', 'Wildmap', 'Ukraine', 'viktor_volochay@gmail.com', '+3805543321');
 
-SELECT setval('contact_seq', max(id)) FROM contact;

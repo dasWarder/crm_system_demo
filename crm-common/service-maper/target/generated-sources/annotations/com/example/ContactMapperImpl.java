@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.Contact.ContactBuilder;
 import com.example.dto.ContactDetailsDto;
 import com.example.dto.ContactDto;
 import com.example.dto.SaveContactDto;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-09-03T16:03:00+0300",
+    date = "2021-09-06T11:23:09+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
@@ -20,18 +21,18 @@ public class ContactMapperImpl implements ContactMapper {
             return null;
         }
 
-        Contact contact = new Contact();
+        ContactBuilder contact = Contact.builder();
 
-        contact.setId( dto.getId() );
-        contact.setFirstName( dto.getFirstName() );
-        contact.setLastName( dto.getLastName() );
-        contact.setJobTitle( dto.getJobTitle() );
-        contact.setCompany( dto.getCompany() );
-        contact.setCountry( dto.getCountry() );
-        contact.setEmail( dto.getEmail() );
-        contact.setMobilePhone( dto.getMobilePhone() );
+        contact.id( dto.getId() );
+        contact.firstName( dto.getFirstName() );
+        contact.lastName( dto.getLastName() );
+        contact.jobTitle( dto.getJobTitle() );
+        contact.company( dto.getCompany() );
+        contact.country( dto.getCountry() );
+        contact.email( dto.getEmail() );
+        contact.mobilePhone( dto.getMobilePhone() );
 
-        return contact;
+        return contact.build();
     }
 
     @Override
@@ -58,16 +59,16 @@ public class ContactMapperImpl implements ContactMapper {
             return null;
         }
 
-        Contact contact = new Contact();
+        ContactBuilder contact = Contact.builder();
 
-        contact.setId( dto.getId() );
-        contact.setFirstName( dto.getFirstName() );
-        contact.setLastName( dto.getLastName() );
-        contact.setJobTitle( dto.getJobTitle() );
-        contact.setCompany( dto.getCompany() );
-        contact.setEmail( dto.getEmail() );
+        contact.id( dto.getId() );
+        contact.firstName( dto.getFirstName() );
+        contact.lastName( dto.getLastName() );
+        contact.jobTitle( dto.getJobTitle() );
+        contact.company( dto.getCompany() );
+        contact.email( dto.getEmail() );
 
-        return contact;
+        return contact.build();
     }
 
     @Override
