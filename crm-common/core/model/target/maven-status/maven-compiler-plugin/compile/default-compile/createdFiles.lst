@@ -1,4 +1,5 @@
 com\example\TodoList$TodoListBuilder.class
+com\example\Task$TaskBuilder.class
 com\example\Task.class
 com\example\Contact$ContactBuilder.class
 com\example\User.class

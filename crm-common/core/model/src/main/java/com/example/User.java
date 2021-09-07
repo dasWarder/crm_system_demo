@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Data
 @Entity
@@ -38,5 +39,13 @@ public class User {
     @PrimaryKeyJoinColumn
     @OneToOne(mappedBy = "user",
               cascade = CascadeType.ALL, orphanRemoval = true)
-    private TodoList todoList;
+    private TodoList todoList = new TodoList(this.id, new ArrayList<>(), this);
+
+    public User(Long id, String email, String password, boolean enabled, LocalDate registrationDate) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.enabled = enabled;
+        this.registrationDate = registrationDate;
+    }
 }

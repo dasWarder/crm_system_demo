@@ -2,10 +2,10 @@ package com.example.controller.contactManager;
 
 import com.example.Contact;
 import com.example.ContactMapper;
-import com.example.dto.ContactDto;
-import com.example.dto.SaveContactDto;
+import com.example.dto.contact.ContactDto;
+import com.example.dto.contact.SaveContactDto;
 import com.example.exception.ContactNotFoundException;
-import com.example.service.ContactService;
+import com.example.service.contact.ContactService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;

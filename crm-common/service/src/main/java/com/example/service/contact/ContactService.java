@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example.service.contact;
 
 import com.example.Contact;
 import com.example.exception.ContactNotFoundException;

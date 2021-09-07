@@ -1,13 +1,3 @@
-/*
-     Long id;
-     String title;
-     String description;
-     LocalDateTime startFrom;
-     LocalDateTime deadline;
-    @JoinColumn(name = "todo_list_id")
-     TodoList todoList;
- */
-
 CREATE SEQUENCE task_seq START WITH 1;
 
 CREATE TABLE task(

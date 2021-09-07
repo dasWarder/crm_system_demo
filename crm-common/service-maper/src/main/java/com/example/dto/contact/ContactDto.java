@@ -1,4 +1,5 @@
-package com.example.dto;
+package com.example.dto.contact;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ContactDetailsDto {
+public class ContactDto {
+
+    private Long id;
 
     private String firstName;
 
@@ -17,9 +20,5 @@ public class ContactDetailsDto {
 
     private String company;
 
-    private String country;
-
     private String email;
-
-    private String mobilePhone;
 }

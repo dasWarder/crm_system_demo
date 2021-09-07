@@ -1,6 +1,7 @@
 package com.example;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "task")
@@ -27,7 +29,7 @@ public class Task {
     @Column
     private String description;
 
-    @Column(name = "start_from")
+    @Column(name = "startfrom")
     private LocalDateTime startFrom;
 
     @Column

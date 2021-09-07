@@ -4,7 +4,7 @@ package com.example.contactService.integration;
 import com.example.AbstractTest;
 import com.example.Contact;
 import com.example.exception.ContactNotFoundException;
-import com.example.service.ContactService;
+import com.example.service.contact.ContactService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
