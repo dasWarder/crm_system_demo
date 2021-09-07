@@ -1,11 +1,11 @@
 package com.example.controller.contactManager.contactDetails;
 
-import com.example.Contact;
+import com.example.contactManager.Contact;
 import com.example.ContactMapper;
 import com.example.controller.contactManager.AbstractContactController;
-import com.example.dto.ContactDetailsDto;
+import com.example.dto.contact.ContactDetailsDto;
 import com.example.exception.ContactNotFoundException;
-import com.example.service.ContactService;
+import com.example.service.contact.ContactService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

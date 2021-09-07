@@ -235,7 +235,7 @@ false America/Rio_Branco
 false America/Rosario
 true America/Santa_Isabel
 false America/Santarem
-false America/Santiago
+true America/Santiago
 false America/Santo_Domingo
 false America/Sao_Paulo
 true America/Scoresbysund
@@ -433,7 +433,7 @@ false CHAST
 false CHUT
 false CKT
 true CLST
-false CLT
+true CLT
 false COT
 false CST
 true CST6CDT
@@ -446,13 +446,13 @@ true Canada/Newfoundland
 true Canada/Pacific
 false Canada/Saskatchewan
 false Canada/Yukon
-false Chile/Continental
-false Chile/EasterIsland
+true Chile/Continental
+true Chile/EasterIsland
 true Cuba
 false DAVT
 false DDUT
-false EASST
-false EAST
+true EASST
+true EAST
 false EAT
 true EDT
 true EEST
@@ -688,7 +688,7 @@ false Pacific/Auckland
 false Pacific/Bougainville
 false Pacific/Chatham
 false Pacific/Chuuk
-false Pacific/Easter
+true Pacific/Easter
 false Pacific/Efate
 false Pacific/Enderbury
 false Pacific/Fakaofo
@@ -793,7 +793,7 @@ false Z
 false Zulu
 true posixrules
 </TimeZones>
-      <StartupTime>1630579256</StartupTime>
+      <StartupTime>1630906508</StartupTime>
     </root>
     <database id="2" parent="1" name="crm">
       <ObjectId>16384</ObjectId>
@@ -808,7 +808,7 @@ true posixrules
 13155||-9223372036854775808|U|G
 13155||10|U|G</Grants>
       <Owner>user</Owner>
-      <IntrospectionStateNumber>607</IntrospectionStateNumber>
+      <IntrospectionStateNumber>948</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <database id="3" parent="1" name="postgres">
@@ -878,7 +878,7 @@ true posixrules
       <Comment>standard public schema</Comment>
       <StateNumber>276</StateNumber>
       <Owner>user</Owner>
-      <IntrospectionStateNumber>608</IntrospectionStateNumber>
+      <IntrospectionStateNumber>949</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="18" parent="2" name="plpgsql">
@@ -979,82 +979,109 @@ true posixrules
       <Type>index</Type>
     </access-method>
     <sequence id="30" parent="17" name="contact_seq">
-      <ObjectId>16482</ObjectId>
+      <ObjectId>16508</ObjectId>
       <Owner>user</Owner>
-      <StateNumber>602</StateNumber>
+      <StateNumber>872</StateNumber>
       <DataType>bigint|0s</DataType>
     </sequence>
-    <table id="31" parent="17" name="contact">
-      <ObjectId>16484</ObjectId>
+    <sequence id="31" parent="17" name="task_seq">
+      <ObjectId>16553</ObjectId>
       <Owner>user</Owner>
-      <StateNumber>602</StateNumber>
-    </table>
-    <table id="32" parent="17" name="databasechangelog">
-      <ObjectId>16476</ObjectId>
+      <StateNumber>937</StateNumber>
+      <DataType>bigint|0s</DataType>
+    </sequence>
+    <sequence id="32" parent="17" name="usr_seq">
+      <ObjectId>16524</ObjectId>
       <Owner>user</Owner>
-      <StateNumber>599</StateNumber>
-    </table>
-    <table id="33" parent="17" name="databasechangeloglock">
-      <ObjectId>16471</ObjectId>
+      <StateNumber>904</StateNumber>
+      <DataType>bigint|0s</DataType>
+    </sequence>
+    <table id="33" parent="17" name="contact">
+      <ObjectId>16510</ObjectId>
       <Owner>user</Owner>
-      <StateNumber>596</StateNumber>
+      <StateNumber>872</StateNumber>
     </table>
-    <column id="34" parent="31" name="id">
+    <table id="34" parent="17" name="databasechangelog">
+      <ObjectId>16502</ObjectId>
+      <Owner>user</Owner>
+      <StateNumber>869</StateNumber>
+    </table>
+    <table id="35" parent="17" name="databasechangeloglock">
+      <ObjectId>16497</ObjectId>
+      <Owner>user</Owner>
+      <StateNumber>866</StateNumber>
+    </table>
+    <table id="36" parent="17" name="task">
+      <ObjectId>16555</ObjectId>
+      <Owner>user</Owner>
+      <StateNumber>937</StateNumber>
+    </table>
+    <table id="37" parent="17" name="todo_list">
+      <ObjectId>16535</ObjectId>
+      <Owner>user</Owner>
+      <StateNumber>920</StateNumber>
+    </table>
+    <table id="38" parent="17" name="usr">
+      <ObjectId>16526</ObjectId>
+      <Owner>user</Owner>
+      <StateNumber>920</StateNumber>
+    </table>
+    <column id="39" parent="33" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>602</StateNumber>
+      <StateNumber>872</StateNumber>
       <DefaultExpression>nextval(&apos;contact_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
     </column>
-    <column id="35" parent="31" name="first_name">
+    <column id="40" parent="33" name="first_name">
       <Position>2</Position>
       <DataType>varchar(128)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>602</StateNumber>
+      <StateNumber>872</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="36" parent="31" name="last_name">
+    <column id="41" parent="33" name="last_name">
       <Position>3</Position>
       <DataType>varchar(128)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>602</StateNumber>
+      <StateNumber>872</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="37" parent="31" name="job_title">
+    <column id="42" parent="33" name="job_title">
       <Position>4</Position>
       <DataType>varchar(256)|0s</DataType>
-      <StateNumber>602</StateNumber>
+      <StateNumber>872</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="38" parent="31" name="company">
+    <column id="43" parent="33" name="company">
       <Position>5</Position>
       <DataType>varchar(256)|0s</DataType>
-      <StateNumber>602</StateNumber>
+      <StateNumber>872</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="39" parent="31" name="country">
+    <column id="44" parent="33" name="country">
       <Position>6</Position>
       <DataType>varchar(128)|0s</DataType>
-      <StateNumber>602</StateNumber>
+      <StateNumber>872</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="40" parent="31" name="email">
+    <column id="45" parent="33" name="email">
       <Position>7</Position>
       <DataType>varchar(128)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>602</StateNumber>
+      <StateNumber>872</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="41" parent="31" name="mobile_phone">
+    <column id="46" parent="33" name="mobile_phone">
       <Position>8</Position>
       <DataType>varchar(56)|0s</DataType>
-      <StateNumber>602</StateNumber>
+      <StateNumber>872</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="42" parent="31" name="contact_pkey">
-      <ObjectId>16491</ObjectId>
-      <StateNumber>602</StateNumber>
+    <index id="47" parent="33" name="contact_pkey">
+      <ObjectId>16517</ObjectId>
+      <StateNumber>872</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
@@ -1062,9 +1089,9 @@ true posixrules
       <CollationIds>0</CollationIds>
       <ClassIds>3124</ClassIds>
     </index>
-    <index id="43" parent="31" name="contact_email_key">
-      <ObjectId>16493</ObjectId>
-      <StateNumber>602</StateNumber>
+    <index id="48" parent="33" name="contact_email_key">
+      <ObjectId>16519</ObjectId>
+      <StateNumber>872</StateNumber>
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
@@ -1072,9 +1099,9 @@ true posixrules
       <CollationNames>default</CollationNames>
       <ClassIds>3126</ClassIds>
     </index>
-    <index id="44" parent="31" name="contact_mobile_phone_key">
-      <ObjectId>16495</ObjectId>
-      <StateNumber>602</StateNumber>
+    <index id="49" parent="33" name="contact_mobile_phone_key">
+      <ObjectId>16521</ObjectId>
+      <StateNumber>872</StateNumber>
       <ColNames>mobile_phone</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
@@ -1082,144 +1109,144 @@ true posixrules
       <CollationNames>default</CollationNames>
       <ClassIds>3126</ClassIds>
     </index>
-    <key id="45" parent="31" name="contact_pkey">
-      <ObjectId>16492</ObjectId>
-      <StateNumber>602</StateNumber>
+    <key id="50" parent="33" name="contact_pkey">
+      <ObjectId>16518</ObjectId>
+      <StateNumber>872</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>contact_pkey</UnderlyingIndexName>
     </key>
-    <key id="46" parent="31" name="contact_email_key">
-      <ObjectId>16494</ObjectId>
-      <StateNumber>602</StateNumber>
+    <key id="51" parent="33" name="contact_email_key">
+      <ObjectId>16520</ObjectId>
+      <StateNumber>872</StateNumber>
       <ColNames>email</ColNames>
       <UnderlyingIndexName>contact_email_key</UnderlyingIndexName>
     </key>
-    <key id="47" parent="31" name="contact_mobile_phone_key">
-      <ObjectId>16496</ObjectId>
-      <StateNumber>602</StateNumber>
+    <key id="52" parent="33" name="contact_mobile_phone_key">
+      <ObjectId>16522</ObjectId>
+      <StateNumber>872</StateNumber>
       <ColNames>mobile_phone</ColNames>
       <UnderlyingIndexName>contact_mobile_phone_key</UnderlyingIndexName>
     </key>
-    <column id="48" parent="32" name="id">
+    <column id="53" parent="34" name="id">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="49" parent="32" name="author">
+    <column id="54" parent="34" name="author">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="50" parent="32" name="filename">
+    <column id="55" parent="34" name="filename">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="51" parent="32" name="dateexecuted">
+    <column id="56" parent="34" name="dateexecuted">
       <Position>4</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="52" parent="32" name="orderexecuted">
+    <column id="57" parent="34" name="orderexecuted">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="53" parent="32" name="exectype">
+    <column id="58" parent="34" name="exectype">
       <Position>6</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="54" parent="32" name="md5sum">
+    <column id="59" parent="34" name="md5sum">
       <Position>7</Position>
       <DataType>varchar(35)|0s</DataType>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="55" parent="32" name="description">
+    <column id="60" parent="34" name="description">
       <Position>8</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="56" parent="32" name="comments">
+    <column id="61" parent="34" name="comments">
       <Position>9</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="57" parent="32" name="tag">
+    <column id="62" parent="34" name="tag">
       <Position>10</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="58" parent="32" name="liquibase">
+    <column id="63" parent="34" name="liquibase">
       <Position>11</Position>
       <DataType>varchar(20)|0s</DataType>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="59" parent="32" name="contexts">
+    <column id="64" parent="34" name="contexts">
       <Position>12</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="60" parent="32" name="labels">
+    <column id="65" parent="34" name="labels">
       <Position>13</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="61" parent="32" name="deployment_id">
+    <column id="66" parent="34" name="deployment_id">
       <Position>14</Position>
       <DataType>varchar(10)|0s</DataType>
-      <StateNumber>599</StateNumber>
+      <StateNumber>869</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="62" parent="33" name="id">
+    <column id="67" parent="35" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>596</StateNumber>
+      <StateNumber>866</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="63" parent="33" name="locked">
+    <column id="68" parent="35" name="locked">
       <Position>2</Position>
       <DataType>boolean|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>596</StateNumber>
+      <StateNumber>866</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="64" parent="33" name="lockgranted">
+    <column id="69" parent="35" name="lockgranted">
       <Position>3</Position>
       <DataType>timestamp|0s</DataType>
-      <StateNumber>596</StateNumber>
+      <StateNumber>866</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="65" parent="33" name="lockedby">
+    <column id="70" parent="35" name="lockedby">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>596</StateNumber>
+      <StateNumber>866</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="66" parent="33" name="databasechangeloglock_pkey">
-      <ObjectId>16474</ObjectId>
-      <StateNumber>596</StateNumber>
+    <index id="71" parent="35" name="databasechangeloglock_pkey">
+      <ObjectId>16500</ObjectId>
+      <StateNumber>866</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
@@ -1227,12 +1254,177 @@ true posixrules
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="67" parent="33" name="databasechangeloglock_pkey">
-      <ObjectId>16475</ObjectId>
-      <StateNumber>596</StateNumber>
+    <key id="72" parent="35" name="databasechangeloglock_pkey">
+      <ObjectId>16501</ObjectId>
+      <StateNumber>866</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>databasechangeloglock_pkey</UnderlyingIndexName>
+    </key>
+    <column id="73" parent="36" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>937</StateNumber>
+      <DefaultExpression>nextval(&apos;task_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="74" parent="36" name="title">
+      <Position>2</Position>
+      <DataType>varchar(128)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>937</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="75" parent="36" name="description">
+      <Position>3</Position>
+      <DataType>varchar(256)|0s</DataType>
+      <StateNumber>937</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="76" parent="36" name="startfrom">
+      <Position>4</Position>
+      <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>937</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="77" parent="36" name="deadline">
+      <Position>5</Position>
+      <DataType>timestamp|0s</DataType>
+      <StateNumber>937</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="78" parent="36" name="todo_list_id">
+      <Position>6</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>937</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="79" parent="36" name="task_pkey">
+      <ObjectId>16559</ObjectId>
+      <StateNumber>937</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>0</CollationIds>
+      <ClassIds>3124</ClassIds>
+    </index>
+    <key id="80" parent="36" name="task_pkey">
+      <ObjectId>16560</ObjectId>
+      <StateNumber>937</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>task_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="81" parent="36" name="task_todo_list_id_fkey">
+      <ObjectId>16561</ObjectId>
+      <StateNumber>937</StateNumber>
+      <ColNames>todo_list_id</ColNames>
+      <RefTableId>16535</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>todo_list</RefTableName>
+      <RefKeyName>todo_list_pkey</RefKeyName>
+      <RefColNames>user_id</RefColNames>
+    </foreign-key>
+    <column id="82" parent="37" name="user_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>920</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="83" parent="37" name="todo_list_pkey">
+      <ObjectId>16538</ObjectId>
+      <StateNumber>920</StateNumber>
+      <ColNames>user_id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>0</CollationIds>
+      <ClassIds>3124</ClassIds>
+    </index>
+    <key id="84" parent="37" name="todo_list_pkey">
+      <ObjectId>16539</ObjectId>
+      <StateNumber>920</StateNumber>
+      <ColNames>user_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>todo_list_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="85" parent="37" name="todo_list_user_id_fkey">
+      <ObjectId>16540</ObjectId>
+      <StateNumber>920</StateNumber>
+      <ColNames>user_id</ColNames>
+      <RefTableId>16526</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>usr</RefTableName>
+      <RefKeyName>usr_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="86" parent="38" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>904</StateNumber>
+      <DefaultExpression>nextval(&apos;usr_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="87" parent="38" name="email">
+      <Position>2</Position>
+      <DataType>varchar(128)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>904</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="88" parent="38" name="password">
+      <Position>3</Position>
+      <DataType>varchar(128)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>904</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="89" parent="38" name="enabled">
+      <Position>4</Position>
+      <DataType>boolean|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>904</StateNumber>
+      <DefaultExpression>true</DefaultExpression>
+      <TypeId>16</TypeId>
+    </column>
+    <index id="90" parent="38" name="usr_pkey">
+      <ObjectId>16531</ObjectId>
+      <StateNumber>904</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>0</CollationIds>
+      <ClassIds>3124</ClassIds>
+    </index>
+    <index id="91" parent="38" name="usr_email_key">
+      <ObjectId>16533</ObjectId>
+      <StateNumber>904</StateNumber>
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>100</CollationIds>
+      <CollationNames>default</CollationNames>
+      <ClassIds>3126</ClassIds>
+    </index>
+    <key id="92" parent="38" name="usr_pkey">
+      <ObjectId>16532</ObjectId>
+      <StateNumber>904</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>usr_pkey</UnderlyingIndexName>
+    </key>
+    <key id="93" parent="38" name="usr_email_key">
+      <ObjectId>16534</ObjectId>
+      <StateNumber>904</StateNumber>
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>usr_email_key</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

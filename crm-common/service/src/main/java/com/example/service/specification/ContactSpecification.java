@@ -1,13 +1,16 @@
 package com.example.service.specification;
 
-import com.example.Contact;
+import com.example.contactManager.Contact;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.criteria.*;
 
+
+@Component
 public class ContactSpecification {
 
-    public static Specification<Contact> findContactsByFullName(final String firstName, final String lastName) {
+    public Specification<Contact> findContactsByFullName(final String firstName, final String lastName) {
 
         return (r, cq, cb) -> {
 
@@ -25,7 +28,7 @@ public class ContactSpecification {
         };
     }
 
-    public static Specification<Contact> findContactsByParam(final String filteredBy, String query) {
+    public Specification<Contact> findContactsByParam(final String filteredBy, String query) {
 
         Specification<Contact> contactSpecification = (r, cq, cb) -> cb.like(r.get(filteredBy), "%" + query + "%");
 

@@ -1,4 +1,7 @@
-C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\dto\ContactDetailsDto.java
-C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\dto\SaveContactDto.java
-C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\dto\ContactDto.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\dto\contact\SaveContactDto.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\dto\contact\ContactDetailsDto.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\dto\task\TaskDto.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\TaskMapper.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\dto\contact\ContactDto.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\ContactMapper.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\TaskMapperWithTodoListAndUser.java

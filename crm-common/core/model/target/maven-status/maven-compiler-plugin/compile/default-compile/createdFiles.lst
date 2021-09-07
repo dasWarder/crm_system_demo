@@ -1,2 +1,8 @@
-com\example\Contact$ContactBuilder.class
-com\example\Contact.class
+com\example\todoList\Task.class
+com\example\contactManager\Contact$ContactBuilder.class
+com\example\todoList\TodoList.class
+com\example\todoList\Task$TaskBuilder.class
+com\example\todoList\TodoList$TodoListBuilder.class
+com\example\user\User$UserBuilder.class
+com\example\user\User.class
+com\example\contactManager\Contact.class

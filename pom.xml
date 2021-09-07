@@ -28,6 +28,7 @@
         <postgresql.version>42.2.22</postgresql.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <spring.test.version>2.3.4.RELEASE</spring.test.version>
+        <jackson.version>2.12.5</jackson.version>
     </properties>
 
     <dependencies>
@@ -49,6 +50,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${spring.test.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

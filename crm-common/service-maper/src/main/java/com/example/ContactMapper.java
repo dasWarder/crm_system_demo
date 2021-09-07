@@ -1,8 +1,9 @@
 package com.example;
 
-import com.example.dto.ContactDetailsDto;
-import com.example.dto.ContactDto;
-import com.example.dto.SaveContactDto;
+import com.example.contactManager.Contact;
+import com.example.dto.contact.ContactDetailsDto;
+import com.example.dto.contact.ContactDto;
+import com.example.dto.contact.SaveContactDto;
 import org.mapstruct.Mapper;
 
 @Mapper

@@ -1,15 +1,16 @@
 package com.example;
 
-import com.example.Contact.ContactBuilder;
-import com.example.dto.ContactDetailsDto;
-import com.example.dto.ContactDto;
-import com.example.dto.SaveContactDto;
+import com.example.contactManager.Contact;
+import com.example.contactManager.Contact.ContactBuilder;
+import com.example.dto.contact.ContactDetailsDto;
+import com.example.dto.contact.ContactDto;
+import com.example.dto.contact.SaveContactDto;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-09-06T13:53:30+0300",
+    date = "2021-09-07T17:12:22+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component

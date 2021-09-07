@@ -1,2 +1,4 @@
-com\example\service\ContactServiceImplTest.class
-com\example\service\ContactTestData.class
+com\example\service\task\TaskServiceImplTest.class
+com\example\service\task\TaskTestData.class
+com\example\service\contact\ContactTestData.class
+com\example\service\contact\ContactServiceImplTest.class
