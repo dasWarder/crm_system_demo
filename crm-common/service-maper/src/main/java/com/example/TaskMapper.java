@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.dto.task.TaskDto;
+import com.example.todoList.Task;
 import org.mapstruct.Mapper;
 
 @Mapper

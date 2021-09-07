@@ -2,4 +2,5 @@ com\example\service\contact\ContactService.class
 com\example\service\specification\ContactSpecification.class
 com\example\service\task\TaskService.class
 com\example\service\contact\ContactServiceImpl.class
+com\example\service\specification\TaskSpecification.class
 com\example\service\task\TaskServiceImpl.class

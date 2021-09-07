@@ -1,7 +1,7 @@
 package com.example.controller.todoList;
 
 
-import com.example.Task;
+import com.example.todoList.Task;
 import com.example.TaskMapper;
 import com.example.TaskMapperWithTodoListAndUser;
 import com.example.dto.task.TaskDto;

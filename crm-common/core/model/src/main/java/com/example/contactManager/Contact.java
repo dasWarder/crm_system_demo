@@ -1,4 +1,4 @@
-package com.example;
+package com.example.contactManager;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

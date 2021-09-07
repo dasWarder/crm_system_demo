@@ -1,11 +1,10 @@
-package com.example.service;
+package com.example.service.contact;
 
 
-import com.example.Contact;
+import com.example.contactManager.Contact;
 import com.example.exception.ContactNotFoundException;
 import com.example.repository.ContactRepository;
-import com.example.service.contact.ContactService;
-import com.example.service.contact.ContactServiceImpl;
+import com.example.service.specification.ContactSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.example.service.ContactTestData.*;
+import static com.example.service.contact.ContactTestData.*;
 import static org.mockito.Mockito.when;
 
 @Slf4j
@@ -26,7 +25,9 @@ class ContactServiceImplTest {
 
     private final ContactRepository contactRepository = Mockito.mock(ContactRepository.class);
 
-    private final ContactService contactService = new ContactServiceImpl(contactRepository);
+    private final ContactSpecification contactSpecification = Mockito.mock(ContactSpecification.class);
+
+    private final ContactService contactService = new ContactServiceImpl(contactRepository, contactSpecification);
 
     @Test
     public void shouldFindAllContactAndReturnPageProperly() {

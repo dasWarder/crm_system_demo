@@ -1,5 +1,6 @@
-package com.example;
+package com.example.user;
 
+import com.example.todoList.TodoList;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.contactManager.Contact;
 import com.example.dto.contact.ContactDetailsDto;
 import com.example.dto.contact.ContactDto;
 import com.example.dto.contact.SaveContactDto;

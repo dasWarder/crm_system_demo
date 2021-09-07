@@ -1,7 +1,7 @@
 package com.example.service.task;
 
 
-import com.example.Task;
+import com.example.todoList.Task;
 import com.example.exception.TaskNotFoundException;
 import com.example.exception.UnsupportedParameterException;
 import org.springframework.data.domain.Page;

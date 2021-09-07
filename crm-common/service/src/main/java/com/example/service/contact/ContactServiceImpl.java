@@ -1,6 +1,6 @@
 package com.example.service.contact;
 
-import com.example.Contact;
+import com.example.contactManager.Contact;
 import com.example.exception.ContactNotFoundException;
 import com.example.repository.ContactRepository;
 import com.example.service.specification.ContactSpecification;
@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.example.service.specification.ContactSpecification.findContactsByParam;
 
 
 @Slf4j
@@ -20,6 +19,8 @@ import static com.example.service.specification.ContactSpecification.findContact
 public class ContactServiceImpl implements ContactService {
 
     private final ContactRepository contactRepository;
+
+    private final ContactSpecification contactSpecification;
 
     @Override
     @Transactional(readOnly = true)
@@ -48,15 +49,15 @@ public class ContactServiceImpl implements ContactService {
                 String lastName = fullNameLength > 1? slicedFullName[fullNameLength - 1] : "";
 
                 Page<Contact> contactsByFullname = contactRepository.findAll(
-                        ContactSpecification
-                                .findContactsByFullName(firstName, lastName), pageable);
-
+                                                        contactSpecification
+                                                                .findContactsByFullName(firstName, lastName), pageable);
                 return contactsByFullname;
+
             } default: {
 
                 Page<Contact> contactsByParam = contactRepository.findAll(
-                                                            findContactsByParam(filteredBy, query), pageable);
-
+                                                            contactSpecification
+                                                                     .findContactsByParam(filteredBy, query), pageable);
                 return contactsByParam;
             }
         }

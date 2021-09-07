@@ -1,6 +1,6 @@
 package com.example.repository;
 
-import com.example.Task;
+import com.example.todoList.Task;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

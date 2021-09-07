@@ -1,6 +1,6 @@
 package com.example.service.specification;
 
-import com.example.Task;
+import com.example.todoList.Task;
 import com.example.exception.UnsupportedParameterException;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;

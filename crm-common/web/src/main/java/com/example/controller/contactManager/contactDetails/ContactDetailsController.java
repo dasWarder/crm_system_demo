@@ -1,6 +1,6 @@
 package com.example.controller.contactManager.contactDetails;
 
-import com.example.Contact;
+import com.example.contactManager.Contact;
 import com.example.ContactMapper;
 import com.example.controller.contactManager.AbstractContactController;
 import com.example.dto.contact.ContactDetailsDto;

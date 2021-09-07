@@ -1,7 +1,7 @@
 package com.example.controller.contactManager;
 
 
-import com.example.Contact;
+import com.example.contactManager.Contact;
 import com.example.ContactMapper;
 import com.example.dto.contact.ContactDto;
 import com.example.exception.ContactNotFoundException;

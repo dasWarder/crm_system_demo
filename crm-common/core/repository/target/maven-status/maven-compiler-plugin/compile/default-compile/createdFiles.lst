@@ -1,6 +1,7 @@
 com\example\repository\TaskRepository.class
-com\example\repository\TodoListRepository.class
-com\example\exception\TaskNotFoundException.class
+com\example\exception\UnsupportedParameterException.class
 com\example\exception\ContactNotFoundException.class
 com\example\exception\TodoListNotFoundException.class
 com\example\repository\ContactRepository.class
+com\example\repository\TodoListRepository.class
+com\example\exception\TaskNotFoundException.class
