@@ -3,6 +3,7 @@ package com.example.service.task;
 
 import com.example.Task;
 import com.example.exception.TaskNotFoundException;
+import com.example.exception.UnsupportedParameterException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -23,22 +24,24 @@ import java.time.LocalDateTime;
  */
 public interface TaskService {
 
-    Task saveTask(Task task);
+    Task saveTask(final Task task);
 
-    Task updateTaskById(Long id, Task updateTask) throws TaskNotFoundException;
+    Task updateTaskById(final Long id, Task updateTask) throws TaskNotFoundException;
 
-    Task getTaskById(Long id) throws TaskNotFoundException;
+    Task getTaskById(final Long id) throws TaskNotFoundException;
 
-    void deleteTaskById(Long id);
+    void deleteTaskById(final Long id);
 
-    Page<Task> getTasks(Pageable pageable);
+    Page<Task> getTasks(final Pageable pageable);
 
-    Page<Task> getActiveTasks(Pageable pageable);
+    Page<Task> getTasksByParams(final String[] filters, final String query, final Pageable pageable) throws UnsupportedParameterException;
 
-    Page<Task> getTasksFromDate(LocalDateTime startFrom, Pageable pageable);
+    Page<Task> getActiveTasks(final Pageable pageable);
 
-    Page<Task> getMissedDeadlineTasks(Pageable pageable);
+    Page<Task> getTasksFromDate(final LocalDateTime startFrom, final Pageable pageable);
 
-    Page<Task> getActiveTasksBetween(LocalDateTime startFrom, LocalDateTime deadline, Pageable pageable);
+    Page<Task> getMissedDeadlineTasks(final Pageable pageable);
+
+    Page<Task> getActiveTasksBetween(final LocalDateTime startFrom, final LocalDateTime deadline, final Pageable pageable);
 
 }

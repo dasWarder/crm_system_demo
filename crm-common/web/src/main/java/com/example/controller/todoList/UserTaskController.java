@@ -7,6 +7,7 @@ import com.example.TaskMapperWithTodoListAndUser;
 import com.example.dto.task.TaskDto;
 import com.example.exception.TaskNotFoundException;
 import com.example.exception.TodoListNotFoundException;
+import com.example.exception.UnsupportedParameterException;
 import com.example.service.task.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
@@ -73,10 +75,16 @@ public class UserTaskController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<TaskDto>> getTasks(@PageableDefault(size = 20, sort = { "startFrom" }) Pageable pageable) {
+    public ResponseEntity<Page<TaskDto>> getTasks(@RequestParam(value = "filters", required = false) String[] filters,
+                                                  @RequestParam(value = "query", required = false) String query,
+                                                  @PageableDefault(size = 20, sort = { "startFrom" }) Pageable pageable)
+                                                                                    throws UnsupportedParameterException {
 
-        Page<TaskDto> allTasks = taskService.getTasks(pageable)
-                                                .map(taskMapper::taskToTaskDto);
+        Page<Task> tasks = Objects.isNull(filters) && Objects.isNull(query) ?
+                                                                taskService.getTasks(pageable) :
+                                                                taskService.getTasksByParams(filters, query, pageable);
+        Page<TaskDto> allTasks = tasks.map(taskMapper::taskToTaskDto);
+
         return ResponseEntity.ok(allTasks);
     }
 
