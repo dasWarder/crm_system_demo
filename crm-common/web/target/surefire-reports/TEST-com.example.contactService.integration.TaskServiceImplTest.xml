@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.example.controller.AdminContactControllerTest" time="1.349" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.example.contactService.integration.TaskServiceImplTest" time="0.986" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="16"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -56,10 +56,14 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="60.0"/>
   </properties>
-  <testcase name="shouldReturnStatusOkAndDeleteContactByEmailProperly" classname="com.example.controller.AdminContactControllerTest" time="0.048"/>
-  <testcase name="shouldReturnStatusIsCreatedAndSaveContactProperly" classname="com.example.controller.AdminContactControllerTest" time="0.171"/>
-  <testcase name="shouldReturnStatusOkAndPageOfAllContactsFilteredByParamProperly" classname="com.example.controller.AdminContactControllerTest" time="0.119"/>
-  <testcase name="shouldReturnStatusOkAndGetContactByEmailProperly" classname="com.example.controller.AdminContactControllerTest" time="0.102"/>
-  <testcase name="shouldReturnStatusOkAndUpdateContactProperly" classname="com.example.controller.AdminContactControllerTest" time="0.114"/>
-  <testcase name="shouldReturnStatusOkAndPageOfAllContactsProperly" classname="com.example.controller.AdminContactControllerTest" time="0.139"/>
+  <testcase name="shouldGetMissedTasksProperly" classname="com.example.contactService.integration.TaskServiceImplTest" time="0.08"/>
+  <testcase name="shouldGetTasksFroDateProperly" classname="com.example.contactService.integration.TaskServiceImplTest" time="0.068"/>
+  <testcase name="shouldGetActualTasksProperly" classname="com.example.contactService.integration.TaskServiceImplTest" time="0.026"/>
+  <testcase name="shouldGetTasksByParamProperly" classname="com.example.contactService.integration.TaskServiceImplTest" time="0.05"/>
+  <testcase name="shouldGetActualTasksBetweenProperly" classname="com.example.contactService.integration.TaskServiceImplTest" time="0.131"/>
+  <testcase name="shouldSaveTaskProperly" classname="com.example.contactService.integration.TaskServiceImplTest" time="0.047"/>
+  <testcase name="shouldGetTaskByIdProperly" classname="com.example.contactService.integration.TaskServiceImplTest" time="0.049"/>
+  <testcase name="shouldGetTasksProperly" classname="com.example.contactService.integration.TaskServiceImplTest" time="0.041"/>
+  <testcase name="shouldDeleteTaskByIdProperly" classname="com.example.contactService.integration.TaskServiceImplTest" time="0.084"/>
+  <testcase name="shouldUpdateTaskByIdProperly" classname="com.example.contactService.integration.TaskServiceImplTest" time="0.042"/>
 </testsuite>

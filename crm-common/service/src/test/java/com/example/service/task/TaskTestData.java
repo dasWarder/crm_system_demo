@@ -11,9 +11,6 @@ import java.time.LocalDateTime;
 
 public class TaskTestData {
 
-    private static final User MOCK_USER = new User(1L, "u@gmail.com", "12345", true,
-                                                                LocalDate.of(2021,8,12));
-
     public static final Long WRONG_ID = 123456789L;
 
     public static final Task TEST_TASK_1 = Task.builder()
