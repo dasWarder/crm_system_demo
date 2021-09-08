@@ -3,6 +3,7 @@ package com.example;
 import com.example.dto.task.TaskDto;
 import com.example.exception.TodoListNotFoundException;
 import com.example.repository.TodoListRepository;
+import com.example.service.todoList.TodoListService;
 import com.example.todoList.Task;
 import com.example.todoList.TodoList;
 import org.mapstruct.Mapper;
@@ -14,12 +15,11 @@ import org.springframework.stereotype.Component;
 public abstract class TaskMapperWithTodoListAndUser {
 
     @Autowired
-    private TodoListRepository todoListRepository;
+    private TodoListService todoListService;
 
     public Task taskDtoToTask(TaskDto taskDto) throws TodoListNotFoundException {
 
-        TodoList todoList = todoListRepository.findById(1L)
-                                                .orElseThrow(TodoListNotFoundException::new);
+        TodoList todoList = todoListService.getTodoListById(1L);
 
         Task task = Task.builder()
                         .id(taskDto.getId())
