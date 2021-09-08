@@ -1,7 +1,6 @@
 package com.example;
 
 import com.example.contactManager.Contact;
-import com.example.contactManager.Contact.ContactBuilder;
 import com.example.dto.contact.ContactDetailsDto;
 import com.example.dto.contact.ContactDto;
 import com.example.dto.contact.SaveContactDto;
@@ -10,31 +9,11 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-09-08T10:50:29+0300",
+    date = "2021-09-08T15:47:01+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.10 (AdoptOpenJDK)"
 )
 @Component
 public class ContactMapperImpl implements ContactMapper {
-
-    @Override
-    public Contact saveContactDtoToContact(SaveContactDto dto) {
-        if ( dto == null ) {
-            return null;
-        }
-
-        ContactBuilder contact = Contact.builder();
-
-        contact.id( dto.getId() );
-        contact.firstName( dto.getFirstName() );
-        contact.lastName( dto.getLastName() );
-        contact.jobTitle( dto.getJobTitle() );
-        contact.company( dto.getCompany() );
-        contact.country( dto.getCountry() );
-        contact.email( dto.getEmail() );
-        contact.mobilePhone( dto.getMobilePhone() );
-
-        return contact.build();
-    }
 
     @Override
     public ContactDto contactToContactDto(Contact contact) {
@@ -52,24 +31,6 @@ public class ContactMapperImpl implements ContactMapper {
         contactDto.setEmail( contact.getEmail() );
 
         return contactDto;
-    }
-
-    @Override
-    public Contact contactDtoToContact(ContactDto dto) {
-        if ( dto == null ) {
-            return null;
-        }
-
-        ContactBuilder contact = Contact.builder();
-
-        contact.id( dto.getId() );
-        contact.firstName( dto.getFirstName() );
-        contact.lastName( dto.getLastName() );
-        contact.jobTitle( dto.getJobTitle() );
-        contact.company( dto.getCompany() );
-        contact.email( dto.getEmail() );
-
-        return contact.build();
     }
 
     @Override

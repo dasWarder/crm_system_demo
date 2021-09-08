@@ -1,9 +1,12 @@
 package com.example.controller.contactManager;
 
 import com.example.ContactMapper;
+import com.example.ContactMapperWithUser;
+import com.example.contactManager.Contact;
 import com.example.dto.contact.ContactDto;
 import com.example.exception.ContactNotFoundException;
 import com.example.service.contact.ContactService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -16,19 +19,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Objects;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/manage/contacts")
-public class UserContactController extends AbstractContactController {
+public class UserContactController {
 
-    public UserContactController(ContactMapper contactMapper, ContactService contactService) {
-        super(contactMapper, contactService);
-    }
+    protected final ContactMapper contactMapper;
+
+    protected final ContactService contactService;
+
+    protected final ContactMapperWithUser customMapper;
 
     @GetMapping("/contact")
     public ResponseEntity<ContactDto> getContactByEmail(@RequestParam("email") String email)
                                                                                 throws ContactNotFoundException {
-        ContactDto contactDto = super.receiveContactByEmail(email);
+        Contact contactByEmail = contactService.getContactByEmail(email);
+        ContactDto responseContactDto = contactMapper.contactToContactDto(contactByEmail);
 
-        return ResponseEntity.ok(contactDto);
+        return ResponseEntity.ok(responseContactDto);
     }
 
     @GetMapping
@@ -36,9 +43,11 @@ public class UserContactController extends AbstractContactController {
                                                            @RequestParam(value = "query", required = false) String query,
                                                            @PageableDefault(size = 20, sort = "id") Pageable pageable) {
 
-        Page<ContactDto> responseContacts = Objects.isNull(filteredBy)?
-                                                        super.receiveContacts(pageable) :
-                                                        super.receiveCriteriaContact(filteredBy, query, pageable);
+        Page<Contact> contacts = Objects.isNull(filteredBy) ?
+                                                    contactService.findAllContacts(pageable) :
+                                                    contactService.findAllByParam(filteredBy, query, pageable);
+        Page<ContactDto> responseContacts = contacts.map(contactMapper::contactToContactDto);
+
         return ResponseEntity.ok(responseContacts);
     }
 }

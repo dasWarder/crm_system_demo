@@ -1,8 +1,10 @@
 com\example\ContactMapperImpl.class
 com\example\dto\contact\SaveContactDto.class
+com\example\ContactMapperWithUserImpl.class
 com\example\dto\contact\ContactDto.class
 com\example\TaskMapperImpl.class
 com\example\ContactMapper.class
+com\example\ContactMapperWithUser.class
 com\example\dto\contact\ContactDetailsDto.class
 com\example\dto\task\TaskDto.class
 com\example\TaskMapperWithTodoListAndUser.class

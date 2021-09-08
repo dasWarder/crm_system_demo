@@ -1,5 +1,6 @@
 package com.example.user;
 
+import com.example.contactManager.Contact;
 import com.example.todoList.TodoList;
 import lombok.*;
 
@@ -35,16 +36,17 @@ public class User {
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
+    @ManyToOne(fetch =
+            FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    private UserAuthority role;
+
     @PrimaryKeyJoinColumn
     @OneToOne(mappedBy = "user",
               cascade = CascadeType.ALL, orphanRemoval = true)
     private TodoList todoList = new TodoList(this.id, new ArrayList<>(), this);
 
-    public User(Long id, String email, String password, boolean enabled, LocalDate registrationDate) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.enabled = enabled;
-        this.registrationDate = registrationDate;
-    }
+    @OneToOne(mappedBy = "user",
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    private Contact contact = new Contact();
 }
