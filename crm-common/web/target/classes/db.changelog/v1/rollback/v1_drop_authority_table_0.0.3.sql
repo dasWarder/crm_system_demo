@@ -1,0 +1,2 @@
+DROP SEQUENCE IF EXISTS auth_seq;
+DROP TABLE IF EXISTS authority;

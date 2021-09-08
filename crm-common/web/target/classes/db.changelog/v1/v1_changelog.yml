@@ -32,17 +32,45 @@ databaseChangeLog:
       author: daswarder
       changes:
         - tagDatabase:
+            - tag: v1_create_authority_table
+        - sqlFile:
+            endDelimiter: \nGO
+            splitStatements: true
+            path: classpath:db.changelog/v1/changesets/v1_create_authority_table_0.0.3.sql
+      rollback:
+        - sqlFile:
+            path: classpath:db.changelog/v1/rollback/v1_drop_authority_table_0.0.3.sql
+
+  - changeSet:
+      id: 1.4
+      author: daswarder
+      changes:
+        - tagDatabase:
+            - tag: v1_populate_authority_table
+        - sqlFile:
+            endDelimiter: \nGO
+            splitStatements: true
+            path: classpath:db.changelog/v1/changesets/v1_populate_authority_table_0.0.4.sql
+      rollback:
+        - sqlFile:
+            path: classpath:db.changelog/v1/rollback/v1_clean_authority_table_0.0.4.sql
+
+  - changeSet:
+      id: 1.5
+      author: daswarder
+      changes:
+        - tagDatabase:
             - tag: v1_create_usr_table
         - sqlFile:
             endDelimiter: \nGO
             splitStatements: true
-            path: classpath:db.changelog/v1/changesets/v1_create_usr_table_0.0.3.sql
+            path: classpath:db.changelog/v1/changesets/v1_create_usr_table_0.0.5.sql
       rollback:
         - sqlFile:
-            path: classpath:db.changelog/v1/rollback/v1_drop_usr_table_0.0.3.sql
+            path: classpath:db.changelog/v1/rollback/v1_drop_usr_table_0.0.5.sql
 
   - changeSet:
-      id: 1.4
+      id: 1.6
       author: daswarder
       changes:
         - tagDatabase:
@@ -50,13 +78,13 @@ databaseChangeLog:
         - sqlFile:
             endDelimiter: \nGO
             splitStatements: true
-            path: classpath:db.changelog/v1/changesets/v1_populate_usr_table_0.0.4.sql
+            path: classpath:db.changelog/v1/changesets/v1_populate_usr_table_0.0.6.sql
       rollback:
         - sqlFile:
-            path: classpath:db.changelog/v1/rollback/v1_clean_usr_table_0.0.4.sql
+            path: classpath:db.changelog/v1/rollback/v1_clean_usr_table_0.0.6.sql
 
   - changeSet:
-      id: 1.5
+      id: 1.7
       author: daswarder
       changes:
         - tagDatabase:
@@ -64,13 +92,13 @@ databaseChangeLog:
         - sqlFile:
             endDelimiter: \nGO
             splitStatements: true
-            path: classpath:db.changelog/v1/changesets/v1_create_todo_list_table_0.0.5.sql
+            path: classpath:db.changelog/v1/changesets/v1_create_todo_list_table_0.0.7.sql
       rollback:
         - sqlFile:
-            path: classpath:db.changelog/v1/rollback/v1_drop_todo_list_table_0.0.5.sql
+            path: classpath:db.changelog/v1/rollback/v1_drop_todo_list_table_0.0.7.sql
 
   - changeSet:
-      id: 1.6
+      id: 1.8
       author: daswarder
       changes:
         - tagDatabase:
@@ -78,13 +106,13 @@ databaseChangeLog:
         - sqlFile:
             endDelimiter: \nGO
             splitStatements: true
-            path: classpath:db.changelog/v1/changesets/v1_populate_todo_list_table_0.0.6.sql
+            path: classpath:db.changelog/v1/changesets/v1_populate_todo_list_table_0.0.8.sql
       rollback:
         - sqlFile:
-            path: classpath:db.changelog/v1/rollback/v1_clean_todo_list_table_0.0.6.sql
+            path: classpath:db.changelog/v1/rollback/v1_clean_todo_list_table_0.0.8.sql
 
   - changeSet:
-      id: 1.7
+      id: 1.9
       author: daswarder
       changes:
         - tagDatabase:
@@ -92,13 +120,13 @@ databaseChangeLog:
         - sqlFile:
             endDelimiter: \nGO
             splitStatements: true
-            path: classpath:db.changelog/v1/changesets/v1_create_task_table_0.0.7.sql
+            path: classpath:db.changelog/v1/changesets/v1_create_task_table_0.0.9.sql
       rollback:
         - sqlFile:
-            path: classpath:db.changelog/v1/rollback/v1_drop_task_table_0.0.7.sql
+            path: classpath:db.changelog/v1/rollback/v1_drop_task_table_0.0.9.sql
 
   - changeSet:
-      id: 1.8
+      id: 1.1.1
       author: daswarder
       changes:
         - tagDatabase:
@@ -106,7 +134,9 @@ databaseChangeLog:
         - sqlFile:
             endDelimiter: \nGO
             splitStatements: true
-            path: classpath:db.changelog/v1/changesets/v1_populate_task_table_0.0.8.sql
+            path: classpath:db.changelog/v1/changesets/v1_populate_task_table_0.1.0.sql
       rollback:
         - sqlFile:
-            path: classpath:db.changelog/v1/rollback/v1_clean_task_table_0.0.8.sql
+            path: classpath:db.changelog/v1/rollback/v1_clean_task_table_0.1.0.sql
+
+
