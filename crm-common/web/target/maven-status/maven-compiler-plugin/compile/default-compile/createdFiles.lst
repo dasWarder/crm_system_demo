@@ -1,7 +1,10 @@
 com\example\controller\todoList\UserTaskController.class
 com\example\controller\contactManager\UserContactController.class
 com\example\CrmApplication.class
+com\example\controller\viewExceptionHandling\ExceptionResponse.class
 com\example\controller\contactManager\AdminContactController.class
+com\example\controller\viewExceptionHandling\ExceptionResponse$ExceptionResponseBuilder.class
 com\example\controller\contactManager\contactDetails\ContactDetailsController.class
 com\example\config\ApplicationConfig.class
 com\example\controller\contactManager\AbstractContactController.class
+com\example\controller\viewExceptionHandling\ViewExceptionHandler.class
