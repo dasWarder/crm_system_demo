@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Slf4j
-@Sql(scripts = {"classpath:db/contact/populate_contact.sql"})
+@Sql(scripts = {"classpath:db/contactManager/populate_contact.sql"})
 public class AdminContactControllerTest extends AbstractContextController {
 
     @Autowired

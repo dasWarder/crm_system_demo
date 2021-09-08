@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Slf4j
-@Sql(scripts = { "classpath:/db/task/populate_todo_related_tables.sql" })
+@Sql(scripts = {"classpath:/db/todoList/populate_todo_related_tables.sql"})
 class UserTaskControllerTest extends AbstractContextController {
 
     @Autowired
