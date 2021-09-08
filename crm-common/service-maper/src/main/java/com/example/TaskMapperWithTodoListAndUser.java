@@ -2,7 +2,6 @@ package com.example;
 
 import com.example.dto.task.TaskDto;
 import com.example.exception.TodoListNotFoundException;
-import com.example.repository.TodoListRepository;
 import com.example.service.todoList.TodoListService;
 import com.example.todoList.Task;
 import com.example.todoList.TodoList;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Mapper
-@Component
 public abstract class TaskMapperWithTodoListAndUser {
 
     @Autowired

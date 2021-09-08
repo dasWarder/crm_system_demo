@@ -1,5 +1,7 @@
+com\example\service\user\UserService.class
 com\example\service\task\TaskService.class
 com\example\service\todoList\TodoListService.class
+com\example\service\user\UserServiceImpl.class
 com\example\service\todoList\TodoListServiceImpl.class
 com\example\service\contact\ContactService.class
 com\example\service\specification\ContactSpecification.class

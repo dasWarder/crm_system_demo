@@ -1,9 +1,6 @@
 package com.example.controller.viewExceptionHandling;
 
-import com.example.exception.ContactNotFoundException;
-import com.example.exception.TaskNotFoundException;
-import com.example.exception.TodoListNotFoundException;
-import com.example.exception.UnsupportedParameterException;
+import com.example.exception.*;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +14,9 @@ public class ViewExceptionHandler {
             ContactNotFoundException.class,
             TaskNotFoundException.class,
             TodoListNotFoundException.class,
-            UnsupportedParameterException.class
+            UnsupportedParameterException.class,
+            UserNotFoundException.class,
+            UserAlreadyExistException.class
     })
     public ExceptionResponse servicesExceptionsResponse(Exception e) {
 

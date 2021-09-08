@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "authorities")
+@Table(name = "authority")
 public class UserAuthority {
 
     @Id
@@ -27,7 +27,7 @@ public class UserAuthority {
     private String authority;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
-            orphanRemoval = true, mappedBy = "role")
+                            orphanRemoval = true, mappedBy = "role")
     private Set<User> users;
 
 }

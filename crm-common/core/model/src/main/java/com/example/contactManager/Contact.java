@@ -1,5 +1,6 @@
 package com.example.contactManager;
 
+import com.example.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,4 +42,7 @@ public class Contact {
 
     @Column(name = "mobile_phone")
     private String mobilePhone;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private User user;
 }
