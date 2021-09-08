@@ -1,6 +1,7 @@
-package com.example.controller;
+package com.example.controller.contactManager;
 
 import com.example.ContactMapper;
+import com.example.controller.AbstractContextController;
 import com.example.dto.contact.ContactDto;
 import com.example.dto.contact.SaveContactDto;
 import lombok.extern.slf4j.Slf4j;

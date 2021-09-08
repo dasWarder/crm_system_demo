@@ -1,10 +1,12 @@
 package com.example.contactService.data;
 
 import com.example.todoList.Task;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-
+@Component
 public class TestTaskData {
 
     public static final Task TEST_TASK_1 = Task.builder()

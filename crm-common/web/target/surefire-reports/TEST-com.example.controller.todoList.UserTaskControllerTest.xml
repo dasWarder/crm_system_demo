@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.example.contactService.integration.ContactServiceImplTest" time="5.395" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.example.controller.todoList.UserTaskControllerTest" time="1.124" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="16"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -56,14 +56,14 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="60.0"/>
   </properties>
-  <testcase name="shouldThrowExceptionIfGetContactByEmailWithWrongEmail" classname="com.example.contactService.integration.ContactServiceImplTest" time="0.308"/>
-  <testcase name="shouldFindAllContactsProperly" classname="com.example.contactService.integration.ContactServiceImplTest" time="0.121"/>
-  <testcase name="shouldFindAllByFilterParamProperly" classname="com.example.contactService.integration.ContactServiceImplTest" time="0.06"/>
-  <testcase name="shouldUpdateContactByEmailProperly" classname="com.example.contactService.integration.ContactServiceImplTest" time="0.051"/>
-  <testcase name="shouldThrowExceptionIfGetContactByIdWithWrongId" classname="com.example.contactService.integration.ContactServiceImplTest" time="0.028"/>
-  <testcase name="shouldSaveContactProperly" classname="com.example.contactService.integration.ContactServiceImplTest" time="0.039"/>
-  <testcase name="shouldGetContactByEmailProperly" classname="com.example.contactService.integration.ContactServiceImplTest" time="0.028"/>
-  <testcase name="shouldDeleteContactByEmailProperly" classname="com.example.contactService.integration.ContactServiceImplTest" time="0.054"/>
-  <testcase name="shouldGetContactByIdProperly" classname="com.example.contactService.integration.ContactServiceImplTest" time="0.027"/>
-  <testcase name="shouldThrowExceptionIfUpdateContactByEmailWithWrongEmail" classname="com.example.contactService.integration.ContactServiceImplTest" time="0.028"/>
+  <testcase name="shouldReturnStatusOkAndGetTasksFromDateProperly" classname="com.example.controller.todoList.UserTaskControllerTest" time="0.093"/>
+  <testcase name="shouldReturnStatusOkAndGetTasksBetweenProperly" classname="com.example.controller.todoList.UserTaskControllerTest" time="0.109"/>
+  <testcase name="shouldReturnStatusCreatedAndSaveNewTaskProperly" classname="com.example.controller.todoList.UserTaskControllerTest" time="0.096"/>
+  <testcase name="shouldReturnStatusOkAndGetTaskByIdProperly" classname="com.example.controller.todoList.UserTaskControllerTest" time="0.074"/>
+  <testcase name="shouldReturnStatusOkAndGetTasksWithFiltersProperly" classname="com.example.controller.todoList.UserTaskControllerTest" time="0.103"/>
+  <testcase name="shouldReturnStatusOkAndGetTasksWithoutFiltersProperly" classname="com.example.controller.todoList.UserTaskControllerTest" time="0.102"/>
+  <testcase name="shouldReturnStatusNoContentAndDeleteTaskByIdProperly" classname="com.example.controller.todoList.UserTaskControllerTest" time="0.071"/>
+  <testcase name="shouldReturnStatusOkAndGetMissedTasksProperly" classname="com.example.controller.todoList.UserTaskControllerTest" time="0.108"/>
+  <testcase name="shouldReturnStatusOkAndUpdateTaskProperly" classname="com.example.controller.todoList.UserTaskControllerTest" time="0.1"/>
+  <testcase name="shouldReturnStatusOkAndGetActiveTasksProperly" classname="com.example.controller.todoList.UserTaskControllerTest" time="0.089"/>
 </testsuite>
