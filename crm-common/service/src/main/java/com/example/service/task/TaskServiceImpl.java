@@ -41,7 +41,8 @@ public class TaskServiceImpl implements TaskService {
 
         log.info("Update a task with id = {}", id);
         Task dbTask = taskRepository.findById(id)
-                                    .orElseThrow(TaskNotFoundException::new);
+                                    .orElseThrow(() -> new TaskNotFoundException(
+                                                String.format("The task with id = %d not found", id)));
         updateTask.setId(dbTask.getId());
         Task updatedTask = taskRepository.save(updateTask);
 
@@ -54,7 +55,8 @@ public class TaskServiceImpl implements TaskService {
 
         log.info("Get a task by its id = {}", id);
         Task validTaskById = taskRepository.findById(id)
-                                        .orElseThrow(TaskNotFoundException::new);
+                                        .orElseThrow(() -> new TaskNotFoundException(
+                                                    String.format("The task with id = %d not found", id)));
         return validTaskById;
     }
 

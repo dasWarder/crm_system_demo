@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDateTime;
@@ -23,7 +22,7 @@ import static com.example.contactService.data.TestTaskData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-@Sql(scripts = { "classpath:/db/task/populate_todo_related_tables.sql" })
+@Sql(scripts = {"classpath:/db/todoList/populate_todo_related_tables.sql"})
 public class TaskServiceImplTest extends AbstractTest {
 
     @Autowired

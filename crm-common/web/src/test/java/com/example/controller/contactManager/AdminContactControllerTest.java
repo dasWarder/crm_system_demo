@@ -1,6 +1,7 @@
-package com.example.controller;
+package com.example.controller.contactManager;
 
 import com.example.ContactMapper;
+import com.example.controller.AbstractContextController;
 import com.example.dto.contact.ContactDto;
 import com.example.dto.contact.SaveContactDto;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Slf4j
-@Sql(scripts = {"classpath:db/contact/populate_contact.sql"})
+@Sql(scripts = {"classpath:db/contactManager/populate_contact.sql"})
 public class AdminContactControllerTest extends AbstractContextController {
 
     @Autowired

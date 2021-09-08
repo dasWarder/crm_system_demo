@@ -1,15 +1,18 @@
 DELETE FROM task;
+DELETE FROM todo_list;
+DELETE FROM usr;
 
 ALTER SEQUENCE task_seq RESTART WITH 1;
+ALTER SEQUENCE usr_seq RESTART WITH 1;
 
-/*
- .id(4L)
-                                                        .title("Create something")
-                                                        .description("Create some stuff")
-                                                        .startFrom(LocalDateTime.now().plusHours(2))
-                                                        .deadline(LocalDateTime.now().plusDays(1).plusHours(2))
-                                                        .build();
- */
+
+INSERT INTO usr(id, email, password, enabled) VALUES
+    (1, 'test@gmail.com', '12345', true);
+
+ALTER SEQUENCE usr_seq RESTART WITH 2;
+
+INSERT INTO todo_list(user_id) VALUES
+    (1);
 
 INSERT INTO task(id, title, description, startfrom, deadline) VALUES
     (1, 'Create migration', 'It is necessary to create a brand new migration file', '2021-09-02 10:13:00', '2021-09-03 23:59:59'),

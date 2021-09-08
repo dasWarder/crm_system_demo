@@ -1,8 +1,9 @@
-com\example\controller\AdminContactControllerTest.class
+com\example\controller\contactManager\AdminContactControllerTest.class
 com\example\AbstractTest.class
 com\example\contactService\integration\TaskServiceImplTest.class
 com\example\contactService\data\TestContactData.class
 com\example\contactService\data\TestData.class
 com\example\contactService\data\TestTaskData.class
 com\example\controller\AbstractContextController.class
+com\example\controller\todoList\UserTaskControllerTest.class
 com\example\contactService\integration\ContactServiceImplTest.class

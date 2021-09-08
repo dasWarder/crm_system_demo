@@ -44,7 +44,8 @@ public class TaskSpecification {
     private List<String> findUnsupportedParams(String[] filters) {
 
         List<String> unsupportedParams = Arrays.stream(filters)
-                .filter(f -> "startfrom".equalsIgnoreCase(f) || "deadline".equalsIgnoreCase(f))
+                .filter(f -> !f.equalsIgnoreCase("title") &&
+                                !f.equalsIgnoreCase("description"))
                 .collect(Collectors.toList());
 
         return unsupportedParams;
