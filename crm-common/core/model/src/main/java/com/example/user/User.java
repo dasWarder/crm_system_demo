@@ -35,6 +35,11 @@ public class User {
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
+    @ManyToOne(fetch =
+            FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    private UserAuthority role;
+
     @PrimaryKeyJoinColumn
     @OneToOne(mappedBy = "user",
               cascade = CascadeType.ALL, orphanRemoval = true)
