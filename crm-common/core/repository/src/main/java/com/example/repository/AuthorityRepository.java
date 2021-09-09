@@ -1,6 +1,6 @@
 package com.example.repository;
 
-import com.example.user.UserAuthority;
+import com.example.model.user.UserAuthority;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

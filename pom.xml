@@ -29,6 +29,7 @@
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <spring.test.version>2.3.4.RELEASE</spring.test.version>
         <jackson.version>2.12.5</jackson.version>
+        <jws.version>0.9.1</jws.version>
     </properties>
 
     <dependencies>

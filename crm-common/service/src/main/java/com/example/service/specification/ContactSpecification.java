@@ -1,6 +1,6 @@
 package com.example.service.specification;
 
-import com.example.contactManager.Contact;
+import com.example.model.contactManager.Contact;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 

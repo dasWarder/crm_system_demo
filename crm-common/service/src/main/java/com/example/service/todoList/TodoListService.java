@@ -1,7 +1,7 @@
 package com.example.service.todoList;
 
 import com.example.exception.TodoListNotFoundException;
-import com.example.todoList.TodoList;
+import com.example.model.todoList.TodoList;
 
 public interface TodoListService {
 

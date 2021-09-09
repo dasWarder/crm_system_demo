@@ -1,7 +1,6 @@
 package com.example.contactService.data;
 
-import com.example.todoList.Task;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.model.todoList.Task;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

@@ -1,8 +1,8 @@
 package com.example.controller.todoList;
 
-import com.example.TaskMapper;
+import com.example.mapper.TaskMapper;
 import com.example.controller.AbstractContextController;
-import com.example.dto.task.TaskDto;
+import com.example.mapper.dto.task.TaskDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
