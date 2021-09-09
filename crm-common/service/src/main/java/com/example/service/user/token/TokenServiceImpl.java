@@ -37,7 +37,7 @@ public class TokenServiceImpl implements TokenService {
         User validUser = userService.getUserByEmail(username);
         Token token = Token.builder()
                             .subject(validUser.getEmail())
-                            .expiryDate(Instant.now().minusMillis(expirationTime))
+                            .expiryDate(Instant.now().plusMillis(expirationTime))
                             .token(UUID.randomUUID().toString())
                             .build();
         Token storedToken = tokenRepository.save(token);

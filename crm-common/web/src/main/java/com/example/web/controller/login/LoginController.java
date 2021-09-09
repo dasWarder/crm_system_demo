@@ -53,14 +53,14 @@ public class LoginController {
 
     @PostMapping("/registration/common")
     public ResponseEntity<BaseUserDto> registrationNewUser(@RequestBody SaveUserDto dto)
-                                                          throws AuthorityNotFoundException, UserAlreadyExistException {
+            throws AuthorityNotFoundException, UserAlreadyExistException {
 
         User userToStore = customMapper.saveUserDtoToUser(dto);
         User storedUser = userService.saveUser(userToStore);
         BaseUserDto responseUser = userMapper.userToBaseUserDto(storedUser);
 
         return ResponseEntity.created(URI.create(BASE_URL))
-                                            .body(responseUser);
+                .body(responseUser);
     }
 
     @PostMapping("/auth")
@@ -76,7 +76,7 @@ public class LoginController {
         TokenDto tokenDto = tokenMapper.fromStringsToToken(token, refreshToken.getToken());
 
         return ResponseEntity.created(URI.create("/auth"))
-                                            .body(tokenDto);
+                .body(tokenDto);
     }
 
     @PostMapping("/refresh")

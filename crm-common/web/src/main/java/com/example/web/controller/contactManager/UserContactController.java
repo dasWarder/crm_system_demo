@@ -1,7 +1,6 @@
 package com.example.web.controller.contactManager;
 
 import com.example.mapper.ContactMapper;
-import com.example.mapper.ContactMapperWithUser;
 import com.example.model.contactManager.Contact;
 import com.example.mapper.dto.contact.ContactDto;
 import com.example.exception.ContactNotFoundException;
@@ -26,8 +25,6 @@ public class UserContactController {
     protected final ContactMapper contactMapper;
 
     protected final ContactService contactService;
-
-    protected final ContactMapperWithUser customMapper;
 
     @GetMapping("/contact")
     public ResponseEntity<ContactDto> getContactByEmail(@RequestParam("email") String email)
