@@ -1,10 +1,9 @@
 package com.example.web.controller.contactManager.contactDetails;
 
-import com.example.mapper.ContactMapperWithUser;
-import com.example.model.contactManager.Contact;
+import com.example.exception.ContactNotFoundException;
 import com.example.mapper.ContactMapper;
 import com.example.mapper.dto.contact.ContactDetailsDto;
-import com.example.exception.ContactNotFoundException;
+import com.example.model.contactManager.Contact;
 import com.example.service.contact.ContactService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +20,6 @@ public class ContactDetailsController {
     protected final ContactMapper contactMapper;
 
     protected final ContactService contactService;
-
-    protected final ContactMapperWithUser customMapper;
 
     @GetMapping("/contact/{id}")
     public ResponseEntity<ContactDetailsDto> getContactDetailsById(@PathVariable("id") Long id)

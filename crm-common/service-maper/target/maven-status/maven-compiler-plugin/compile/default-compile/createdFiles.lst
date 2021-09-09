@@ -6,7 +6,6 @@ com\example\mapper\TaskMapperWithTodoListAndUser.class
 com\example\mapper\dto\user\SaveUserDto.class
 com\example\mapper\UserMapperWithAuthority.class
 com\example\mapper\TaskMapperWithTodoListAndUserImpl.class
-com\example\mapper\ContactMapperWithUserImpl.class
 com\example\mapper\UserMapperWithAuthorityImpl.class
 com\example\mapper\dto\contact\ContactDetailsDto.class
 com\example\mapper\UserMapperImpl.class
@@ -16,7 +15,6 @@ com\example\mapper\TokenMapper.class
 com\example\mapper\dto\user\token\TokenDto.class
 com\example\mapper\TaskMapper.class
 com\example\mapper\UserMapper.class
-com\example\mapper\ContactMapperWithUser.class
 com\example\mapper\dto\task\TaskDto.class
 com\example\mapper\TaskMapperImpl.class
 com\example\mapper\TokenMapperImpl.class

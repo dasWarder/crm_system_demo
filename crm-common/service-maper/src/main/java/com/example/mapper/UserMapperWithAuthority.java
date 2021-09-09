@@ -20,25 +20,26 @@ public abstract class UserMapperWithAuthority {
 
     public User saveUserDtoToUser(SaveUserDto dto) {
 
-      log.info("Try to map a save user DTO to the user");
+        log.info("Try to map a save user DTO to the user");
 
-      User user = User.builder()
-                      .email(dto.getEmail())
-                      .password(passwordEncoder.encode(dto.getPassword()))
-                      .enabled(true)
-                      .registrationDate(LocalDate.now())
-                      .build();
+        User user = User.builder()
+                .email(dto.getEmail())
+                .password(passwordEncoder.encode(dto.getPassword()))
+                .enabled(true)
+                .registrationDate(LocalDate.now())
+                .build();
 
-      Contact userContactCard = Contact.builder()
-                                            .firstName(dto.getFirstName())
-                                            .lastName(dto.getLastName())
-                                            .jobTitle(dto.getJobTitle())
-                                            .company(dto.getCompany())
-                                            .country(dto.getCountry())
-                                            .email(dto.getEmail())
-                                            .mobilePhone(dto.getMobilePhone())
-                                            .user(user)
-                                            .build();
+        Contact userContactCard = Contact.builder()
+                .firstName(dto.getFirstName())
+                .lastName(dto.getLastName())
+                .jobTitle(dto.getJobTitle())
+                .company(dto.getCompany())
+                .country(dto.getCountry())
+                .email(dto.getEmail())
+                .mobilePhone(dto.getMobilePhone())
+                .user(user)
+                .build();
+
         user.setContact(userContactCard);
 
         return user;
