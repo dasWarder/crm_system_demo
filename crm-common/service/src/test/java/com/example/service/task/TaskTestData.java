@@ -1,11 +1,7 @@
 package com.example.service.task;
 
-import com.example.todoList.Task;
-import com.example.user.User;
-import org.springframework.data.domain.PageRequest;
+import com.example.model.todoList.Task;
 
-import java.awt.print.Pageable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 

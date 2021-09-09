@@ -2,7 +2,7 @@ package com.example.service.security;
 
 import com.example.exception.UserNotFoundException;
 import com.example.service.user.UserService;
-import com.example.user.User;
+import com.example.model.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

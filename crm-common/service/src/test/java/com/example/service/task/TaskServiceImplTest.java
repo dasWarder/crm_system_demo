@@ -3,7 +3,7 @@ package com.example.service.task;
 import com.example.exception.TaskNotFoundException;
 import com.example.repository.TaskRepository;
 import com.example.service.specification.TaskSpecification;
-import com.example.todoList.Task;
+import com.example.model.todoList.Task;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;

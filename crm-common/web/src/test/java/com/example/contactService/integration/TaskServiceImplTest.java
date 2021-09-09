@@ -4,7 +4,7 @@ import com.example.AbstractTest;
 import com.example.exception.TaskNotFoundException;
 import com.example.exception.UnsupportedParameterException;
 import com.example.service.task.TaskService;
-import com.example.todoList.Task;
+import com.example.model.todoList.Task;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

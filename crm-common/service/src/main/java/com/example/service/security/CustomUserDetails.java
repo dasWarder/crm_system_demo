@@ -1,7 +1,7 @@
 package com.example.service.security;
 
-import com.example.user.User;
-import com.example.user.UserAuthority;
+import com.example.model.user.User;
+import com.example.model.user.UserAuthority;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

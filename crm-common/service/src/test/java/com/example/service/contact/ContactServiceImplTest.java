@@ -1,7 +1,7 @@
 package com.example.service.contact;
 
 
-import com.example.contactManager.Contact;
+import com.example.model.contactManager.Contact;
 import com.example.exception.ContactNotFoundException;
 import com.example.repository.ContactRepository;
 import com.example.service.specification.ContactSpecification;

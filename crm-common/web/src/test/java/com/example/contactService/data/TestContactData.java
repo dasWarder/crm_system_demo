@@ -1,6 +1,6 @@
 package com.example.contactService.data;
 
-import com.example.contactManager.Contact;
+import com.example.model.contactManager.Contact;
 
 public class TestContactData {
 

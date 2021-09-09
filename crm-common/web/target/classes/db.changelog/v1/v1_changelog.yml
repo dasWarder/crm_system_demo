@@ -140,4 +140,18 @@ databaseChangeLog:
         - sqlFile:
             path: classpath:db.changelog/v1/rollback/v1_clean_task_table_0.1.0.sql
 
+  - changeSet:
+      id: 1.1.2
+      author: daswarder
+      changes:
+        - tagDatabase:
+            - tag: v1_create_refresh_token_table
+        - sqlFile:
+            endDelimiter: \nGO
+            splitStatements: true
+            path: classpath:db.changelog/v1/changesets/v1_create_refresh_token_table_0.1.1.sql
+      rollback:
+        - sqlFile:
+            path: classpath:db.changelog/v1/rollback/v1_drop_refresh_token_table_0.1.1.sql
+
 

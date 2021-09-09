@@ -2,7 +2,7 @@ package com.example.service.todoList;
 
 import com.example.exception.TodoListNotFoundException;
 import com.example.repository.TodoListRepository;
-import com.example.todoList.TodoList;
+import com.example.model.todoList.TodoList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

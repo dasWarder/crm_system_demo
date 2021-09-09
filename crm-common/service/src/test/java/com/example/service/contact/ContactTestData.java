@@ -1,6 +1,6 @@
 package com.example.service.contact;
 
-import com.example.contactManager.Contact;
+import com.example.model.contactManager.Contact;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 

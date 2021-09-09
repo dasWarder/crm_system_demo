@@ -1,6 +1,6 @@
 package com.example.service.contact;
 
-import com.example.contactManager.Contact;
+import com.example.model.contactManager.Contact;
 import com.example.exception.ContactNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

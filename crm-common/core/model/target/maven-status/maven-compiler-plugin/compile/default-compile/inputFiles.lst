@@ -1,5 +1,6 @@
-C:\Users\user\IdeaProjects\crm-system\crm-common\core\model\src\main\java\com\example\todoList\Task.java
-C:\Users\user\IdeaProjects\crm-system\crm-common\core\model\src\main\java\com\example\todoList\TodoList.java
-C:\Users\user\IdeaProjects\crm-system\crm-common\core\model\src\main\java\com\example\user\UserAuthority.java
-C:\Users\user\IdeaProjects\crm-system\crm-common\core\model\src\main\java\com\example\contactManager\Contact.java
-C:\Users\user\IdeaProjects\crm-system\crm-common\core\model\src\main\java\com\example\user\User.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\core\model\src\main\java\com\example\model\user\UserAuthority.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\core\model\src\main\java\com\example\model\user\User.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\core\model\src\main\java\com\example\model\contactManager\Contact.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\core\model\src\main\java\com\example\model\todoList\Task.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\core\model\src\main\java\com\example\model\todoList\TodoList.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\core\model\src\main\java\com\example\model\user\Token.java
