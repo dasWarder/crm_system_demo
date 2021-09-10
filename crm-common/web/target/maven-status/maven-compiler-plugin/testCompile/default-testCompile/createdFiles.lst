@@ -1,0 +1,9 @@
+com\example\AbstractTest.class
+com\example\web\data\TestContactData.class
+com\example\web\integration\ContactServiceImplTest.class
+com\example\web\controller\todoList\UserTaskControllerTest.class
+com\example\web\data\TestTaskData.class
+com\example\web\controller\AbstractContextController.class
+com\example\web\data\TestData.class
+com\example\web\controller\contactManager\AdminContactControllerTest.class
+com\example\web\integration\TaskServiceImplTest.class

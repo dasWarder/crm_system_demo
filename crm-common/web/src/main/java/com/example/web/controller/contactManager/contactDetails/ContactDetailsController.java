@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping( { "/manage/contacts", "/admin/manage/contacts" } )
+@RequestMapping({"/manage/contacts", "/admin/manage/contacts"})
 public class ContactDetailsController {
 
-    protected final ContactMapper contactMapper;
+  protected final ContactMapper contactMapper;
 
-    protected final ContactService contactService;
+  protected final ContactService contactService;
 
-    @GetMapping("/contact/{id}")
-    public ResponseEntity<ContactDetailsDto> getContactDetailsById(@PathVariable("id") Long id)
-                                                                                    throws ContactNotFoundException {
-        Contact contactById = contactService.getContactById(id);
-        ContactDetailsDto contactDetailsDto = contactMapper.contactToContactDetailsDto(contactById);
+  @GetMapping("/contact/{id}")
+  public ResponseEntity<ContactDetailsDto> getContactDetailsById(@PathVariable("id") Long id)
+      throws ContactNotFoundException {
+    Contact contactById = contactService.getContactById(id);
+    ContactDetailsDto contactDetailsDto = contactMapper.contactToContactDetailsDto(contactById);
 
-        return ResponseEntity.ok(contactDetailsDto);
-    }
+    return ResponseEntity.ok(contactDetailsDto);
+  }
 }

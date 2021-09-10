@@ -1,6 +1,5 @@
 package com.example.mapper.dto.user.token;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TokenRefreshRequest {
 
-    private String refreshToken;
+  private String refreshToken;
 }

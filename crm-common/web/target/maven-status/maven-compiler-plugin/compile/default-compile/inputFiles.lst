@@ -2,11 +2,12 @@ C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\w
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\controller\viewExceptionHandling\ExceptionResponse.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\config\security\SecurityConfiguration.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\config\security\UserJwtAuthEntryPoint.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\controller\todoList\UserTaskController.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\controller\login\LoginController.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\config\security\token\JwtFilter.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\controller\todoList\TodoListController.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\CrmApplication.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\controller\contactManager\UserContactController.java
-C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\controller\todoList\UserTaskController.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\config\ApplicationConfig.java
-C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\controller\login\LoginController.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\controller\viewExceptionHandling\ViewExceptionHandler.java
-C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\config\security\token\JwtFilter.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\controller\contactManager\contactDetails\ContactDetailsController.java

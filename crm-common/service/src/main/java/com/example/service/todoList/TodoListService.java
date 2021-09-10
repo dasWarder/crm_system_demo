@@ -1,13 +1,12 @@
 package com.example.service.todoList;
 
 import com.example.exception.TodoListNotFoundException;
+import com.example.exception.UserNotFoundException;
 import com.example.model.todoList.TodoList;
 
 public interface TodoListService {
 
-    TodoList saveTodoList(TodoList todoList);
-
-    TodoList updateTodoList(Long id, TodoList todoList) throws TodoListNotFoundException;
+    TodoList createTodoList() throws UserNotFoundException;
 
     TodoList getTodoListById(Long id) throws TodoListNotFoundException;
 

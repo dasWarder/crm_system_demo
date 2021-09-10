@@ -9,10 +9,10 @@ import java.util.Optional;
 
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
-    Optional<User> getUserByEmail(String email);
+  Optional<User> getUserByEmail(String email);
 
-    @Override
-    Page<User> findAll(Pageable pageable);
+  @Override
+  Page<User> findAll(Pageable pageable);
 
-    void deleteUserByEmail(String email);
+  void deleteUserByEmail(String email);
 }

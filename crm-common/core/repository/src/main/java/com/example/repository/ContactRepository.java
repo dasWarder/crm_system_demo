@@ -9,21 +9,16 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
 
-public interface ContactRepository extends PagingAndSortingRepository<Contact, Long>, JpaSpecificationExecutor<Contact> {
+public interface ContactRepository
+    extends PagingAndSortingRepository<Contact, Long>, JpaSpecificationExecutor<Contact> {
 
-    @Override
-    Page<Contact> findAll(Pageable pageable);
+  @Override
+  Page<Contact> findAll(Pageable pageable);
 
-    Optional<Contact> getContactByEmail(String email);
+  Optional<Contact> getContactByEmail(String email);
 
-    Optional<Contact> getContactByMobilePhone(String phoneNumber);
+  void deleteContactByEmail(String email);
 
-    void deleteContactByEmail(String email);
-
-    Page<Contact> getAllByCompany(String company, Pageable pageable);
-
-    Page<Contact> getAllByJobTitle(String jobTitle, Pageable pageable);
-
-    @Override
-    Page<Contact> findAll(Specification<Contact> specification, Pageable pageable);
+  @Override
+  Page<Contact> findAll(Specification<Contact> specification, Pageable pageable);
 }

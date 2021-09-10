@@ -1,9 +1,9 @@
 package com.example.web.controller.contactManager;
 
-import com.example.mapper.ContactMapper;
-import com.example.model.contactManager.Contact;
-import com.example.mapper.dto.contact.ContactDto;
 import com.example.exception.ContactNotFoundException;
+import com.example.mapper.ContactMapper;
+import com.example.mapper.dto.contact.ContactDto;
+import com.example.model.contactManager.Contact;
 import com.example.service.contact.ContactService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,29 +22,31 @@ import java.util.Objects;
 @RequestMapping("/manage/contacts")
 public class UserContactController {
 
-    protected final ContactMapper contactMapper;
+  protected final ContactMapper contactMapper;
 
-    protected final ContactService contactService;
+  protected final ContactService contactService;
 
-    @GetMapping("/contact")
-    public ResponseEntity<ContactDto> getContactByEmail(@RequestParam("email") String email)
-                                                                                throws ContactNotFoundException {
-        Contact contactByEmail = contactService.getContactByEmail(email);
-        ContactDto responseContactDto = contactMapper.contactToContactDto(contactByEmail);
+  @GetMapping("/contact")
+  public ResponseEntity<ContactDto> getContactByEmail(@RequestParam("email") String email)
+      throws ContactNotFoundException {
+    Contact contactByEmail = contactService.getContactByEmail(email);
+    ContactDto responseContactDto = contactMapper.contactToContactDto(contactByEmail);
 
-        return ResponseEntity.ok(responseContactDto);
-    }
+    return ResponseEntity.ok(responseContactDto);
+  }
 
-    @GetMapping
-    public ResponseEntity<Page<ContactDto>> getAllContacts(@RequestParam(value = "filteredBy", required = false) String filteredBy,
-                                                           @RequestParam(value = "query", required = false) String query,
-                                                           @PageableDefault(size = 20, sort = "id") Pageable pageable) {
+  @GetMapping
+  public ResponseEntity<Page<ContactDto>> getAllContacts(
+      @RequestParam(value = "filteredBy", required = false) String filteredBy,
+      @RequestParam(value = "query", required = false) String query,
+      @PageableDefault(size = 20, sort = "id") Pageable pageable) {
 
-        Page<Contact> contacts = Objects.isNull(filteredBy) ?
-                                                    contactService.findAllContacts(pageable) :
-                                                    contactService.findAllByParam(filteredBy, query, pageable);
-        Page<ContactDto> responseContacts = contacts.map(contactMapper::contactToContactDto);
+    Page<Contact> contacts =
+        Objects.isNull(filteredBy)
+            ? contactService.findAllContacts(pageable)
+            : contactService.findAllByParam(filteredBy, query, pageable);
+    Page<ContactDto> responseContacts = contacts.map(contactMapper::contactToContactDto);
 
-        return ResponseEntity.ok(responseContacts);
-    }
+    return ResponseEntity.ok(responseContacts);
+  }
 }

@@ -7,6 +7,7 @@ com\example\web\controller\contactManager\contactDetails\ContactDetailsControlle
 com\example\web\config\security\UserJwtAuthEntryPoint.class
 com\example\web\controller\viewExceptionHandling\ExceptionResponse.class
 com\example\web\controller\viewExceptionHandling\ViewExceptionHandler.class
+com\example\web\controller\todoList\TodoListController.class
 com\example\web\CrmApplication.class
 com\example\web\config\security\token\JwtFilter.class
 com\example\web\config\security\SecurityConfiguration.class

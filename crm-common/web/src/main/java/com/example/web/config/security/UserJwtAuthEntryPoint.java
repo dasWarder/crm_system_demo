@@ -1,6 +1,5 @@
 package com.example.web.config.security;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -17,23 +16,27 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class UserJwtAuthEntryPoint implements AuthenticationEntryPoint {
 
-    private final ObjectMapper mapper;
+  private final ObjectMapper mapper;
 
-    @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, IOException {
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+  @Override
+  public void commence(
+      HttpServletRequest request,
+      HttpServletResponse response,
+      AuthenticationException authException)
+      throws IOException, IOException {
+    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
-        String message;
+    String message;
 
-        if (authException.getCause() != null) {
-            message = authException.getCause().toString() + " " + authException.getMessage();
-        } else {
-            message = authException.getMessage();
-        }
-
-        byte[] body = mapper.writeValueAsBytes(Collections.singletonMap("error", message));
-
-        response.getOutputStream().write(body);
+    if (authException.getCause() != null) {
+      message = authException.getCause().toString() + " " + authException.getMessage();
+    } else {
+      message = authException.getMessage();
     }
+
+    byte[] body = mapper.writeValueAsBytes(Collections.singletonMap("error", message));
+
+    response.getOutputStream().write(body);
+  }
 }

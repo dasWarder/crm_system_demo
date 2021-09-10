@@ -1,19 +1,18 @@
 package com.example.web.controller.login;
 
-
+import com.example.exception.AuthorityNotFoundException;
+import com.example.exception.UserAlreadyExistException;
 import com.example.mapper.TokenMapper;
 import com.example.mapper.UserMapper;
 import com.example.mapper.UserMapperWithAuthority;
 import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
-import com.example.exception.AuthorityNotFoundException;
-import com.example.exception.UserAlreadyExistException;
 import com.example.mapper.dto.user.token.TokenDto;
 import com.example.mapper.dto.user.token.TokenRefreshRequest;
 import com.example.model.user.Token;
+import com.example.model.user.User;
 import com.example.service.security.UserDetailsSecurityService;
 import com.example.service.user.UserService;
-import com.example.model.user.User;
 import com.example.service.user.token.TokenService;
 import com.example.web.config.security.token.TokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -33,66 +32,64 @@ import java.net.URI;
 @RequestMapping("/login")
 public class LoginController {
 
-    private final TokenMapper tokenMapper;
+  private final TokenMapper tokenMapper;
 
-    private final TokenProvider tokenProvider;
+  private final TokenProvider tokenProvider;
 
-    private final AuthenticationManager authenticationManager;
+  private final AuthenticationManager authenticationManager;
 
-    private final UserDetailsSecurityService securityService;
+  private final UserDetailsSecurityService securityService;
 
-    private final TokenService tokenService;
+  private final TokenService tokenService;
 
-    private final UserMapper userMapper;
+  private final UserMapper userMapper;
 
-    private final UserService userService;
+  private final UserService userService;
 
-    private final UserMapperWithAuthority customMapper;
+  private final UserMapperWithAuthority customMapper;
 
-    private static final String BASE_URL = "http://localhost:8080/registration";
+  private static final String BASE_URL = "http://localhost:8080/registration";
 
-    @PostMapping("/registration/common")
-    public ResponseEntity<BaseUserDto> registrationNewUser(@RequestBody SaveUserDto dto)
-            throws AuthorityNotFoundException, UserAlreadyExistException {
+  @PostMapping("/registration/common")
+  public ResponseEntity<BaseUserDto> registrationNewUser(@RequestBody SaveUserDto dto)
+      throws AuthorityNotFoundException, UserAlreadyExistException {
 
-        User userToStore = customMapper.saveUserDtoToUser(dto);
-        User storedUser = userService.saveUser(userToStore);
-        BaseUserDto responseUser = userMapper.userToBaseUserDto(storedUser);
+    User userToStore = customMapper.saveUserDtoToUser(dto);
+    User storedUser = userService.saveUser(userToStore);
+    BaseUserDto responseUser = userMapper.userToBaseUserDto(storedUser);
 
-        return ResponseEntity.created(URI.create(BASE_URL))
-                .body(responseUser);
-    }
+    return ResponseEntity.created(URI.create(BASE_URL)).body(responseUser);
+  }
 
-    @PostMapping("/auth")
-    public ResponseEntity<TokenDto> auth(@RequestBody SaveUserDto dto) throws Throwable {
+  @PostMapping("/auth")
+  public ResponseEntity<TokenDto> auth(@RequestBody SaveUserDto dto) throws Throwable {
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
+    authenticationManager.authenticate(
+        new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
 
-        UserDetails details = securityService.loadUserByUsername(dto.getEmail());
-        String token = tokenProvider.generateToken(details.getUsername());
+    UserDetails details = securityService.loadUserByUsername(dto.getEmail());
+    String token = tokenProvider.generateToken(details.getUsername());
 
-        Token refreshToken = tokenService.createToken(details.getUsername());
-        TokenDto tokenDto = tokenMapper.fromStringsToToken(token, refreshToken.getToken());
+    Token refreshToken = tokenService.createToken(details.getUsername());
+    TokenDto tokenDto = tokenMapper.fromStringsToToken(token, refreshToken.getToken());
 
-        return ResponseEntity.created(URI.create("/auth"))
-                .body(tokenDto);
-    }
+    return ResponseEntity.created(URI.create("/auth")).body(tokenDto);
+  }
 
-    @PostMapping("/refresh")
-    public ResponseEntity<TokenDto> refreshToken(@RequestBody TokenRefreshRequest requestDto) throws Throwable {
+  @PostMapping("/refresh")
+  public ResponseEntity<TokenDto> refreshToken(@RequestBody TokenRefreshRequest requestDto)
+      throws Throwable {
 
-        String refreshToken = requestDto.getRefreshToken();
+    String refreshToken = requestDto.getRefreshToken();
 
-        Token tokenFromDb = tokenService.findTokenByToken(refreshToken);
-        Token validToken = tokenService.verifyExpiration(tokenFromDb);
+    Token tokenFromDb = tokenService.findTokenByToken(refreshToken);
+    Token validToken = tokenService.verifyExpiration(tokenFromDb);
 
-        String subject = validToken.getSubject();
-        String token = tokenProvider.generateToken(subject);
+    String subject = validToken.getSubject();
+    String token = tokenProvider.generateToken(subject);
 
-        TokenDto responseToken = tokenMapper.fromStringsToToken(token, validToken.getToken());
+    TokenDto responseToken = tokenMapper.fromStringsToToken(token, validToken.getToken());
 
-        return ResponseEntity.ok(responseToken);
-    }
-
+    return ResponseEntity.ok(responseToken);
+  }
 }

@@ -22,36 +22,37 @@ import static io.jsonwebtoken.lang.Strings.hasText;
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 
-    private static final String AUTHORIZATION = "Authorization";
+  private static final String AUTHORIZATION = "Authorization";
 
-    private final TokenProvider provider;
+  private final TokenProvider provider;
 
-    private final UserDetailsSecurityService securityService;
+  private final UserDetailsSecurityService securityService;
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
+  @Override
+  protected void doFilterInternal(
+      HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+      throws ServletException, IOException {
 
-        log.info("Generate a JWT token");
-        String token = getTokenFromRequest(request);
+    log.info("Generate a JWT token");
+    String token = getTokenFromRequest(request);
 
-        if (token != null && provider.validateToken(token)) {
+    if (token != null && provider.validateToken(token)) {
 
-            String userLogin = provider.getLoginFromToken(token);
-            UserDetails userDetails = securityService.loadUserByUsername(userLogin);
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                                                                userDetails, null, userDetails.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authToken);
-        }
-
-        filterChain.doFilter(request, response);
+      String userLogin = provider.getLoginFromToken(token);
+      UserDetails userDetails = securityService.loadUserByUsername(userLogin);
+      UsernamePasswordAuthenticationToken authToken =
+          new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+      SecurityContextHolder.getContext().setAuthentication(authToken);
     }
 
-    private String getTokenFromRequest(HttpServletRequest request) {
-        String bearer = request.getHeader(AUTHORIZATION);
-        if (hasText(bearer) && bearer.startsWith("Bearer ")) {
-            return bearer.substring(7);
-        }
-        return null;
+    filterChain.doFilter(request, response);
+  }
+
+  private String getTokenFromRequest(HttpServletRequest request) {
+    String bearer = request.getHeader(AUTHORIZATION);
+    if (hasText(bearer) && bearer.startsWith("Bearer ")) {
+      return bearer.substring(7);
     }
+    return null;
+  }
 }
