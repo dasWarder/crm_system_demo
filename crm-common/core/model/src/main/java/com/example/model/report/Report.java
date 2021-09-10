@@ -29,8 +29,7 @@ public class Report {
   @Enumerated(EnumType.STRING)
   private ReportTopic reportTopic;
 
-  @Column
-  private String comment;
+  @Column private String comment;
 
   @Column(name = "status")
   @Enumerated(EnumType.STRING)
@@ -46,6 +45,5 @@ public class Report {
   @JoinColumn(name = "user_id")
   private User user;
 
-  @Column
-  private String response;
+  @Column private String response;
 }
