@@ -3,6 +3,7 @@ package com.example.service.report;
 import com.example.exception.ReportNotFoundException;
 import com.example.exception.UserNotFoundException;
 import com.example.model.report.Report;
+import com.example.model.report.ReportStatus;
 import com.example.model.user.User;
 import com.example.repository.ReportRepository;
 import com.example.service.user.UserService;
@@ -32,6 +33,7 @@ public class ReportServiceImpl implements ReportService {
 
     User currentUser = getCurrentUser();
     report.setUser(currentUser);
+    report.setReportStatus(ReportStatus.RECEIVED);
     Report storedReport = reportRepository.save(report);
 
     return storedReport;
@@ -66,6 +68,7 @@ public class ReportServiceImpl implements ReportService {
                 () ->
                     new ReportNotFoundException(
                         String.format("The report with id = %d not found", id)));
+    
     return reportById;
   }
 
