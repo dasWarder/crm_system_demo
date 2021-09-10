@@ -33,4 +33,9 @@ public class UserAuthority {
       orphanRemoval = true,
       mappedBy = "role")
   private Set<User> users;
+
+  public UserAuthority(Long id, String authority) {
+    this.id = id;
+    this.authority = authority;
+  }
 }

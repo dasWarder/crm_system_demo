@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class TodoListServiceImpl implements TodoListService {
   private final TodoListRepository todoListRepository;
 
   @Override
+  @Transactional
   public TodoList createTodoList() throws UserNotFoundException {
 
     log.info("Save a new todo list");
@@ -50,6 +52,7 @@ public class TodoListServiceImpl implements TodoListService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public TodoList getTodoListById(final Long id) throws TodoListNotFoundException {
 
     log.info("Get a todo list by id = {}", id);
@@ -64,6 +67,7 @@ public class TodoListServiceImpl implements TodoListService {
   }
 
   @Override
+  @Transactional
   public void deleteTodoListById(final Long id) {
 
     log.info("Delete a todo list by id = {}", id);

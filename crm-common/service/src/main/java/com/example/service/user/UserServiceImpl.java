@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
         userRepository
             .getUserByEmail(email)
             .orElseThrow(
-                () -> new UserNotFoundException(String.format("A user with email = %s not found")));
+                () -> new UserNotFoundException(String.format("A user with email = %s not found", email)));
     return userByEmail;
   }
 

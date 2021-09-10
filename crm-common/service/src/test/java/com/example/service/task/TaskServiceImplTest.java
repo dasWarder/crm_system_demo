@@ -1,12 +1,9 @@
 package com.example.service.task;
 
 import com.example.exception.TaskNotFoundException;
-import com.example.exception.TodoListNotFoundException;
-import com.example.exception.UserNotFoundException;
-import com.example.model.user.User;
+import com.example.model.todoList.Task;
 import com.example.repository.TaskRepository;
 import com.example.service.specification.TaskSpecification;
-import com.example.model.todoList.Task;
 import com.example.service.todoList.TodoListService;
 import com.example.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,7 +24,6 @@ import static com.example.service.contact.ContactTestData.TEST_PAGEABLE;
 import static com.example.service.task.TaskTestData.*;
 
 @Slf4j
-@RequiredArgsConstructor
 class TaskServiceImplTest {
 
   private final UserService userService = Mockito.mock(UserService.class);
