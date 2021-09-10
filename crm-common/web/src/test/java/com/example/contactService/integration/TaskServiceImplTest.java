@@ -2,7 +2,9 @@ package com.example.contactService.integration;
 
 import com.example.AbstractTest;
 import com.example.exception.TaskNotFoundException;
+import com.example.exception.TodoListNotFoundException;
 import com.example.exception.UnsupportedParameterException;
+import com.example.exception.UserNotFoundException;
 import com.example.service.task.TaskService;
 import com.example.model.todoList.Task;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +31,7 @@ public class TaskServiceImplTest extends AbstractTest {
     private TaskService taskService;
 
     @Test
-    public void shouldSaveTaskProperly() {
+    public void shouldSaveTaskProperly() throws UserNotFoundException, TodoListNotFoundException {
 
         log.info("Test saveTask() method");
         Task storedTask = taskService.saveTask(TEST_SAVE_TASK);

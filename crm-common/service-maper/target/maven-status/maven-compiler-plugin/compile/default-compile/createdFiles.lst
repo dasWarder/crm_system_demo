@@ -2,10 +2,8 @@ com\example\mapper\dto\user\BaseUserDto.class
 com\example\mapper\dto\user\token\TokenDto$TokenDtoBuilder.class
 com\example\mapper\dto\user\token\TokenRefreshRequest.class
 com\example\mapper\dto\user\AuthUserDto.class
-com\example\mapper\TaskMapperWithTodoListAndUser.class
 com\example\mapper\dto\user\SaveUserDto.class
 com\example\mapper\UserMapperWithAuthority.class
-com\example\mapper\TaskMapperWithTodoListAndUserImpl.class
 com\example\mapper\UserMapperWithAuthorityImpl.class
 com\example\mapper\dto\contact\ContactDetailsDto.class
 com\example\mapper\UserMapperImpl.class

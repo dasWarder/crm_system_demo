@@ -1,6 +1,8 @@
 package com.example.service.task;
 
 
+import com.example.exception.TodoListNotFoundException;
+import com.example.exception.UserNotFoundException;
 import com.example.model.todoList.Task;
 import com.example.exception.TaskNotFoundException;
 import com.example.exception.UnsupportedParameterException;
@@ -24,7 +26,7 @@ import java.time.LocalDateTime;
  */
 public interface TaskService {
 
-    Task saveTask(final Task task);
+    Task saveTask(final Task task) throws UserNotFoundException, TodoListNotFoundException;
 
     Task updateTaskById(final Long id, Task updateTask) throws TaskNotFoundException;
 

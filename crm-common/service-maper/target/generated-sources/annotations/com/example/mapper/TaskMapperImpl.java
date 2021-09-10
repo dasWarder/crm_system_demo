@@ -2,12 +2,13 @@ package com.example.mapper;
 
 import com.example.mapper.dto.task.TaskDto;
 import com.example.model.todoList.Task;
+import com.example.model.todoList.Task.TaskBuilder;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-09-09T16:41:30+0300",
+    date = "2021-09-10T10:10:40+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
@@ -28,5 +29,22 @@ public class TaskMapperImpl implements TaskMapper {
         taskDto.setDeadline( task.getDeadline() );
 
         return taskDto;
+    }
+
+    @Override
+    public Task taskDtoToTask(TaskDto dto) {
+        if ( dto == null ) {
+            return null;
+        }
+
+        TaskBuilder task = Task.builder();
+
+        task.id( dto.getId() );
+        task.title( dto.getTitle() );
+        task.description( dto.getDescription() );
+        task.startFrom( dto.getStartFrom() );
+        task.deadline( dto.getDeadline() );
+
+        return task.build();
     }
 }

@@ -1,133 +1,167 @@
 package com.example.service.task;
 
+import com.example.exception.TodoListNotFoundException;
+import com.example.exception.UserNotFoundException;
 import com.example.model.todoList.Task;
 import com.example.exception.TaskNotFoundException;
 import com.example.exception.UnsupportedParameterException;
+import com.example.model.todoList.TodoList;
+import com.example.model.user.User;
 import com.example.repository.TaskRepository;
 import com.example.service.specification.TaskSpecification;
+import com.example.service.todoList.TodoListService;
+import com.example.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
 
-    private final TaskRepository taskRepository;
+  private final UserService userService;
 
-    private final TaskSpecification taskSpecification;
+  private final TaskRepository taskRepository;
 
-    @Override
-    @Transactional
-    public Task saveTask(final Task task) {
+  private final TodoListService todoListService;
 
-        log.info("Store a new task");
-        Task storedTask = taskRepository.save(task);
+  private final TaskSpecification taskSpecification;
 
-        return storedTask;
-    }
+  @Override
+  @Transactional
+  public Task saveTask(final Task task) throws UserNotFoundException, TodoListNotFoundException {
 
-    @Override
-    @Transactional
-    public Task updateTaskById(final Long id, Task updateTask) throws TaskNotFoundException {
+    log.info("Store a new task");
+    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    String authEmail =
+        principal instanceof UserDetails
+            ? ((UserDetails) principal).getUsername()
+            : principal.toString();
 
-        log.info("Update a task with id = {}", id);
-        Task dbTask = taskRepository.findById(id)
-                                    .orElseThrow(() -> new TaskNotFoundException(
-                                                String.format("The task with id = %d not found", id)));
-        updateTask.setId(dbTask.getId());
-        Task updatedTask = taskRepository.save(updateTask);
+    User loggedUser = userService.getUserByEmail(authEmail);
+    TodoList todoListById = todoListService.getTodoListById(loggedUser.getId());
+    task.setTodoList(todoListById);
 
-        return updatedTask;
-    }
+    Task storedTask = taskRepository.save(task);
 
-    @Override
-    @Transactional(readOnly = true)
-    public Task getTaskById(final Long id) throws TaskNotFoundException {
+    return storedTask;
+  }
 
-        log.info("Get a task by its id = {}", id);
-        Task validTaskById = taskRepository.findById(id)
-                                        .orElseThrow(() -> new TaskNotFoundException(
-                                                    String.format("The task with id = %d not found", id)));
-        return validTaskById;
-    }
+  @Override
+  @Transactional
+  public Task updateTaskById(final Long id, Task updateTask) throws TaskNotFoundException {
 
-    @Override
-    @Transactional
-    public void deleteTaskById(final Long id) {
+    log.info("Update a task with id = {}", id);
+    Task dbTask =
+        taskRepository
+            .findById(id)
+            .orElseThrow(
+                () ->
+                    new TaskNotFoundException(
+                        String.format("The task with id = %d not found", id)));
+    updateTask.setId(dbTask.getId());
+    updateTask.setTodoList(dbTask.getTodoList());
+    Task updatedTask = taskRepository.save(updateTask);
 
-        log.info("Delete a task by its id = {}", id);
-        taskRepository.deleteById(id);
-    }
+    return updatedTask;
+  }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Task> getTasks(final Pageable pageable) {
+  @Override
+  @Transactional(readOnly = true)
+  public Task getTaskById(final Long id) throws TaskNotFoundException {
 
-        log.info("Get all tasks");
-        Page<Task> allTasks = taskRepository.findAll(pageable);
+    log.info("Get a task by its id = {}", id);
+    Task validTaskById =
+        taskRepository
+            .findById(id)
+            .orElseThrow(
+                () ->
+                    new TaskNotFoundException(
+                        String.format("The task with id = %d not found", id)));
+    return validTaskById;
+  }
 
-        return allTasks;
-    }
+  @Override
+  @Transactional
+  public void deleteTaskById(final Long id) {
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Task> getTasksByParams(final String[] filters, final String query, final Pageable pageable) throws UnsupportedParameterException {
+    log.info("Delete a task by its id = {}", id);
+    taskRepository.deleteById(id);
+  }
 
-        log.info("Get all tasks filtered by params");
-        Specification<Task> tasksByParams = taskSpecification.findTasksByParams(filters, query);
-        Page<Task> filteredTasks = taskRepository.findAll(tasksByParams, pageable);
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Task> getTasks(final Pageable pageable) {
 
-        return filteredTasks;
-    }
+    log.info("Get all tasks");
+    Page<Task> allTasks = taskRepository.findAll(pageable);
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Task> getActiveTasks(final Pageable pageable) {
+    return allTasks;
+  }
 
-        log.info("Get all active tasks");
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        Page<Task> activeTasks = taskRepository.getTasksByDeadlineAfter(currentDateTime, pageable);
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Task> getTasksByParams(
+      final String[] filters, final String query, final Pageable pageable)
+      throws UnsupportedParameterException {
 
-        return activeTasks;
-    }
+    log.info("Get all tasks filtered by params");
+    Specification<Task> tasksByParams = taskSpecification.findTasksByParams(filters, query);
+    Page<Task> filteredTasks = taskRepository.findAll(tasksByParams, pageable);
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Task> getTasksFromDate(final LocalDateTime startFrom, Pageable pageable) {
+    return filteredTasks;
+  }
 
-        log.info("Get all tasks started from date = {}", startFrom.toString());
-        Page<Task> tasksFromDate = taskRepository.getTasksByStartFromAfter(startFrom, pageable);
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Task> getActiveTasks(final Pageable pageable) {
 
-        return tasksFromDate;
-    }
+    log.info("Get all active tasks");
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    Page<Task> activeTasks = taskRepository.getTasksByDeadlineAfter(currentDateTime, pageable);
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Task> getMissedDeadlineTasks(final Pageable pageable) {
+    return activeTasks;
+  }
 
-        log.info("Get all tasks with missed deadlines");
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        Page<Task> missedTasks = taskRepository.getTasksByDeadlineBefore(currentDateTime, pageable);
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Task> getTasksFromDate(final LocalDateTime startFrom, Pageable pageable) {
 
-        return missedTasks;
-    }
+    log.info("Get all tasks started from date = {}", startFrom.toString());
+    Page<Task> tasksFromDate = taskRepository.getTasksByStartFromAfter(startFrom, pageable);
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Task> getActiveTasksBetween(final LocalDateTime startFrom, final LocalDateTime deadline, final Pageable pageable) {
+    return tasksFromDate;
+  }
 
-        log.info("Get all active tasks between start = {} and end = {}", startFrom, deadline);
-        Page<Task> tasksBetween = taskRepository.getTasksByStartFromAfterAndDeadlineBefore(startFrom, deadline, pageable);
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Task> getMissedDeadlineTasks(final Pageable pageable) {
 
-        return tasksBetween;
-    }
+    log.info("Get all tasks with missed deadlines");
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    Page<Task> missedTasks = taskRepository.getTasksByDeadlineBefore(currentDateTime, pageable);
+
+    return missedTasks;
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Task> getActiveTasksBetween(
+      final LocalDateTime startFrom, final LocalDateTime deadline, final Pageable pageable) {
+
+    log.info("Get all active tasks between start = {} and end = {}", startFrom, deadline);
+    Page<Task> tasksBetween =
+        taskRepository.getTasksByStartFromAfterAndDeadlineBefore(startFrom, deadline, pageable);
+
+    return tasksBetween;
+  }
 }

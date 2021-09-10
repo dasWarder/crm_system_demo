@@ -21,9 +21,9 @@ public class ContactServiceImpl implements ContactService {
 
     private final ContactSpecification contactSpecification;
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Contact> findAllContacts(Pageable pageable) {
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Contact> findAllContacts(Pageable pageable) {
 
         log.info("Receiving a page for all contacts");
         Page<Contact> allContacts = contactRepository.findAll(pageable);

@@ -1,9 +1,14 @@
 package com.example.service.task;
 
 import com.example.exception.TaskNotFoundException;
+import com.example.exception.TodoListNotFoundException;
+import com.example.exception.UserNotFoundException;
+import com.example.model.user.User;
 import com.example.repository.TaskRepository;
 import com.example.service.specification.TaskSpecification;
 import com.example.model.todoList.Task;
+import com.example.service.todoList.TodoListService;
+import com.example.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -11,6 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,121 +32,115 @@ import static com.example.service.task.TaskTestData.*;
 @RequiredArgsConstructor
 class TaskServiceImplTest {
 
-    private final TaskRepository taskRepository = Mockito.mock(TaskRepository.class);
+  private final UserService userService = Mockito.mock(UserService.class);
 
-    private final TaskSpecification taskSpecification = Mockito.mock(TaskSpecification.class);
+  private final TaskRepository taskRepository = Mockito.mock(TaskRepository.class);
 
-    private final TaskService taskService = new TaskServiceImpl(taskRepository, taskSpecification);
+  private final TodoListService todoListService = Mockito.mock(TodoListService.class);
 
-    @Test
-    public void shouldSaveTaskProperly() {
+  private final TaskSpecification taskSpecification = Mockito.mock(TaskSpecification.class);
 
-        log.info("Test saveTask() method of the TaskService class");
-        Mockito.when(taskRepository.save(TEST_SAVE_TASK)).thenReturn(TEST_SAVE_TASK);
+  private final TaskService taskService =
+      new TaskServiceImpl(userService, taskRepository, todoListService, taskSpecification);
 
-        Task actualTask = taskService.saveTask(TEST_SAVE_TASK);
+  @Test
+  public void shouldUpdateTaskProperly() throws TaskNotFoundException {
 
-        Assertions.assertNotNull(actualTask);
-        Assertions.assertEquals(TEST_SAVE_TASK, actualTask);
-    }
+    log.info("Test updateTask() method of the TaskService class");
+    Mockito.when(taskRepository.findById(TEST_TASK_2.getId())).thenReturn(Optional.of(TEST_TASK_2));
+    Mockito.when(taskRepository.save(TEST_UPDATE_TASK)).thenReturn(TEST_UPDATE_TASK);
 
-    @Test
-    public void shouldUpdateTaskProperly() throws TaskNotFoundException {
+    Task actualTask = taskService.updateTaskById(TEST_TASK_2.getId(), TEST_UPDATE_TASK);
 
-        log.info("Test updateTask() method of the TaskService class");
-        Mockito.when(taskRepository.findById(TEST_TASK_2.getId())).thenReturn(Optional.of(TEST_TASK_2));
-        Mockito.when(taskRepository.save(TEST_UPDATE_TASK)).thenReturn(TEST_UPDATE_TASK);
+    Assertions.assertNotNull(actualTask);
+    Assertions.assertEquals(TEST_UPDATE_TASK, actualTask);
+  }
 
-        Task actualTask = taskService.updateTaskById(TEST_TASK_2.getId(), TEST_UPDATE_TASK);
+  @Test
+  public void shouldThrowExceptionWhenIdIsNull() {
 
-        Assertions.assertNotNull(actualTask);
-        Assertions.assertEquals(TEST_UPDATE_TASK, actualTask);
-    }
+    log.info("Test updateTask() method throw an exception when id is null");
+    Assertions.assertThrows(
+        TaskNotFoundException.class, () -> taskService.updateTaskById(WRONG_ID, TEST_UPDATE_TASK));
+  }
 
-    @Test
-    public void shouldThrowExceptionWhenIdIsNull() {
+  @Test
+  public void shouldGetTaskByIdProperly() throws TaskNotFoundException {
 
-        log.info("Test updateTask() method throw an exception when id is null");
-        Assertions.assertThrows(TaskNotFoundException.class,
-                () -> taskService.updateTaskById(WRONG_ID, TEST_UPDATE_TASK));
-    }
+    log.info("Test getTaskById() method of the TskService class");
+    Mockito.when(taskRepository.findById(TEST_TASK_1.getId())).thenReturn(Optional.of(TEST_TASK_1));
 
-    @Test
-    public void shouldGetTaskByIdProperly() throws TaskNotFoundException {
+    Task taskById = taskService.getTaskById(TEST_TASK_1.getId());
 
-        log.info("Test getTaskById() method of the TskService class");
-        Mockito.when(taskRepository.findById(TEST_TASK_1.getId())).thenReturn(Optional.of(TEST_TASK_1));
+    Assertions.assertNotNull(taskById);
+    Assertions.assertEquals(TEST_TASK_1, taskById);
+  }
 
-        Task taskById = taskService.getTaskById(TEST_TASK_1.getId());
+  @Test
+  public void shouldThrowExceptionWhenGetByIdWithNullId() {
 
-        Assertions.assertNotNull(taskById);
-        Assertions.assertEquals(TEST_TASK_1, taskById);
-    }
+    log.info("Test getTaskById() method throws an exception when id is null");
 
-    @Test
-    public void shouldThrowExceptionWhenGetByIdWithNullId() {
+    Assertions.assertThrows(TaskNotFoundException.class, () -> taskService.getTaskById(WRONG_ID));
+  }
 
-        log.info("Test getTaskById() method throws an exception when id is null");
+  @Test
+  public void shouldGetDeleteTaskByIdProperly() {
 
-        Assertions.assertThrows(TaskNotFoundException.class, () -> taskService.getTaskById(WRONG_ID));
-    }
+    log.info("Test deleteTaskById() method of the TskService class");
 
-    @Test
-    public void shouldGetDeleteTaskByIdProperly() {
+    taskService.deleteTaskById(TEST_TASK_1.getId());
+  }
 
-        log.info("Test deleteTaskById() method of the TskService class");
+  @Test
+  public void shouldGetTasksProperly() {
 
-        taskService.deleteTaskById(TEST_TASK_1.getId());
-    }
+    log.info("Test getTasks() method of the TaskService class");
+    List<Task> allTasks =
+        Stream.of(TEST_TASK_1, TEST_TASK_2, TEST_TASK_3).collect(Collectors.toList());
+    PageImpl<Task> expectedTaskPage = new PageImpl<>(allTasks);
 
-    @Test
-    public void shouldGetTasksProperly() {
+    Mockito.when(taskRepository.findAll(TEST_PAGEABLE)).thenReturn(expectedTaskPage);
 
-        log.info("Test getTasks() method of the TaskService class");
-        List<Task> allTasks = Stream.of(TEST_TASK_1, TEST_TASK_2, TEST_TASK_3)
-                                                            .collect(Collectors.toList());
-        PageImpl<Task> expectedTaskPage = new PageImpl<>(allTasks);
+    Page<Task> tasks = taskService.getTasks(TEST_PAGEABLE);
 
-        Mockito.when(taskRepository.findAll(TEST_PAGEABLE)).thenReturn(expectedTaskPage);
+    Assertions.assertNotNull(tasks);
+    Assertions.assertEquals(expectedTaskPage.getContent(), tasks.getContent());
+  }
 
-        Page<Task> tasks = taskService.getTasks(TEST_PAGEABLE);
+  @Test
+  public void shouldGetTasksFromDateProperly() {
 
-        Assertions.assertNotNull(tasks);
-        Assertions.assertEquals(expectedTaskPage.getContent(), tasks.getContent());
-    }
+    log.info("Test getTasksFromDate() method of the TaskService class");
+    LocalDateTime mockTime = LocalDateTime.now();
+    List<Task> allTasks =
+        Stream.of(TEST_TASK_1, TEST_TASK_2, TEST_TASK_3).collect(Collectors.toList());
+    PageImpl<Task> expectedTaskPage = new PageImpl<>(allTasks);
+    Mockito.when(taskRepository.getTasksByStartFromAfter(mockTime, TEST_PAGEABLE))
+        .thenReturn(expectedTaskPage);
 
-    @Test
-    public void shouldGetTasksFromDateProperly() {
+    Page<Task> actualTasks = taskService.getTasksFromDate(mockTime, TEST_PAGEABLE);
 
-        log.info("Test getTasksFromDate() method of the TaskService class");
-        LocalDateTime mockTime = LocalDateTime.now();
-        List<Task> allTasks = Stream.of(TEST_TASK_1, TEST_TASK_2, TEST_TASK_3)
-                                                                         .collect(Collectors.toList());
-        PageImpl<Task> expectedTaskPage = new PageImpl<>(allTasks);
-        Mockito.when(taskRepository.getTasksByStartFromAfter(mockTime, TEST_PAGEABLE)).thenReturn(expectedTaskPage);
+    Assertions.assertNotNull(actualTasks);
+    Assertions.assertEquals(expectedTaskPage.getContent(), actualTasks.getContent());
+  }
 
-        Page<Task> actualTasks = taskService.getTasksFromDate(mockTime, TEST_PAGEABLE);
+  @Test
+  public void shouldGetActiveTasksBetweenProperly() {
 
-        Assertions.assertNotNull(actualTasks);
-        Assertions.assertEquals(expectedTaskPage.getContent(), actualTasks.getContent());
-    }
+    log.info("Test getActiveTasksBetween() method of the TaskService class");
+    LocalDateTime start = LocalDateTime.now().plusDays(2);
+    LocalDateTime end = LocalDateTime.now().plusDays(5);
+    List<Task> expectedTasksList = Stream.of(TEST_TASK_2, TEST_TASK_3).collect(Collectors.toList());
+    PageImpl<Task> expectedTasks = new PageImpl<>(expectedTasksList);
 
-    @Test
-    public void shouldGetActiveTasksBetweenProperly() {
+    Mockito.when(
+            taskRepository.getTasksByStartFromAfterAndDeadlineBefore(start, end, TEST_PAGEABLE))
+        .thenReturn(expectedTasks);
 
-        log.info("Test getActiveTasksBetween() method of the TaskService class");
-        LocalDateTime start = LocalDateTime.now().plusDays(2);
-        LocalDateTime end = LocalDateTime.now().plusDays(5);
-        List<Task> expectedTasksList = Stream.of(TEST_TASK_2, TEST_TASK_3)
-                                                        .collect(Collectors.toList());
-        PageImpl<Task> expectedTasks = new PageImpl<>(expectedTasksList);
+    Page<Task> actualTasksBetween = taskService.getActiveTasksBetween(start, end, TEST_PAGEABLE);
 
-        Mockito.when(taskRepository.getTasksByStartFromAfterAndDeadlineBefore(start, end, TEST_PAGEABLE)).thenReturn(expectedTasks);
-
-        Page<Task> actualTasksBetween = taskService.getActiveTasksBetween(start, end, TEST_PAGEABLE);
-
-        Assertions.assertNotNull(actualTasksBetween);
-        Assertions.assertEquals(expectedTasks.getContent(), actualTasksBetween.getContent());
-    }
-
+    Assertions.assertNotNull(actualTasksBetween);
+    Assertions.assertEquals(expectedTasks.getContent(), actualTasksBetween.getContent());
+  }
 }

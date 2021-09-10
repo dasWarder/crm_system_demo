@@ -13,20 +13,19 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserDetailsSecurityService implements UserDetailsService {
 
-    private final UserService userService;
+  private final UserService userService;
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+  @Override
+  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        User userByEmail = null;
+    User userByEmail = null;
 
-        try {
-            userByEmail = userService.getUserByEmail(email);
-        } catch (UserNotFoundException e) {
-            throw new UsernameNotFoundException(
-                    String.format("User with the email = %s not found"));
-        }
-
-        return new CustomUserDetails(userByEmail);
+    try {
+      userByEmail = userService.getUserByEmail(email);
+    } catch (UserNotFoundException e) {
+      throw new UsernameNotFoundException(String.format("User with the email = %s not found"));
     }
+
+    return new CustomUserDetails(userByEmail);
+  }
 }

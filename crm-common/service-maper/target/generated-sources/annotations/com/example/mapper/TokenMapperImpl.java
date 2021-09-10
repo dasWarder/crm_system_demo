@@ -6,24 +6,11 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-09-09T16:41:30+0300",
+    date = "2021-09-10T10:10:40+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
 public class TokenMapperImpl implements TokenMapper {
-
-    @Override
-    public TokenDto fromStringToToken(String authToken) {
-        if ( authToken == null ) {
-            return null;
-        }
-
-        TokenDto tokenDto = new TokenDto();
-
-        tokenDto.setAuthToken( authToken );
-
-        return tokenDto;
-    }
 
     @Override
     public TokenDto fromStringsToToken(String authToken, String refreshToken) {
