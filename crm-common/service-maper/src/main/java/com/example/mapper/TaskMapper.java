@@ -8,13 +8,13 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface TaskMapper {
 
-    TaskDto taskToTaskDto(Task task);
+  TaskDto taskToTaskDto(Task task);
 
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "title", source = "title")
-    @Mapping(target = "description", source = "description")
-    @Mapping(target = "startFrom", source = "startFrom")
-    @Mapping(target = "deadline", source = "deadline")
-    @Mapping(target = "todoList", ignore = true)
-    Task taskDtoToTask(TaskDto dto);
+  @Mapping(target = "id", source = "id")
+  @Mapping(target = "title", source = "title")
+  @Mapping(target = "description", source = "description")
+  @Mapping(target = "startFrom", source = "startFrom")
+  @Mapping(target = "deadline", source = "deadline")
+  @Mapping(target = "todoList", ignore = true)
+  Task taskDtoToTask(TaskDto dto);
 }

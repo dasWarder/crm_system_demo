@@ -5,11 +5,12 @@ import com.example.model.user.UserAuthority;
 
 public interface AuthorityService {
 
-    UserAuthority saveUserAuthority(UserAuthority authority);
+  UserAuthority saveUserAuthority(UserAuthority authority);
 
-    UserAuthority updateUserAuthorityByAuthorityName(String authority, UserAuthority updateAuthority) throws AuthorityNotFoundException;
+  UserAuthority updateUserAuthorityByAuthorityName(String authority, UserAuthority updateAuthority)
+      throws AuthorityNotFoundException;
 
-    UserAuthority getUserAuthorityByAuthorityName(String authority) throws AuthorityNotFoundException;
+  UserAuthority getUserAuthorityByAuthorityName(String authority) throws AuthorityNotFoundException;
 
-    void deleteUserAuthorityByAuthorityName(String authority);
+  void deleteUserAuthorityByAuthorityName(String authority);
 }

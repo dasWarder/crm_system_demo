@@ -21,7 +21,7 @@ public class TodoListController {
   private static final String BASE_URL = "http://localhost:8080/manage/todo";
 
   @PostMapping
-  public ResponseEntity<Long> createTodoList() throws UserNotFoundException {
+  public ResponseEntity<Long> createOrGetExistTodoList() throws UserNotFoundException {
 
     TodoList todoList = todoListService.createTodoList();
 

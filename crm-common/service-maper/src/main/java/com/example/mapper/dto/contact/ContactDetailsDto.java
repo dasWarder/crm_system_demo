@@ -9,17 +9,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ContactDetailsDto {
 
-    private String firstName;
+  private String firstName;
 
-    private String lastName;
+  private String lastName;
 
-    private String jobTitle;
+  private String jobTitle;
 
-    private String company;
+  private String company;
 
-    private String country;
+  private String country;
 
-    private String email;
+  private String email;
 
-    private String mobilePhone;
+  private String mobilePhone;
 }

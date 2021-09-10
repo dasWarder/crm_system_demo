@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SaveContactDto extends ContactDto {
 
-    private String country;
+  private String country;
 
-    private String mobilePhone;
+  private String mobilePhone;
 }

@@ -1,12 +1,12 @@
 package com.example.web.controller.todoList;
 
-import com.example.exception.UserNotFoundException;
-import com.example.model.todoList.Task;
-import com.example.mapper.TaskMapper;
-import com.example.mapper.dto.task.TaskDto;
 import com.example.exception.TaskNotFoundException;
 import com.example.exception.TodoListNotFoundException;
 import com.example.exception.UnsupportedParameterException;
+import com.example.exception.UserNotFoundException;
+import com.example.mapper.TaskMapper;
+import com.example.mapper.dto.task.TaskDto;
+import com.example.model.todoList.Task;
 import com.example.service.task.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -32,7 +32,8 @@ public class UserTaskController {
   private static final String BASE_URL = "http://localhost:8080/manage/tasks";
 
   @PostMapping("/task")
-  public ResponseEntity<TaskDto> saveTask(@RequestBody TaskDto taskDto) throws UserNotFoundException, TodoListNotFoundException {
+  public ResponseEntity<TaskDto> saveTask(@RequestBody TaskDto taskDto)
+      throws UserNotFoundException, TodoListNotFoundException {
 
     Task mappedTask = taskMapper.taskDtoToTask(taskDto);
     Task task = taskService.saveTask(mappedTask);
@@ -61,8 +62,7 @@ public class UserTaskController {
 
   @PutMapping("/task")
   public ResponseEntity<TaskDto> updateTaskById(
-      @RequestParam("id") Long id, @RequestBody TaskDto updateDto)
-      throws TaskNotFoundException {
+      @RequestParam("id") Long id, @RequestBody TaskDto updateDto) throws TaskNotFoundException {
 
     Task task = taskMapper.taskDtoToTask(updateDto);
     Task responseTask = taskService.updateTaskById(id, task);

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface AuthorityRepository extends JpaRepository<UserAuthority, Long> {
 
-    Optional<UserAuthority> getUserAuthorityByAuthority(String authority);
+  Optional<UserAuthority> getUserAuthorityByAuthority(String authority);
 
-    void deleteUserAuthorityByAuthority(String authority);
+  void deleteUserAuthorityByAuthority(String authority);
 }

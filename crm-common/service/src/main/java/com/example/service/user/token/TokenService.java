@@ -7,13 +7,13 @@ import com.example.model.user.Token;
 
 public interface TokenService {
 
-    Token createToken(String username) throws UserNotFoundException;
+  Token createToken(String username) throws UserNotFoundException;
 
-    Token findTokenByToken(String token) throws TokenNotFoundException;
+  Token findTokenByToken(String token) throws TokenNotFoundException;
 
-    Token verifyExpiration(Token token) throws TokenRefreshException;
+  Token verifyExpiration(Token token) throws TokenRefreshException;
 
-    void deleteTokenById(Long id);
+  void deleteTokenById(Long id);
 
-    void deleteTokenBySubject(String subject);
+  void deleteTokenBySubject(String subject);
 }

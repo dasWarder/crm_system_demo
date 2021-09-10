@@ -16,33 +16,33 @@ import javax.persistence.*;
 @Table(name = "contact")
 public class Contact {
 
-    @Id
-    @Column
-    @SequenceGenerator(name = "contact_seq", sequenceName = "contact_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contact_seq")
-    private Long id;
+  @Id
+  @Column
+  @SequenceGenerator(name = "contact_seq", sequenceName = "contact_seq", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contact_seq")
+  private Long id;
 
-    @Column(name = "firstName")
-    private String firstName;
+  @Column(name = "firstName")
+  private String firstName;
 
-    @Column(name = "last_name")
-    private String lastName;
+  @Column(name = "last_name")
+  private String lastName;
 
-    @Column(name = "job_title")
-    private String jobTitle;
+  @Column(name = "job_title")
+  private String jobTitle;
 
-    @Column(name = "company")
-    private String company;
+  @Column(name = "company")
+  private String company;
 
-    @Column(name = "country")
-    private String country;
+  @Column(name = "country")
+  private String country;
 
-    @Column(name = "email")
-    private String email;
+  @Column(name = "email")
+  private String email;
 
-    @Column(name = "mobile_phone")
-    private String mobilePhone;
+  @Column(name = "mobile_phone")
+  private String mobilePhone;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private User user;
+  @OneToOne(fetch = FetchType.LAZY)
+  private User user;
 }
