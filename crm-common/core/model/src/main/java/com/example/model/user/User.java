@@ -1,11 +1,14 @@
 package com.example.model.user;
 
 import com.example.model.contactManager.Contact;
+import com.example.model.report.Report;
 import com.example.model.todoList.TodoList;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -41,4 +44,7 @@ public class User {
 
   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
   private Contact contact;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Report> reports = new ArrayList<>();
 }
