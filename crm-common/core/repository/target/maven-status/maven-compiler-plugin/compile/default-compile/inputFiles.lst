@@ -1,4 +1,5 @@
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\exception\ContactNotFoundException.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\exception\ReportNotFoundException.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\exception\TokenRefreshException.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\exception\UnsupportedParameterException.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\exception\UserNotFoundException.java
@@ -13,3 +14,4 @@ C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\c
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\exception\TokenNotFoundException.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\exception\TaskNotFoundException.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\repository\ContactRepository.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\repository\ReportRepository.java
