@@ -17,7 +17,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
 
-public interface ReportService {
+public interface UserReportService {
 
   Report createReport(Report report) throws UserNotFoundException;
 
@@ -32,10 +32,4 @@ public interface ReportService {
   Page<Report> getReportsByTopicForCurrentUser(final ReportTopic topic, final Pageable pageable) throws UserNotFoundException;
 
   Page<Report> getReportsByStatusForCurrentUser(final ReportStatus status, final Pageable pageable) throws UserNotFoundException;
-
-  Page<Report> getAllReports(final Pageable pageable);
-
-  Page<Report> getReportsByCreatedAt(final LocalDateTime createdAt, final Pageable pageable);
-
-  Page<Report> getReportsByStatus(final ReportStatus status, final Pageable pageable);
 }

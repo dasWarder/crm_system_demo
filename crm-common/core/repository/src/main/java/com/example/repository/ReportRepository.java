@@ -24,4 +24,6 @@ public interface ReportRepository extends PagingAndSortingRepository<Report, Lon
   Page<Report> getReportsByCreatedAt(LocalDateTime createdAt, Pageable pageable);
 
   Page<Report> getReportsByStatus(ReportStatus status, Pageable pageable);
+
+  void deleteReportsByStatus(ReportStatus status);
 }
