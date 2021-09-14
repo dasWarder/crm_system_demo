@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ReportServiceImpl implements ReportService {
+public class UserUserReportServiceImpl implements UserReportService {
 
   private final UserService userService;
 
@@ -123,34 +123,34 @@ public class ReportServiceImpl implements ReportService {
     return currentUserReportsByStatus;
   }
 
-  @Override
-  public Page<Report> getAllReports(final Pageable pageable) {
-
-    log.info("Get reports of all users");
-    Page<Report> allReports = reportRepository.findAll(pageable);
-
-    return allReports;
-  }
-
-  @Override
-  public Page<Report> getReportsByCreatedAt(
-      final LocalDateTime createdAt, final Pageable pageable) {
-
-    log.info("Get all report by creating at {}", createdAt.toString());
-    Page<Report> reportsByCreatedAt = reportRepository.getReportsByCreatedAt(createdAt, pageable);
-
-    return reportsByCreatedAt;
-  }
-
-  @Override
-  public Page<Report> getReportsByStatus(final ReportStatus status, final Pageable pageable) {
-
-    log.info("Get all reports by a status = {}", status);
-    Page<Report> reportsByReportStatus =
-        reportRepository.getReportsByStatus(status, pageable);
-
-    return reportsByReportStatus;
-  }
+//  @Override
+//  public Page<Report> getAllReports(final Pageable pageable) {
+//
+//    log.info("Get reports of all users");
+//    Page<Report> allReports = reportRepository.findAll(pageable);
+//
+//    return allReports;
+//  }
+//
+//  @Override
+//  public Page<Report> getReportsByCreatedAt(
+//      final LocalDateTime createdAt, final Pageable pageable) {
+//
+//    log.info("Get all report by creating at {}", createdAt.toString());
+//    Page<Report> reportsByCreatedAt = reportRepository.getReportsByCreatedAt(createdAt, pageable);
+//
+//    return reportsByCreatedAt;
+//  }
+//
+//  @Override
+//  public Page<Report> getReportsByStatus(final ReportStatus status, final Pageable pageable) {
+//
+//    log.info("Get all reports by a status = {}", status);
+//    Page<Report> reportsByReportStatus =
+//        reportRepository.getReportsByStatus(status, pageable);
+//
+//    return reportsByReportStatus;
+//  }
 
   private User getCurrentUser() throws UserNotFoundException {
 

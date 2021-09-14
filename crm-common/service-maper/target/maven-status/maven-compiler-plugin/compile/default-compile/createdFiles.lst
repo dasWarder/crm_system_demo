@@ -1,11 +1,14 @@
+com\example\mapper\dto\report\manager\ManagerResponseReportDto$ManagerResponseReportDtoBuilder.class
 com\example\mapper\dto\report\ReportDto.class
 com\example\mapper\dto\user\token\TokenDto$TokenDtoBuilder.class
 com\example\mapper\dto\user\AuthUserDto.class
+com\example\mapper\dto\report\manager\UpdateReportDto$UpdateReportDtoBuilder.class
 com\example\mapper\dto\report\DetailsReportDto$DetailsReportDtoBuilder.class
 com\example\mapper\dto\contact\ContactDetailsDto.class
 com\example\mapper\UserMapperImpl.class
 com\example\mapper\dto\report\CreateReportDto$CreateReportDtoBuilder.class
 com\example\mapper\ContactMapperImpl.class
+com\example\mapper\dto\report\manager\UpdateReportDto.class
 com\example\mapper\TokenMapper.class
 com\example\mapper\dto\user\token\TokenDto.class
 com\example\mapper\TaskMapper.class
@@ -15,6 +18,8 @@ com\example\mapper\TokenMapperImpl.class
 com\example\mapper\dto\contact\ContactDto.class
 com\example\mapper\dto\report\ReportDto$ReportDtoBuilder.class
 com\example\mapper\ReportMapper.class
+com\example\mapper\ManageReportMapperImpl.class
+com\example\mapper\dto\report\manager\ManagerReportDto.class
 com\example\mapper\dto\user\BaseUserDto.class
 com\example\mapper\dto\user\token\TokenRefreshRequest.class
 com\example\mapper\dto\user\SaveUserDto.class
@@ -22,8 +27,11 @@ com\example\mapper\dto\report\CreateReportDto.class
 com\example\mapper\UserMapperWithAuthority.class
 com\example\mapper\UserMapperWithAuthorityImpl.class
 com\example\mapper\dto\report\ResponseReportDto$ResponseReportDtoBuilder.class
+com\example\mapper\dto\report\manager\ManagerReportDto$ManagerReportDtoBuilder.class
 com\example\mapper\ContactMapper.class
 com\example\mapper\dto\report\ResponseReportDto.class
+com\example\mapper\ManageReportMapper.class
+com\example\mapper\dto\report\manager\ManagerResponseReportDto.class
 com\example\mapper\dto\report\DetailsReportDto.class
 com\example\mapper\dto\task\TaskDto.class
 com\example\mapper\TaskMapperImpl.class

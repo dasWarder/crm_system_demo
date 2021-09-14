@@ -3,11 +3,14 @@ C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\report\ReportDto.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\report\ResponseReportDto.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\user\SaveUserDto.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\ManageReportMapper.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\report\CreateReportDto.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\ReportMapper.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\contact\SaveContactDto.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\report\manager\ManagerResponseReportDto.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\user\token\TokenDto.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\user\AuthUserDto.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\report\manager\UpdateReportDto.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\contact\ContactDto.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\report\BaseDateDto.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\task\TaskDto.java
@@ -18,3 +21,4 @@ C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\UserMapperWithAuthority.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\ContactMapper.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\contact\ContactDetailsDto.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\service-maper\src\main\java\com\example\mapper\dto\report\manager\ManagerReportDto.java

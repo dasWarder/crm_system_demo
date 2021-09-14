@@ -3,9 +3,7 @@ package com.example.mapper;
 import com.example.mapper.dto.report.CreateReportDto;
 import com.example.mapper.dto.report.DetailsReportDto;
 import com.example.mapper.dto.report.ReportDto;
-import com.example.mapper.dto.report.ReportDto.ReportDtoBuilder;
 import com.example.mapper.dto.report.ResponseReportDto;
-import com.example.mapper.dto.report.ResponseReportDto.ResponseReportDtoBuilder;
 import com.example.model.report.Report;
 import com.example.model.report.Report.ReportBuilder;
 import javax.annotation.processing.Generated;
@@ -13,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-09-14T10:56:14+0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.10 (AdoptOpenJDK)"
+    date = "2021-09-14T14:01:56+0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
 public class ReportMapperImpl implements ReportMapper {
@@ -55,14 +53,14 @@ public class ReportMapperImpl implements ReportMapper {
             return null;
         }
 
-        ReportDtoBuilder reportDto = ReportDto.builder();
+        ReportDto reportDto = new ReportDto();
 
-        reportDto.id( report.getId() );
-        reportDto.topic( report.getTopic() );
-        reportDto.comment( report.getComment() );
-        reportDto.status( report.getStatus() );
+        reportDto.setId( report.getId() );
+        reportDto.setTopic( report.getTopic() );
+        reportDto.setComment( report.getComment() );
+        reportDto.setStatus( report.getStatus() );
 
-        return reportDto.build();
+        return reportDto;
     }
 
     @Override
@@ -71,14 +69,16 @@ public class ReportMapperImpl implements ReportMapper {
             return null;
         }
 
-        ResponseReportDtoBuilder responseReportDto = ResponseReportDto.builder();
+        ResponseReportDto responseReportDto = new ResponseReportDto();
 
-        responseReportDto.id( report.getId() );
-        responseReportDto.topic( report.getTopic() );
-        responseReportDto.comment( report.getComment() );
-        responseReportDto.status( report.getStatus() );
+        responseReportDto.setCreatedAt( report.getCreatedAt() );
+        responseReportDto.setStatusChanged( report.getStatusChanged() );
+        responseReportDto.setId( report.getId() );
+        responseReportDto.setTopic( report.getTopic() );
+        responseReportDto.setComment( report.getComment() );
+        responseReportDto.setStatus( report.getStatus() );
 
-        return responseReportDto.build();
+        return responseReportDto;
     }
 
     @Override

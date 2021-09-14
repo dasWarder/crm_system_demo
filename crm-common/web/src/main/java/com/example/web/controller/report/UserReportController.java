@@ -10,7 +10,7 @@ import com.example.mapper.dto.report.ResponseReportDto;
 import com.example.model.report.Report;
 import com.example.model.report.ReportStatus;
 import com.example.model.report.ReportTopic;
-import com.example.service.report.ReportService;
+import com.example.service.report.UserReportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,7 +28,7 @@ public class UserReportController {
 
   private final ReportMapper mapper;
 
-  private final ReportService reportService;
+  private final UserReportService userReportService;
 
   private static final String BASE_URL = "http://localhost:8080/manage/reports";
 
@@ -37,7 +37,7 @@ public class UserReportController {
       throws UserNotFoundException {
 
     Report requestReport = mapper.createReportDtoToReport(reportDto);
-    Report createdReport = reportService.createReport(requestReport);
+    Report createdReport = userReportService.createReport(requestReport);
     ResponseReportDto responseReportDto = mapper.reportToResponseReportDto(createdReport);
 
     return ResponseEntity.created(URI.create(BASE_URL)).body(responseReportDto);
@@ -47,7 +47,7 @@ public class UserReportController {
   public ResponseEntity<DetailsReportDto> getDetailsReportInfoById(@PathVariable("id") Long id)
       throws ReportNotFoundException {
 
-    Report reportById = reportService.getReportById(id);
+    Report reportById = userReportService.getReportById(id);
     DetailsReportDto detailsReportDto = mapper.reportToDetailsReportDto(reportById);
 
     return ResponseEntity.ok(detailsReportDto);
@@ -59,7 +59,7 @@ public class UserReportController {
       throws UserNotFoundException, ReportNotFoundException {
 
     Report report = mapper.createReportDtoToReport(updateDto);
-    Report updatedReport = reportService.updateReport(id, report);
+    Report updatedReport = userReportService.updateReport(id, report);
     ResponseReportDto responseReportDto = mapper.reportToResponseReportDto(updatedReport);
 
     return ResponseEntity.ok(responseReportDto);
@@ -68,7 +68,7 @@ public class UserReportController {
   @DeleteMapping("/report")
   public ResponseEntity<Void> deleteReportById(@RequestParam("id") Long id) {
 
-    reportService.deleteReportById(id);
+    userReportService.deleteReportById(id);
 
     return ResponseEntity.noContent().build();
   }
@@ -80,7 +80,7 @@ public class UserReportController {
       throws UserNotFoundException {
 
     Page<ReportDto> allReports =
-        reportService.getReportsForCurrentUser(pageable).map(mapper::reportToReportDto);
+        userReportService.getReportsForCurrentUser(pageable).map(mapper::reportToReportDto);
 
     return ResponseEntity.ok(allReports);
   }
@@ -93,7 +93,7 @@ public class UserReportController {
       throws UserNotFoundException {
 
     Page<ReportDto> reportsByTopic =
-        reportService
+        userReportService
             .getReportsByTopicForCurrentUser(topic, pageable)
             .map(mapper::reportToReportDto);
 
@@ -108,7 +108,7 @@ public class UserReportController {
       throws UserNotFoundException {
 
     Page<ReportDto> reportsByStatus =
-        reportService
+        userReportService
             .getReportsByStatusForCurrentUser(status, pageable)
             .map(mapper::reportToReportDto);
 
