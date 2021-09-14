@@ -10,17 +10,19 @@ import java.time.LocalDateTime;
 
 public interface ManagerReportService {
 
-  Report updateUsersReport(Long id, Report updateReport) throws ReportNotFoundException;
+  Report updateUsersReport(final Report updateReport);
 
-  Report getUsersReportById(Long id) throws ReportNotFoundException;
+  Report getUsersReportById(final Long id) throws ReportNotFoundException;
 
-  void deleteReportById(Long id);
+  void deleteReportById(final Long id);
 
   void deleteReportsByStatus(ReportStatus status);
 
   Page<Report> getAllReports(final Pageable pageable);
 
+  Page<Report> getTodayReports(final Pageable pageable);
+
   Page<Report> getReportsByCreatedAt(final LocalDateTime createdAt, final Pageable pageable);
 
-  Page<Report> getReportsByStatus(final ReportStatus status, final Pageable pageable);
+  Page<Report> getAlreadyFinishedReports(final Pageable pageable);
 }

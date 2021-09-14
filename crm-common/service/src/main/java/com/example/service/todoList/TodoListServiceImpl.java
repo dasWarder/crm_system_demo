@@ -31,20 +31,20 @@ public class TodoListServiceImpl implements TodoListService {
     log.info("Save a new todo list");
     Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     String authEmail =
-        principal instanceof UserDetails
-            ? ((UserDetails) principal).getUsername()
-            : principal.toString();
+            principal instanceof UserDetails
+                    ? ((UserDetails) principal).getUsername()
+                    : principal.toString();
 
     User loggedUser = userService.getUserByEmail(authEmail);
     TodoList todoList =
-        todoListRepository
-            .findById(loggedUser.getId())
-            .orElse(
-                TodoList.builder()
-                    .id(loggedUser.getId())
-                    .user(loggedUser)
-                    .tasks(new ArrayList<>())
-                    .build());
+            todoListRepository
+                    .findById(loggedUser.getId())
+                    .orElse(
+                            TodoList.builder()
+                                    .id(loggedUser.getId())
+                                    .user(loggedUser)
+                                    .tasks(new ArrayList<>())
+                                    .build());
     loggedUser.setTodoList(todoList);
     User updatedUser = userService.updateUserByEmail(authEmail, loggedUser);
 
@@ -57,12 +57,12 @@ public class TodoListServiceImpl implements TodoListService {
 
     log.info("Get a todo list by id = {}", id);
     TodoList todoListById =
-        todoListRepository
-            .findById(id)
-            .orElseThrow(
-                () ->
-                    new TodoListNotFoundException(
-                        String.format("The todo list with id = %d not found", id)));
+            todoListRepository
+                    .findById(id)
+                    .orElseThrow(
+                            () ->
+                                    new TodoListNotFoundException(
+                                            String.format("The todo list with id = %d not found", id)));
     return todoListById;
   }
 

@@ -23,7 +23,7 @@ public class UserDetailsSecurityService implements UserDetailsService {
     try {
       userByEmail = userService.getUserByEmail(email);
     } catch (UserNotFoundException e) {
-      throw new UsernameNotFoundException(String.format("User with the email = %s not found"));
+      throw new UsernameNotFoundException(String.format("User with the email = %s not found", email));
     }
 
     return new CustomUserDetails(userByEmail);
