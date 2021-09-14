@@ -4,6 +4,7 @@ import com.example.exception.ReportNotFoundException;
 import com.example.exception.UserNotFoundException;
 import com.example.model.report.Report;
 import com.example.model.report.ReportStatus;
+import com.example.model.report.ReportTopic;
 import com.example.model.user.User;
 import com.example.repository.ReportRepository;
 import com.example.service.user.UserService;
@@ -33,7 +34,9 @@ public class ReportServiceImpl implements ReportService {
 
     User currentUser = getCurrentUser();
     report.setUser(currentUser);
-    report.setReportStatus(ReportStatus.RECEIVED);
+    report.setStatus(ReportStatus.RECEIVED);
+    report.setCreatedAt(LocalDateTime.now());
+    report.setStatusChanged(LocalDateTime.now());
     Report storedReport = reportRepository.save(report);
 
     return storedReport;
@@ -52,6 +55,9 @@ public class ReportServiceImpl implements ReportService {
                         String.format("The report with id = %d not found", id)));
     report.setId(originalReport.getId());
     report.setUser(originalReport.getUser());
+    report.setCreatedAt(LocalDateTime.now());
+    report.setStatusChanged(LocalDateTime.now());
+    report.setStatus(ReportStatus.RECEIVED);
     Report updatedReport = reportRepository.save(report);
 
     return updatedReport;
@@ -68,7 +74,7 @@ public class ReportServiceImpl implements ReportService {
                 () ->
                     new ReportNotFoundException(
                         String.format("The report with id = %d not found", id)));
-    
+
     return reportById;
   }
 
@@ -80,7 +86,8 @@ public class ReportServiceImpl implements ReportService {
   }
 
   @Override
-  public Page<Report> getReportsForCurrentUser(Pageable pageable) throws UserNotFoundException {
+  public Page<Report> getReportsForCurrentUser(final Pageable pageable)
+      throws UserNotFoundException {
 
     User currentUser = getCurrentUser();
     log.info("Get reports for a current user with id = {}", currentUser.getId());
@@ -91,33 +98,33 @@ public class ReportServiceImpl implements ReportService {
   }
 
   @Override
-  public Page<Report> getReportsByTopicForCurrentUser(String topic, Pageable pageable)
-      throws UserNotFoundException {
+  public Page<Report> getReportsByTopicForCurrentUser(
+      final ReportTopic topic, final Pageable pageable) throws UserNotFoundException {
 
     User currentUser = getCurrentUser();
     log.info("Get reports by a topic for a user with id = {}", currentUser.getId());
     Page<Report> currentUserReportsByTopic =
-        reportRepository.getReportsByReportTopicAndUser_Email(
+        reportRepository.getReportsByTopicAndUser_Email(
             topic, currentUser.getEmail(), pageable);
 
     return currentUserReportsByTopic;
   }
 
   @Override
-  public Page<Report> getReportsByStatusForCurrentUser(String status, Pageable pageable)
-      throws UserNotFoundException {
+  public Page<Report> getReportsByStatusForCurrentUser(
+      final ReportStatus status, final Pageable pageable) throws UserNotFoundException {
 
     User currentUser = getCurrentUser();
     log.info("Get reports by a status for a user with id = {}", currentUser.getId());
     Page<Report> currentUserReportsByStatus =
-        reportRepository.getReportsByReportStatusAndUser_Email(
+        reportRepository.getReportsByStatusAndUser_Email(
             status, currentUser.getEmail(), pageable);
 
     return currentUserReportsByStatus;
   }
 
   @Override
-  public Page<Report> getAllReports(Pageable pageable) {
+  public Page<Report> getAllReports(final Pageable pageable) {
 
     log.info("Get reports of all users");
     Page<Report> allReports = reportRepository.findAll(pageable);
@@ -126,7 +133,8 @@ public class ReportServiceImpl implements ReportService {
   }
 
   @Override
-  public Page<Report> getReportsByCreatedAt(LocalDateTime createdAt, Pageable pageable) {
+  public Page<Report> getReportsByCreatedAt(
+      final LocalDateTime createdAt, final Pageable pageable) {
 
     log.info("Get all report by creating at {}", createdAt.toString());
     Page<Report> reportsByCreatedAt = reportRepository.getReportsByCreatedAt(createdAt, pageable);
@@ -135,11 +143,11 @@ public class ReportServiceImpl implements ReportService {
   }
 
   @Override
-  public Page<Report> getReportsByStatus(String status, Pageable pageable) {
+  public Page<Report> getReportsByStatus(final ReportStatus status, final Pageable pageable) {
 
     log.info("Get all reports by a status = {}", status);
     Page<Report> reportsByReportStatus =
-        reportRepository.getReportsByReportStatus(status, pageable);
+        reportRepository.getReportsByStatus(status, pageable);
 
     return reportsByReportStatus;
   }

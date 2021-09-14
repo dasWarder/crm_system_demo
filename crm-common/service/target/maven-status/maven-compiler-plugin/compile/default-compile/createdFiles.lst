@@ -3,6 +3,8 @@ com\example\service\user\UserService.class
 com\example\service\todoList\TodoListService.class
 com\example\service\user\UserServiceImpl.class
 com\example\service\contact\ContactService.class
+com\example\service\report\ReportServiceImpl.class
+com\example\service\report\ReportService.class
 com\example\service\contact\ContactServiceImpl.class
 com\example\service\security\CustomUserDetails.class
 com\example\service\specification\TaskSpecification.class

@@ -1,6 +1,8 @@
+com\example\exception\ReportNotFoundException.class
 com\example\exception\ContactNotFoundException.class
 com\example\exception\UserNotFoundException.class
 com\example\exception\AuthorityNotFoundException.class
+com\example\repository\ReportRepository.class
 com\example\repository\TodoListRepository.class
 com\example\exception\TaskNotFoundException.class
 com\example\repository\TaskRepository.class

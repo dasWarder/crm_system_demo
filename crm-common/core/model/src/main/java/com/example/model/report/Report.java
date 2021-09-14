@@ -27,13 +27,13 @@ public class Report {
 
   @Column(name = "topic")
   @Enumerated(EnumType.STRING)
-  private ReportTopic reportTopic;
+  private ReportTopic topic;
 
   @Column private String comment;
 
   @Column(name = "status")
   @Enumerated(EnumType.STRING)
-  private ReportStatus reportStatus;
+  private ReportStatus status;
 
   @Column(name = "create_at")
   private LocalDateTime createdAt;

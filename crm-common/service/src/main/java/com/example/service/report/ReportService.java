@@ -10,6 +10,8 @@ package com.example.service.report;
 import com.example.exception.ReportNotFoundException;
 import com.example.exception.UserNotFoundException;
 import com.example.model.report.Report;
+import com.example.model.report.ReportStatus;
+import com.example.model.report.ReportTopic;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -25,15 +27,15 @@ public interface ReportService {
 
   void deleteReportById(final Long id);
 
-  Page<Report> getReportsForCurrentUser(Pageable pageable) throws UserNotFoundException;
+  Page<Report> getReportsForCurrentUser(final Pageable pageable) throws UserNotFoundException;
 
-  Page<Report> getReportsByTopicForCurrentUser(String topic, Pageable pageable) throws UserNotFoundException;
+  Page<Report> getReportsByTopicForCurrentUser(final ReportTopic topic, final Pageable pageable) throws UserNotFoundException;
 
-  Page<Report> getReportsByStatusForCurrentUser(String status, Pageable pageable) throws UserNotFoundException;
+  Page<Report> getReportsByStatusForCurrentUser(final ReportStatus status, final Pageable pageable) throws UserNotFoundException;
 
-  Page<Report> getAllReports(Pageable pageable);
+  Page<Report> getAllReports(final Pageable pageable);
 
-  Page<Report> getReportsByCreatedAt(LocalDateTime createdAt, Pageable pageable);
+  Page<Report> getReportsByCreatedAt(final LocalDateTime createdAt, final Pageable pageable);
 
-  Page<Report> getReportsByStatus(String status, Pageable pageable);
+  Page<Report> getReportsByStatus(final ReportStatus status, final Pageable pageable);
 }

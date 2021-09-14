@@ -3,6 +3,7 @@ com\example\web\controller\todoList\UserTaskController.class
 com\example\web\config\ApplicationConfig.class
 com\example\web\controller\login\LoginController.class
 com\example\web\controller\viewExceptionHandling\ExceptionResponse$ExceptionResponseBuilder.class
+com\example\web\controller\report\UserReportController.class
 com\example\web\controller\contactManager\contactDetails\ContactDetailsController.class
 com\example\web\config\security\UserJwtAuthEntryPoint.class
 com\example\web\controller\viewExceptionHandling\ExceptionResponse.class
