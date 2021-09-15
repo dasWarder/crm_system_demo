@@ -1,4 +1,4 @@
-package com.example.web.controller.viewExceptionHandling;
+package com.example.web.controller.viewExceptionHandling.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
