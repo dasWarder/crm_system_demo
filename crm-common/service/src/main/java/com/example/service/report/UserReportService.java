@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface UserReportService {
 
@@ -32,4 +33,6 @@ public interface UserReportService {
   Page<Report> getReportsByTopicForCurrentUser(final ReportTopic topic, final Pageable pageable) throws UserNotFoundException;
 
   Page<Report> getReportsByStatusForCurrentUser(final ReportStatus status, final Pageable pageable) throws UserNotFoundException;
+
+  List<Report> getLastCurrentUserReports(final Pageable pageable) throws UserNotFoundException;
 }

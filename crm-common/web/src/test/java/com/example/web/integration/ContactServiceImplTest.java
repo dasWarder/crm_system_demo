@@ -1,9 +1,9 @@
 package com.example.web.integration;
 
 
-import com.example.AbstractTest;
-import com.example.model.contactManager.Contact;
+import com.example.web.AbstractTest;
 import com.example.exception.ContactNotFoundException;
+import com.example.model.contactManager.Contact;
 import com.example.service.contact.ContactService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
@@ -23,7 +22,7 @@ import static com.example.web.data.TestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-@WithMockUser(username = "test@gmail.com", authorities = "USER")
+//@WithMockUser(username = "test@gmail.com", authorities = "USER")
 @Sql(scripts = {"classpath:/db/contactManager/populate_contact.sql"})
 public class ContactServiceImplTest extends AbstractTest {
 

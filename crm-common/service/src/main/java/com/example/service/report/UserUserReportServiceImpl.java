@@ -17,6 +17,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -104,8 +107,7 @@ public class UserUserReportServiceImpl implements UserReportService {
     User currentUser = getCurrentUser();
     log.info("Get reports by a topic for a user with id = {}", currentUser.getId());
     Page<Report> currentUserReportsByTopic =
-        reportRepository.getReportsByTopicAndUser_Email(
-            topic, currentUser.getEmail(), pageable);
+        reportRepository.getReportsByTopicAndUser_Email(topic, currentUser.getEmail(), pageable);
 
     return currentUserReportsByTopic;
   }
@@ -117,40 +119,22 @@ public class UserUserReportServiceImpl implements UserReportService {
     User currentUser = getCurrentUser();
     log.info("Get reports by a status for a user with id = {}", currentUser.getId());
     Page<Report> currentUserReportsByStatus =
-        reportRepository.getReportsByStatusAndUser_Email(
-            status, currentUser.getEmail(), pageable);
+        reportRepository.getReportsByStatusAndUser_Email(status, currentUser.getEmail(), pageable);
 
     return currentUserReportsByStatus;
   }
 
-//  @Override
-//  public Page<Report> getAllReports(final Pageable pageable) {
-//
-//    log.info("Get reports of all users");
-//    Page<Report> allReports = reportRepository.findAll(pageable);
-//
-//    return allReports;
-//  }
-//
-//  @Override
-//  public Page<Report> getReportsByCreatedAt(
-//      final LocalDateTime createdAt, final Pageable pageable) {
-//
-//    log.info("Get all report by creating at {}", createdAt.toString());
-//    Page<Report> reportsByCreatedAt = reportRepository.getReportsByCreatedAt(createdAt, pageable);
-//
-//    return reportsByCreatedAt;
-//  }
-//
-//  @Override
-//  public Page<Report> getReportsByStatus(final ReportStatus status, final Pageable pageable) {
-//
-//    log.info("Get all reports by a status = {}", status);
-//    Page<Report> reportsByReportStatus =
-//        reportRepository.getReportsByStatus(status, pageable);
-//
-//    return reportsByReportStatus;
-//  }
+  @Override
+  public List<Report> getLastCurrentUserReports(Pageable pageable) throws UserNotFoundException {
+
+    List<Report> lastReports =
+        this.getReportsForCurrentUser(pageable).getContent().stream()
+            .limit(5)
+            .sorted(Comparator.comparing(Report::getCreatedAt))
+            .collect(Collectors.toList());
+
+    return lastReports;
+  }
 
   private User getCurrentUser() throws UserNotFoundException {
 
