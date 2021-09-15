@@ -1,4 +1,4 @@
-package com.example;
+package com.example.web;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;

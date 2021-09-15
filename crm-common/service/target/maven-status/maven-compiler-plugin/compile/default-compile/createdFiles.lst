@@ -7,6 +7,7 @@ com\example\service\contact\ContactService.class
 com\example\service\contact\ContactServiceImpl.class
 com\example\service\security\CustomUserDetails.class
 com\example\service\specification\TaskSpecification.class
+com\example\service\dashboard\DashboardService.class
 com\example\service\security\UserDetailsSecurityService.class
 com\example\service\user\token\TokenServiceImpl.class
 com\example\service\security\AdditionalConfiguration.class
@@ -18,4 +19,5 @@ com\example\service\report\ManagerReportServiceImpl.class
 com\example\service\specification\ContactSpecification.class
 com\example\service\user\authority\AuthorityServiceImpl.class
 com\example\service\user\token\TokenService.class
+com\example\service\dashboard\DashboardServiceImpl.class
 com\example\service\task\TaskServiceImpl.class

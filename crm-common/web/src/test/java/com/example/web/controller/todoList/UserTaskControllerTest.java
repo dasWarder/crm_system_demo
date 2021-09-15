@@ -2,22 +2,14 @@ package com.example.web.controller.todoList;
 
 import com.example.mapper.TaskMapper;
 import com.example.web.controller.AbstractContextController;
-import com.example.mapper.dto.task.TaskDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 
-import static com.example.web.data.TestTaskData.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Slf4j
-@WithMockUser(username = "test@gmail.com", authorities = "USER")
+//@WithMockUser(username = "test@gmail.com", authorities = "USER")
 @Sql(scripts = {"classpath:/db/todoList/populate_todo_related_tables.sql"})
 class UserTaskControllerTest extends AbstractContextController {
 

@@ -2,9 +2,9 @@ package com.example.service.task;
 
 import com.example.exception.TodoListNotFoundException;
 import com.example.exception.UserNotFoundException;
-import com.example.model.todoList.Task;
 import com.example.exception.TaskNotFoundException;
 import com.example.exception.UnsupportedParameterException;
+import com.example.model.todoList.Task;
 import com.example.model.todoList.TodoList;
 import com.example.model.user.User;
 import com.example.repository.TaskRepository;
@@ -22,6 +22,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -163,5 +165,17 @@ public class TaskServiceImpl implements TaskService {
         taskRepository.getTasksByStartFromAfterAndDeadlineBefore(startFrom, deadline, pageable);
 
     return tasksBetween;
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public List<Task> getLastActiveTasks(final Pageable pageable) {
+
+    log.info("Get last active tasks");
+    Page<Task> activeTasks = this.getActiveTasks(pageable);
+    List<Task> lastActiveTasks =
+        activeTasks.getContent().stream().limit(5).collect(Collectors.toList());
+
+    return lastActiveTasks;
   }
 }
