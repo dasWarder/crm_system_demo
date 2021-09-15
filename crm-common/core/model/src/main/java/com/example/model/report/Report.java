@@ -1,6 +1,7 @@
 package com.example.model.report;
 
 import com.example.model.user.User;
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;

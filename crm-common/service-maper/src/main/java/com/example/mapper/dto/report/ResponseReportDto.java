@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,9 +19,11 @@ public class ResponseReportDto extends BaseDateDto {
 
   private Long id;
 
+  @NotBlank(message = "The field is mandatory")
   private ReportTopic topic;
 
   private String comment;
 
+  @NotBlank(message = "The field is mandatory")
   private ReportStatus status;
 }

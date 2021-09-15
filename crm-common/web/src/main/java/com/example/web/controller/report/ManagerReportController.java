@@ -15,10 +15,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/manage/manager/reports")
@@ -30,7 +35,8 @@ public class ManagerReportController {
 
   @PutMapping("/report")
   public ResponseEntity<ManagerResponseReportDto> updateUsersReport(
-      @RequestParam("id") Long id, @RequestBody UpdateReportDto dto)
+      @RequestParam("id") @Min(value = 1, message = "The id must be greater than 0") Long id,
+      @RequestBody @Valid @NotNull UpdateReportDto dto)
       throws ReportNotFoundException {
 
     Report requestReport = customMapper.updateReportDtoToReport(id, dto);
@@ -42,7 +48,8 @@ public class ManagerReportController {
   }
 
   @GetMapping("/report/{id}")
-  public ResponseEntity<ManagerResponseReportDto> getReportDetails(@PathVariable("id") Long id)
+  public ResponseEntity<ManagerResponseReportDto> getReportDetails(
+      @PathVariable("id") @Min(value = 1, message = "The id must be greater than 0") Long id)
       throws ReportNotFoundException {
 
     Report usersReportById = reportService.getUsersReportById(id);
@@ -53,7 +60,8 @@ public class ManagerReportController {
   }
 
   @DeleteMapping("/report")
-  public ResponseEntity<Void> deleteReportById(@RequestParam("id") Long id) {
+  public ResponseEntity<Void> deleteReportById(
+      @RequestParam("id") @Min(value = 1, message = "The id must be greater than 0") Long id) {
 
     reportService.deleteReportById(id);
 
@@ -86,7 +94,7 @@ public class ManagerReportController {
   public ResponseEntity<Page<ManagerReportDto>> getReportsByDate(
       @PathVariable("date")
           @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss", iso = DateTimeFormat.ISO.DATE_TIME)
-          LocalDateTime date,
+          @NotNull(message = "The param must be not null") LocalDateTime date,
       @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC)
           Pageable pageable) {
 
@@ -95,8 +103,6 @@ public class ManagerReportController {
 
     return ResponseEntity.ok(reportsByDate);
   }
-
-  
 
   private Page<ManagerReportDto> convertReportsToManagerReportDtos(Page<Report> reports) {
 
