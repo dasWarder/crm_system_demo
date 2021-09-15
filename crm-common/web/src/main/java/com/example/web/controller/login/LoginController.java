@@ -5,6 +5,7 @@ import com.example.exception.UserAlreadyExistException;
 import com.example.mapper.TokenMapper;
 import com.example.mapper.UserMapper;
 import com.example.mapper.UserMapperWithAuthority;
+import com.example.mapper.dto.user.AuthUserDto;
 import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
 import com.example.mapper.dto.user.token.TokenDto;
@@ -20,13 +21,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.net.URI;
 
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/login")
@@ -51,7 +56,8 @@ public class LoginController {
   private static final String BASE_URL = "http://localhost:8080/registration";
 
   @PostMapping("/registration/common")
-  public ResponseEntity<BaseUserDto> registrationNewUser(@RequestBody SaveUserDto dto)
+  public ResponseEntity<BaseUserDto> registrationNewUser(
+      @RequestBody @Valid @NotNull SaveUserDto dto)
       throws AuthorityNotFoundException, UserAlreadyExistException {
 
     User userToStore = customMapper.saveUserDtoToUser(dto);
@@ -62,7 +68,8 @@ public class LoginController {
   }
 
   @PostMapping("/auth")
-  public ResponseEntity<TokenDto> auth(@RequestBody SaveUserDto dto) throws Throwable {
+  public ResponseEntity<TokenDto> auth(@RequestBody @Valid @NotNull AuthUserDto dto)
+      throws Throwable {
 
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
@@ -77,8 +84,8 @@ public class LoginController {
   }
 
   @PostMapping("/refresh")
-  public ResponseEntity<TokenDto> refreshToken(@RequestBody TokenRefreshRequest requestDto)
-      throws Throwable {
+  public ResponseEntity<TokenDto> refreshToken(
+      @RequestBody @Valid @NotNull TokenRefreshRequest requestDto) throws Throwable {
 
     String refreshToken = requestDto.getRefreshToken();
 

@@ -10,13 +10,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import java.util.Objects;
 
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/manage/contacts")
@@ -27,7 +31,9 @@ public class UserContactController {
   protected final ContactService contactService;
 
   @GetMapping("/contact")
-  public ResponseEntity<ContactDto> getContactByEmail(@RequestParam("email") String email)
+  public ResponseEntity<ContactDto> getContactByEmail(
+      @RequestParam("email") @Email(message = "The field must be a valid email")
+          String email)
       throws ContactNotFoundException {
     Contact contactByEmail = contactService.getContactByEmail(email);
     ContactDto responseContactDto = contactMapper.contactToContactDto(contactByEmail);

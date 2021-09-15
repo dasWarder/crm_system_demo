@@ -14,12 +14,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/manage/todo/tasks")
@@ -32,7 +37,7 @@ public class UserTaskController {
   private static final String BASE_URL = "http://localhost:8080/manage/tasks";
 
   @PostMapping("/task")
-  public ResponseEntity<TaskDto> saveTask(@RequestBody TaskDto taskDto)
+  public ResponseEntity<TaskDto> saveTask(@RequestBody @Valid @NotNull TaskDto taskDto)
       throws UserNotFoundException, TodoListNotFoundException {
 
     Task mappedTask = taskMapper.taskDtoToTask(taskDto);
@@ -43,7 +48,8 @@ public class UserTaskController {
   }
 
   @GetMapping("/task/{id}")
-  public ResponseEntity<TaskDto> getTaskById(@PathVariable("id") Long id)
+  public ResponseEntity<TaskDto> getTaskById(
+      @PathVariable("id") @Min(value = 1, message = "The id must be greater than 0") Long id)
       throws TaskNotFoundException {
 
     Task taskById = taskService.getTaskById(id);
@@ -53,7 +59,8 @@ public class UserTaskController {
   }
 
   @DeleteMapping("/task")
-  public ResponseEntity<Void> deleteTaskById(@RequestParam("id") Long id) {
+  public ResponseEntity<Void> deleteTaskById(
+      @RequestParam("id") @Min(value = 1, message = "The id must be greater than 0") Long id) {
 
     taskService.deleteTaskById(id);
 
@@ -62,7 +69,9 @@ public class UserTaskController {
 
   @PutMapping("/task")
   public ResponseEntity<TaskDto> updateTaskById(
-      @RequestParam("id") Long id, @RequestBody TaskDto updateDto) throws TaskNotFoundException {
+      @RequestParam("id") @Min(value = 1, message = "The id must be greater than 0") Long id,
+      @RequestBody @Valid @NotNull TaskDto updateDto)
+      throws TaskNotFoundException {
 
     Task task = taskMapper.taskDtoToTask(updateDto);
     Task responseTask = taskService.updateTaskById(id, task);
@@ -105,6 +114,7 @@ public class UserTaskController {
   public ResponseEntity<Page<TaskDto>> getTasksFromDate(
       @PathVariable("startFrom")
           @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss", iso = DateTimeFormat.ISO.DATE_TIME)
+          @NotNull
           LocalDateTime dateTime,
       @PageableDefault(
               size = 20,
@@ -132,9 +142,11 @@ public class UserTaskController {
   public ResponseEntity<Page<TaskDto>> getTasksBetween(
       @RequestParam("start")
           @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss", iso = DateTimeFormat.ISO.DATE_TIME)
+          @NotNull
           LocalDateTime start,
       @RequestParam("end")
           @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss", iso = DateTimeFormat.ISO.DATE_TIME)
+          @NotNull
           LocalDateTime end,
       @PageableDefault(
               size = 20,
