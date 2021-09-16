@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -31,6 +32,7 @@ public class UserUserReportServiceImpl implements UserReportService {
   private final ReportRepository reportRepository;
 
   @Override
+  @Transactional
   public Report createReport(Report report) throws UserNotFoundException {
 
     log.info("Create a new report");
@@ -46,6 +48,7 @@ public class UserUserReportServiceImpl implements UserReportService {
   }
 
   @Override
+  @Transactional
   public Report updateReport(final Long id, Report report) throws ReportNotFoundException {
 
     log.info("Update a report with id = {}", id);
@@ -67,6 +70,7 @@ public class UserUserReportServiceImpl implements UserReportService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Report getReportById(final Long id) throws ReportNotFoundException {
 
     log.info("Get a report by id = {}", id);
@@ -82,6 +86,7 @@ public class UserUserReportServiceImpl implements UserReportService {
   }
 
   @Override
+  @Transactional
   public void deleteReportById(final Long id) {
 
     log.info("Delete a report by id = {}", id);
@@ -89,6 +94,7 @@ public class UserUserReportServiceImpl implements UserReportService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Page<Report> getReportsForCurrentUser(final Pageable pageable)
       throws UserNotFoundException {
 
@@ -101,6 +107,7 @@ public class UserUserReportServiceImpl implements UserReportService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Page<Report> getReportsByTopicForCurrentUser(
       final ReportTopic topic, final Pageable pageable) throws UserNotFoundException {
 
@@ -113,6 +120,7 @@ public class UserUserReportServiceImpl implements UserReportService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Page<Report> getReportsByStatusForCurrentUser(
       final ReportStatus status, final Pageable pageable) throws UserNotFoundException {
 
@@ -125,6 +133,7 @@ public class UserUserReportServiceImpl implements UserReportService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public List<Report> getLastCurrentUserReports(Pageable pageable) throws UserNotFoundException {
 
     List<Report> lastReports =
