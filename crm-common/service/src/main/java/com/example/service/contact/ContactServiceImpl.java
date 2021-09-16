@@ -89,6 +89,7 @@ public class ContactServiceImpl implements ContactService {
                         String.format("The contact with email = %s not found", email)));
     contact.setId(validContactByEmail.getId());
     contact.setUser(validContactByEmail.getUser());
+    contact.setEmail(validContactByEmail.getEmail());
     Contact updatedContact = contactRepository.save(contact);
 
     return updatedContact;

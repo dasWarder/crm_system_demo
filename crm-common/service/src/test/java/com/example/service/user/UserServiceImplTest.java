@@ -16,6 +16,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,11 +29,13 @@ import static com.example.service.user.UserTestData.*;
 @Slf4j
 class UserServiceImplTest {
 
+  private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
   private final UserRepository userRepository = Mockito.mock(UserRepository.class);
 
   private final AuthorityService authorityService = Mockito.mock(AuthorityServiceImpl.class);
 
-  private final UserService userService = new UserServiceImpl(userRepository, authorityService);
+  private final UserService userService = new UserServiceImpl(userRepository, passwordEncoder, authorityService);
 
   @Test
   public void shouldSaveUserProperly()
