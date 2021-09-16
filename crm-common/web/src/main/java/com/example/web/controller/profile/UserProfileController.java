@@ -2,13 +2,16 @@ package com.example.web.controller.profile;
 
 import com.example.exception.ContactNotFoundException;
 import com.example.exception.UserNotFoundException;
+import com.example.exception.WrongPasswordException;
 import com.example.mapper.ContactMapper;
 import com.example.mapper.ProfileMapper;
 import com.example.mapper.UserMapper;
 import com.example.mapper.dto.contact.ContactDetailsDto;
 import com.example.mapper.dto.contact.SaveContactDto;
 import com.example.mapper.dto.profile.ProfileDto;
+import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.DetailsUserDto;
+import com.example.mapper.dto.user.UpdateUserPasswordDto;
 import com.example.model.contactManager.Contact;
 import com.example.model.user.User;
 import com.example.service.contact.ContactService;
@@ -21,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/manage/profile")
 public class UserProfileController {
+
+  private final UserMapper userMapper;
 
   private final UserService userService;
 
@@ -54,5 +59,17 @@ public class UserProfileController {
     ContactDetailsDto responseContactDto = contactMapper.contactToContactDetailsDto(storedContact);
 
     return ResponseEntity.ok(responseContactDto);
+  }
+
+  @PutMapping("/main/password")
+  public ResponseEntity<BaseUserDto> updateUserPassword(
+      @RequestParam("email") String email, @RequestBody UpdateUserPasswordDto dto)
+      throws UserNotFoundException, WrongPasswordException {
+
+    User updatedUser =
+        userService.updateUserPassByEmail(email, dto.getOldPassword(), dto.getPassword());
+    BaseUserDto responseDto = userMapper.userToBaseUserDto(updatedUser);
+
+    return ResponseEntity.ok(responseDto);
   }
 }

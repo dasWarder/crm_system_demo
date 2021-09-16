@@ -6,6 +6,7 @@ import com.example.web.controller.viewExceptionHandling.violation.Violation;
 import com.example.web.controller.viewExceptionHandling.violation.ViolationResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -32,14 +33,19 @@ public class ViewExceptionHandler {
         AuthorityNotFoundException.class,
         TokenNotFoundException.class,
         TokenRefreshException.class,
-        ReportNotFoundException.class
+        ReportNotFoundException.class,
+        BadCredentialsException.class,
+        WrongPasswordException.class
       })
   public ResponseEntity<ExceptionResponse> servicesExceptionsResponse(Exception e) {
 
     ExceptionResponse response =
         ExceptionResponse.builder()
-            .className(e.getCause().getClass().getSimpleName())
-            .message(e.getCause().getMessage())
+            .className(
+                e.getCause() != null
+                    ? e.getCause().getClass().getSimpleName()
+                    : e.getClass().getSimpleName())
+            .message(e.getCause() != null ? e.getCause().getMessage() : e.getMessage())
             .build();
 
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);

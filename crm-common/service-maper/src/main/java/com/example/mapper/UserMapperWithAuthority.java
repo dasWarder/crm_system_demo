@@ -1,6 +1,7 @@
 package com.example.mapper;
 
 import com.example.mapper.dto.user.SaveUserDto;
+import com.example.mapper.dto.user.UpdateUserPasswordDto;
 import com.example.model.contactManager.Contact;
 import com.example.model.user.User;
 import lombok.extern.slf4j.Slf4j;
@@ -44,4 +45,5 @@ public abstract class UserMapperWithAuthority {
 
     return user;
   }
+
 }

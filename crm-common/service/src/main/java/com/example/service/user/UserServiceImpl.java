@@ -3,6 +3,7 @@ package com.example.service.user;
 import com.example.exception.AuthorityNotFoundException;
 import com.example.exception.UserAlreadyExistException;
 import com.example.exception.UserNotFoundException;
+import com.example.exception.WrongPasswordException;
 import com.example.model.user.User;
 import com.example.model.user.UserAuthority;
 import com.example.repository.UserRepository;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +26,8 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
+
+  private final PasswordEncoder passwordEncoder;
 
   private final AuthorityService authorityService;
 
@@ -88,6 +92,23 @@ public class UserServiceImpl implements UserService {
                 () -> new UserNotFoundException(String.format("A user with email = %s not found")));
     user.setId(dbUser.getId());
     User updatedUser = userRepository.save(user);
+
+    return updatedUser;
+  }
+
+  @Override
+  public User updateUserPassByEmail(String email, String oldPass, String newPass) throws UserNotFoundException, WrongPasswordException {
+
+    log.info("Update a pass for user with the email = {}", email);
+    User userByEmail = this.getUserByEmail(email);
+
+    if(!passwordEncoder.matches(oldPass, userByEmail.getPassword())) {
+      throw new WrongPasswordException("Wrong password was input");
+    }
+
+    String updatedPass = passwordEncoder.encode(newPass);
+    userByEmail.setPassword(updatedPass);
+    User updatedUser = userRepository.save(userByEmail);
 
     return updatedUser;
   }
