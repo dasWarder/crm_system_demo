@@ -50,7 +50,7 @@ public class DashboardServiceImpl implements DashboardService {
   public Long getNumberOfDaysInCompany() throws UserNotFoundException {
 
     log.info("Get number of a current user days from registration");
-    User currentUser = getCurrentUser();
+    User currentUser = userService.getCurrentUser();
     LocalDate registrationDate = currentUser.getRegistrationDate();
     LocalDate currentDate = LocalDate.now();
 
@@ -68,18 +68,5 @@ public class DashboardServiceImpl implements DashboardService {
     Long numOfActiveTasks = (long) activeTasks.size();
 
     return numOfActiveTasks;
-  }
-
-  private User getCurrentUser() throws UserNotFoundException {
-
-    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    String authEmail =
-        principal instanceof UserDetails
-            ? ((UserDetails) principal).getUsername()
-            : principal.toString();
-
-    User userByEmail = userService.getUserByEmail(authEmail);
-
-    return userByEmail;
   }
 }

@@ -37,7 +37,7 @@ public class UserUserReportServiceImpl implements UserReportService {
 
     log.info("Create a new report");
 
-    User currentUser = getCurrentUser();
+    User currentUser = userService.getCurrentUser();
     report.setUser(currentUser);
     report.setStatus(ReportStatus.RECEIVED);
     report.setCreatedAt(LocalDateTime.now());
@@ -98,7 +98,7 @@ public class UserUserReportServiceImpl implements UserReportService {
   public Page<Report> getReportsForCurrentUser(final Pageable pageable)
       throws UserNotFoundException {
 
-    User currentUser = getCurrentUser();
+    User currentUser = userService.getCurrentUser();
     log.info("Get reports for a current user with id = {}", currentUser.getId());
     Page<Report> currentUserReports =
         reportRepository.getReportsByUser_Email(currentUser.getEmail(), pageable);
@@ -111,7 +111,7 @@ public class UserUserReportServiceImpl implements UserReportService {
   public Page<Report> getReportsByTopicForCurrentUser(
       final ReportTopic topic, final Pageable pageable) throws UserNotFoundException {
 
-    User currentUser = getCurrentUser();
+    User currentUser = userService.getCurrentUser();
     log.info("Get reports by a topic for a user with id = {}", currentUser.getId());
     Page<Report> currentUserReportsByTopic =
         reportRepository.getReportsByTopicAndUser_Email(topic, currentUser.getEmail(), pageable);
@@ -124,7 +124,7 @@ public class UserUserReportServiceImpl implements UserReportService {
   public Page<Report> getReportsByStatusForCurrentUser(
       final ReportStatus status, final Pageable pageable) throws UserNotFoundException {
 
-    User currentUser = getCurrentUser();
+    User currentUser = userService.getCurrentUser();
     log.info("Get reports by a status for a user with id = {}", currentUser.getId());
     Page<Report> currentUserReportsByStatus =
         reportRepository.getReportsByStatusAndUser_Email(status, currentUser.getEmail(), pageable);
@@ -143,18 +143,5 @@ public class UserUserReportServiceImpl implements UserReportService {
             .collect(Collectors.toList());
 
     return lastReports;
-  }
-
-  private User getCurrentUser() throws UserNotFoundException {
-
-    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    String authEmail =
-        principal instanceof UserDetails
-            ? ((UserDetails) principal).getUsername()
-            : principal.toString();
-
-    User loggedUser = userService.getUserByEmail(authEmail);
-
-    return loggedUser;
   }
 }

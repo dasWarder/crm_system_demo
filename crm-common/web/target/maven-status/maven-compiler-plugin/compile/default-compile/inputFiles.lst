@@ -1,6 +1,7 @@
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\config\security\token\TokenProvider.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\config\security\SecurityConfiguration.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\config\security\UserJwtAuthEntryPoint.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\controller\profile\UserProfileController.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\controller\todoList\UserTaskController.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\controller\login\LoginController.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\main\java\com\example\web\config\security\token\JwtFilter.java

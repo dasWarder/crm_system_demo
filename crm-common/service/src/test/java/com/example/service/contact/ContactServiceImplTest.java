@@ -1,6 +1,7 @@
 package com.example.service.contact;
 
 
+import com.example.exception.UserNotFoundException;
 import com.example.model.contactManager.Contact;
 import com.example.exception.ContactNotFoundException;
 import com.example.repository.ContactRepository;
@@ -59,7 +60,7 @@ class ContactServiceImplTest {
     }
 
     @Test
-    public void shouldUpdateContactByEmailProperly() throws ContactNotFoundException {
+    public void shouldUpdateContactByEmailProperly() throws ContactNotFoundException, UserNotFoundException {
 
         log.info("Test updateContactByEmail() method of the Contact service class");
         when(contactRepository.getContactByEmail(TEST_CONTACT_1.getEmail())).thenReturn(Optional.of(TEST_CONTACT_1));

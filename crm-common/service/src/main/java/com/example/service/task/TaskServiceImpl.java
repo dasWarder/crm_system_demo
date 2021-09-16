@@ -43,13 +43,8 @@ public class TaskServiceImpl implements TaskService {
   public Task saveTask(final Task task) throws UserNotFoundException, TodoListNotFoundException {
 
     log.info("Store a new task");
-    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    String authEmail =
-        principal instanceof UserDetails
-            ? ((UserDetails) principal).getUsername()
-            : principal.toString();
 
-    User loggedUser = userService.getUserByEmail(authEmail);
+    User loggedUser = userService.getCurrentUser();
     TodoList todoListById = todoListService.getTodoListById(loggedUser.getId());
     task.setTodoList(todoListById);
 

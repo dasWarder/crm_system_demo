@@ -1,6 +1,7 @@
 package com.example.web.integration;
 
 
+import com.example.exception.UserNotFoundException;
 import com.example.web.AbstractTest;
 import com.example.exception.ContactNotFoundException;
 import com.example.model.contactManager.Contact;
@@ -74,7 +75,7 @@ public class ContactServiceImplTest extends AbstractTest {
     }
 
     @Test
-    public void shouldUpdateContactByEmailProperly() throws ContactNotFoundException {
+    public void shouldUpdateContactByEmailProperly() throws ContactNotFoundException, UserNotFoundException {
 
         log.info("Test updateContactByEmail() method of the Contact service class");
 

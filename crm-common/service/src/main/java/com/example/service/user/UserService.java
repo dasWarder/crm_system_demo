@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 
 public interface UserService {
 
+  User getCurrentUser() throws UserNotFoundException;
+
   User saveUser(User user) throws UserAlreadyExistException, AuthorityNotFoundException;
 
   User getUserByEmail(String email) throws UserNotFoundException;
