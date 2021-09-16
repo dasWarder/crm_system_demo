@@ -1,3 +1,4 @@
+com\example\exception\WrongPasswordException.class
 com\example\exception\ReportNotFoundException.class
 com\example\exception\ContactNotFoundException.class
 com\example\exception\UserNotFoundException.class
