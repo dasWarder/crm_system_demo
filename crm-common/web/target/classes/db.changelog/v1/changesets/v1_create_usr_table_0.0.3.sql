@@ -8,5 +8,6 @@ CREATE TABLE usr (
     password varchar(128) NOT NULL,
     enabled BOOLEAN NOT NULL DEFAULT TRUE,
     registration_date TIMESTAMP NOT NULL,
+    reset_password_token VARCHAR(120),
     FOREIGN KEY (role_id) REFERENCES authority(id)
 );

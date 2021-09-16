@@ -42,6 +42,9 @@ public class User {
   @JsonSerialize(using = LocalDateTimeSerializer.class)
   private LocalDate registrationDate;
 
+  @Column(name = "reset_password_token")
+  private String resetPasswordToken;
+
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "role_id")
   private UserAuthority role;
