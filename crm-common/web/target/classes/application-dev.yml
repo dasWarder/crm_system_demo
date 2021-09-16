@@ -9,3 +9,18 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: true
+
+  mail:
+    host: smtp.gmail.com
+    username: ${MAIL_NAME}
+    password: ${MAIL_PASS}
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+email:
+  author: ${MAIL_NAME}

@@ -5,6 +5,7 @@ import com.example.exception.UserAlreadyExistException;
 import com.example.exception.UserNotFoundException;
 import com.example.model.user.User;
 import com.example.repository.UserRepository;
+import com.example.service.notification.EmailNotificationService;
 import com.example.service.user.authority.AuthorityService;
 import com.example.service.user.authority.AuthorityServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,12 @@ class UserServiceImplTest {
 
   private final AuthorityService authorityService = Mockito.mock(AuthorityServiceImpl.class);
 
-  private final UserService userService = new UserServiceImpl(userRepository, passwordEncoder, authorityService);
+  private final EmailNotificationService emailNotificationService =
+      Mockito.mock(EmailNotificationService.class);
+
+  private final UserService userService =
+      new UserServiceImpl(
+          userRepository, passwordEncoder, authorityService, emailNotificationService);
 
   @Test
   public void shouldSaveUserProperly()

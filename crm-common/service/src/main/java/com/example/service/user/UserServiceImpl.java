@@ -7,6 +7,7 @@ import com.example.exception.WrongPasswordException;
 import com.example.model.user.User;
 import com.example.model.user.UserAuthority;
 import com.example.repository.UserRepository;
+import com.example.service.notification.EmailNotificationService;
 import com.example.service.user.authority.AuthorityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,8 @@ public class UserServiceImpl implements UserService {
   private final PasswordEncoder passwordEncoder;
 
   private final AuthorityService authorityService;
+
+  private final EmailNotificationService mailService;
 
   @Override
   public User getCurrentUser() throws UserNotFoundException {
@@ -61,6 +64,7 @@ public class UserServiceImpl implements UserService {
     user.setRole(userRole);
 
     User storedUser = userRepository.save(user);
+    mailService.sendRegistrationNotification(storedUser.getEmail());
 
     return storedUser;
   }

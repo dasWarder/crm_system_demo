@@ -11,6 +11,7 @@ C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\c
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\exception\AuthorityNotFoundException.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\repository\TaskRepository.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\exception\UserAlreadyExistException.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\exception\WrongPasswordException.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\exception\TokenNotFoundException.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\exception\TaskNotFoundException.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\core\repository\src\main\java\com\example\repository\ContactRepository.java
