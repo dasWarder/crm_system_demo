@@ -18,24 +18,24 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ProfileDto {
 
-    private String firstName;
+  private String firstName;
 
-    private String lastName;
+  private String lastName;
 
-    private String email;
+  private String email;
 
-    private String phoneNumber;
+  private String phoneNumber;
 
-    private String company;
+  private String company;
 
-    private String jobTitle;
+  private String jobTitle;
 
-    private String country;
+  private String country;
 
-    private boolean enabled;
+  private boolean enabled;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate registrationDate;
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  @JsonDeserialize(using = LocalDateDeserializer.class)
+  @JsonSerialize(using = LocalDateSerializer.class)
+  private LocalDate registrationDate;
 }

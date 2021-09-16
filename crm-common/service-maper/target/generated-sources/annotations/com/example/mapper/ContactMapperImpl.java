@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-09-16T10:18:14+0300",
+    date = "2021-09-16T12:24:51+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.10 (AdoptOpenJDK)"
 )
 @Component
@@ -29,7 +29,6 @@ public class ContactMapperImpl implements ContactMapper {
         contactDto.setLastName( contact.getLastName() );
         contactDto.setJobTitle( contact.getJobTitle() );
         contactDto.setCompany( contact.getCompany() );
-        contactDto.setEmail( contact.getEmail() );
 
         return contactDto;
     }
@@ -54,26 +53,6 @@ public class ContactMapperImpl implements ContactMapper {
     }
 
     @Override
-    public SaveContactDto contactToSaveContactDto(Contact contact) {
-        if ( contact == null ) {
-            return null;
-        }
-
-        SaveContactDto saveContactDto = new SaveContactDto();
-
-        saveContactDto.setId( contact.getId() );
-        saveContactDto.setFirstName( contact.getFirstName() );
-        saveContactDto.setLastName( contact.getLastName() );
-        saveContactDto.setJobTitle( contact.getJobTitle() );
-        saveContactDto.setCompany( contact.getCompany() );
-        saveContactDto.setEmail( contact.getEmail() );
-        saveContactDto.setCountry( contact.getCountry() );
-        saveContactDto.setMobilePhone( contact.getMobilePhone() );
-
-        return saveContactDto;
-    }
-
-    @Override
     public Contact saveContactDtoToContact(SaveContactDto contactDto) {
         if ( contactDto == null ) {
             return null;
@@ -87,7 +66,6 @@ public class ContactMapperImpl implements ContactMapper {
         contact.jobTitle( contactDto.getJobTitle() );
         contact.company( contactDto.getCompany() );
         contact.country( contactDto.getCountry() );
-        contact.email( contactDto.getEmail() );
         contact.mobilePhone( contactDto.getMobilePhone() );
 
         return contact.build();

@@ -11,6 +11,7 @@ import com.example.mapper.dto.contact.SaveContactDto;
 import com.example.mapper.dto.profile.ProfileDto;
 import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.DetailsUserDto;
+import com.example.mapper.dto.user.UpdateUserEmailDto;
 import com.example.mapper.dto.user.UpdateUserPasswordDto;
 import com.example.model.contactManager.Contact;
 import com.example.model.user.User;
@@ -69,6 +70,16 @@ public class UserProfileController {
     User updatedUser =
         userService.updateUserPassByEmail(email, dto.getOldPassword(), dto.getPassword());
     BaseUserDto responseDto = userMapper.userToBaseUserDto(updatedUser);
+
+    return ResponseEntity.ok(responseDto);
+  }
+
+  @PutMapping("/main/email")
+  public ResponseEntity<BaseUserDto> updateUserEmail(@RequestBody UpdateUserEmailDto dto)
+      throws UserNotFoundException {
+
+    User updatedUserEmail = userService.updateUserEmail(dto.getOldEmail(), dto.getEmail());
+    BaseUserDto responseDto = userMapper.userToBaseUserDto(updatedUserEmail);
 
     return ResponseEntity.ok(responseDto);
   }

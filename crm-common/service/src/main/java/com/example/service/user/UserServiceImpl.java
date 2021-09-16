@@ -97,17 +97,31 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User updateUserPassByEmail(String email, String oldPass, String newPass) throws UserNotFoundException, WrongPasswordException {
+  public User updateUserPassByEmail(String email, String oldPass, String newPass)
+      throws UserNotFoundException, WrongPasswordException {
 
-    log.info("Update a pass for user with the email = {}", email);
+    log.info("Update a pass for a user with the email = {}", email);
     User userByEmail = this.getUserByEmail(email);
 
-    if(!passwordEncoder.matches(oldPass, userByEmail.getPassword())) {
+    if (!passwordEncoder.matches(oldPass, userByEmail.getPassword())) {
       throw new WrongPasswordException("Wrong password was input");
     }
 
     String updatedPass = passwordEncoder.encode(newPass);
     userByEmail.setPassword(updatedPass);
+    User updatedUser = userRepository.save(userByEmail);
+
+    return updatedUser;
+  }
+
+  @Override
+  public User updateUserEmail(String oldEmail, String email) throws UserNotFoundException {
+
+    log.info("Update an email for a user with a current email = {}", oldEmail);
+    User userByEmail = this.getUserByEmail(oldEmail);
+
+    userByEmail.setEmail(email);
+    userByEmail.getContact().setEmail(email);
     User updatedUser = userRepository.save(userByEmail);
 
     return updatedUser;

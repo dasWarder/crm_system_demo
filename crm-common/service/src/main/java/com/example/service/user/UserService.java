@@ -20,6 +20,8 @@ public interface UserService {
 
   User updateUserPassByEmail(String email, String oldPass, String newPass) throws UserNotFoundException, WrongPasswordException;
 
+  User updateUserEmail(String oldEmail, String email) throws UserNotFoundException;
+
   void deleteUserByEmail(String email);
 
   Page<User> getUsers(Pageable pageable);

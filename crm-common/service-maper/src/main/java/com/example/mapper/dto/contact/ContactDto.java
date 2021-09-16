@@ -24,7 +24,4 @@ public class ContactDto {
 
   private String company;
 
-  @NotBlank(message = "The field is mandatory")
-  @Email(message = "The field must be a valid email")
-  private String email;
 }
