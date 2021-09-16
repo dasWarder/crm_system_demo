@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +26,26 @@ public class UserServiceImpl implements UserService {
   private final UserRepository userRepository;
 
   private final AuthorityService authorityService;
+
+  @Override
+  public User getCurrentUser() throws UserNotFoundException {
+
+    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    String authEmail =
+        principal instanceof UserDetails
+            ? ((UserDetails) principal).getUsername()
+            : principal.toString();
+
+    User userByEmail =
+        userRepository
+            .getUserByEmail(authEmail)
+            .orElseThrow(
+                () ->
+                    new UserNotFoundException(
+                        String.format("User with email %s not found", authEmail)));
+
+    return userByEmail;
+  }
 
   @Override
   @Transactional
@@ -48,7 +70,9 @@ public class UserServiceImpl implements UserService {
         userRepository
             .getUserByEmail(email)
             .orElseThrow(
-                () -> new UserNotFoundException(String.format("A user with email = %s not found", email)));
+                () ->
+                    new UserNotFoundException(
+                        String.format("A user with email = %s not found", email)));
     return userByEmail;
   }
 

@@ -3,7 +3,6 @@ package com.example.service.dashboard;
 import com.example.exception.UserNotFoundException;
 import com.example.model.report.Report;
 import com.example.model.todoList.Task;
-import com.example.model.todoList.TodoList;
 import com.example.model.user.User;
 import com.example.service.report.UserReportService;
 import com.example.service.task.TaskService;
@@ -15,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -34,6 +34,7 @@ public class DashboardServiceImpl implements DashboardService {
   private static final Pageable TEST_PAGEABLE = PageRequest.of(0, 20);
 
   @Override
+  @Transactional(readOnly = true)
   public Long getNumberOfReports() throws UserNotFoundException {
 
     log.info("Get number of reports for a current user");
@@ -45,10 +46,11 @@ public class DashboardServiceImpl implements DashboardService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Long getNumberOfDaysInCompany() throws UserNotFoundException {
 
     log.info("Get number of a current user days from registration");
-    User currentUser = getCurrentUser();
+    User currentUser = userService.getCurrentUser();
     LocalDate registrationDate = currentUser.getRegistrationDate();
     LocalDate currentDate = LocalDate.now();
 
@@ -58,6 +60,7 @@ public class DashboardServiceImpl implements DashboardService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Long getNumberOfActiveTasks() {
 
     log.info("Get number of active tasks for a current user");
@@ -65,18 +68,5 @@ public class DashboardServiceImpl implements DashboardService {
     Long numOfActiveTasks = (long) activeTasks.size();
 
     return numOfActiveTasks;
-  }
-
-  private User getCurrentUser() throws UserNotFoundException {
-
-    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    String authEmail =
-        principal instanceof UserDetails
-            ? ((UserDetails) principal).getUsername()
-            : principal.toString();
-
-    User userByEmail = userService.getUserByEmail(authEmail);
-
-    return userByEmail;
   }
 }

@@ -1,9 +1,11 @@
 package com.example.service.contact;
 
 import com.example.exception.ContactNotFoundException;
+import com.example.exception.UserNotFoundException;
 import com.example.model.contactManager.Contact;
 import com.example.repository.ContactRepository;
 import com.example.service.specification.ContactSpecification;
+import com.example.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -66,6 +68,7 @@ public class ContactServiceImpl implements ContactService {
   public Contact saveContact(final Contact contact) {
 
     log.info("Storing a new contact");
+
     Contact storedContact = contactRepository.save(contact);
 
     return storedContact;
@@ -74,7 +77,7 @@ public class ContactServiceImpl implements ContactService {
   @Override
   @Transactional
   public Contact updateContactByEmail(final String email, final Contact contact)
-      throws ContactNotFoundException {
+          throws ContactNotFoundException{
 
     log.info("Updating a contact by its email = {}", email);
     Contact validContactByEmail =
@@ -85,6 +88,7 @@ public class ContactServiceImpl implements ContactService {
                     new ContactNotFoundException(
                         String.format("The contact with email = %s not found", email)));
     contact.setId(validContactByEmail.getId());
+    contact.setUser(validContactByEmail.getUser());
     Contact updatedContact = contactRepository.save(contact);
 
     return updatedContact;

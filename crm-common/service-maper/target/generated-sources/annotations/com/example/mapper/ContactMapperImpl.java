@@ -4,13 +4,14 @@ import com.example.mapper.dto.contact.ContactDetailsDto;
 import com.example.mapper.dto.contact.ContactDto;
 import com.example.mapper.dto.contact.SaveContactDto;
 import com.example.model.contactManager.Contact;
+import com.example.model.contactManager.Contact.ContactBuilder;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-09-15T16:58:23+0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
+    date = "2021-09-16T10:18:14+0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.10 (AdoptOpenJDK)"
 )
 @Component
 public class ContactMapperImpl implements ContactMapper {
@@ -70,5 +71,25 @@ public class ContactMapperImpl implements ContactMapper {
         saveContactDto.setMobilePhone( contact.getMobilePhone() );
 
         return saveContactDto;
+    }
+
+    @Override
+    public Contact saveContactDtoToContact(SaveContactDto contactDto) {
+        if ( contactDto == null ) {
+            return null;
+        }
+
+        ContactBuilder contact = Contact.builder();
+
+        contact.id( contactDto.getId() );
+        contact.firstName( contactDto.getFirstName() );
+        contact.lastName( contactDto.getLastName() );
+        contact.jobTitle( contactDto.getJobTitle() );
+        contact.company( contactDto.getCompany() );
+        contact.country( contactDto.getCountry() );
+        contact.email( contactDto.getEmail() );
+        contact.mobilePhone( contactDto.getMobilePhone() );
+
+        return contact.build();
     }
 }

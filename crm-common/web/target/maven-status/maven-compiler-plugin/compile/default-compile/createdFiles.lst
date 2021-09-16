@@ -1,5 +1,6 @@
 com\example\web\config\ApplicationConfig.class
 com\example\web\controller\login\LoginController.class
+com\example\web\controller\profile\UserProfileController.class
 com\example\web\controller\report\UserReportController.class
 com\example\web\controller\contactManager\contactDetails\ContactDetailsController.class
 com\example\web\controller\dashboard\DashboardController.class

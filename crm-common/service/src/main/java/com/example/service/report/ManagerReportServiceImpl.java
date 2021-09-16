@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,6 +25,7 @@ public class ManagerReportServiceImpl implements ManagerReportService {
   private final ReportRepository reportRepository;
 
   @Override
+  @Transactional
   public Report updateUsersReport(Report updateReport) {
 
     log.info("Update the user's report with id = {}", updateReport.getId());
@@ -34,6 +36,7 @@ public class ManagerReportServiceImpl implements ManagerReportService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Report getUsersReportById(Long id) throws ReportNotFoundException {
 
     log.info("Get the report with id = {}", id);
@@ -48,6 +51,7 @@ public class ManagerReportServiceImpl implements ManagerReportService {
   }
 
   @Override
+  @Transactional
   public void deleteReportById(Long id) {
 
     log.info("Delete the report by id = {}", id);
@@ -55,6 +59,7 @@ public class ManagerReportServiceImpl implements ManagerReportService {
   }
 
   @Override
+  @Transactional
   public void deleteReportsByStatus(ReportStatus status) {
 
     log.info("Delete reports with a status = {}", status.toString());
@@ -62,6 +67,7 @@ public class ManagerReportServiceImpl implements ManagerReportService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Page<Report> getAllReports(Pageable pageable) {
 
     log.info("Get all user's reports");
@@ -71,6 +77,7 @@ public class ManagerReportServiceImpl implements ManagerReportService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Page<Report> getReportsByCreatedAt(LocalDateTime createdAt, Pageable pageable) {
 
     log.info("Get all user's reports by creating date = {}", createdAt.toString());
@@ -80,6 +87,7 @@ public class ManagerReportServiceImpl implements ManagerReportService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Page<Report> getTodayReports(Pageable pageable) {
 
     log.info("Get all user's reports for today");
@@ -99,6 +107,7 @@ public class ManagerReportServiceImpl implements ManagerReportService {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public Page<Report> getAlreadyFinishedReports(Pageable pageable) {
 
     log.info("Get all user's approved reports");
