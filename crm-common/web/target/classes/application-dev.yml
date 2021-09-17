@@ -24,3 +24,6 @@ spring:
 
 email:
   author: ${MAIL_NAME}
+
+url:
+  base: http://localhost:8080

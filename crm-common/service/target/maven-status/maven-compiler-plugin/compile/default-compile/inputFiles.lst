@@ -1,4 +1,5 @@
 C:\Users\user\IdeaProjects\crm-system\crm-common\service\src\main\java\com\example\service\user\authority\AuthorityService.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\service\src\main\java\com\example\service\user\ForgotPasswordServiceImpl.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service\src\main\java\com\example\service\user\token\TokenServiceImpl.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service\src\main\java\com\example\service\user\authority\AuthorityServiceImpl.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service\src\main\java\com\example\service\specification\TaskSpecification.java
@@ -21,5 +22,6 @@ C:\Users\user\IdeaProjects\crm-system\crm-common\service\src\main\java\com\examp
 C:\Users\user\IdeaProjects\crm-system\crm-common\service\src\main\java\com\example\service\notification\EmailNotificationServiceImpl.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service\src\main\java\com\example\service\report\ManagerReportService.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service\src\main\java\com\example\service\report\ManagerReportServiceImpl.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\service\src\main\java\com\example\service\user\ForgotPasswordService.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service\src\main\java\com\example\service\security\CustomUserDetails.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\service\src\main\java\com\example\service\task\TaskService.java

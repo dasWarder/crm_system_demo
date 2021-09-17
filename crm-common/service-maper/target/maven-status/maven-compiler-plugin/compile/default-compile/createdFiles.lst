@@ -18,6 +18,7 @@ com\example\mapper\dto\user\BaseUserDto.class
 com\example\mapper\dto\user\token\TokenRefreshRequest.class
 com\example\mapper\dto\user\UpdateUserEmailDto.class
 com\example\mapper\dto\user\SaveUserDto.class
+com\example\mapper\ResetTokenMapperImpl.class
 com\example\mapper\dto\report\CreateReportDto.class
 com\example\mapper\UserMapperWithAuthorityImpl.class
 com\example\mapper\dto\report\manager\ManagerReportDto$ManagerReportDtoBuilder.class
@@ -31,6 +32,8 @@ com\example\mapper\dto\report\CreateReportDto$CreateReportDtoBuilder.class
 com\example\mapper\ContactMapperImpl.class
 com\example\mapper\dto\report\manager\UpdateReportDto.class
 com\example\mapper\TokenMapper.class
+com\example\mapper\dto\user\token\ResetTokenDto.class
+com\example\mapper\dto\user\ResetPasswordDto.class
 com\example\mapper\TaskMapper.class
 com\example\mapper\UserMapper.class
 com\example\mapper\ReportMapperImpl.class
@@ -47,3 +50,4 @@ com\example\mapper\dto\report\manager\ManagerResponseReportDto.class
 com\example\mapper\dto\report\DetailsReportDto.class
 com\example\mapper\TaskMapperImpl.class
 com\example\mapper\dto\contact\SaveContactDto.class
+com\example\mapper\ResetTokenMapper.class

@@ -3,6 +3,7 @@ com\example\service\user\UserService.class
 com\example\service\todoList\TodoListService.class
 com\example\service\user\UserServiceImpl.class
 com\example\service\contact\ContactService.class
+com\example\service\user\ForgotPasswordServiceImpl.class
 com\example\service\contact\ContactServiceImpl.class
 com\example\service\specification\TaskSpecification.class
 com\example\service\dashboard\DashboardService.class
@@ -20,6 +21,7 @@ com\example\service\user\token\TokenServiceImpl.class
 com\example\service\report\UserUserReportServiceImpl.class
 com\example\service\report\ManagerReportService.class
 com\example\service\todoList\TodoListServiceImpl.class
+com\example\service\user\ForgotPasswordService.class
 com\example\service\specification\ContactSpecification.class
 com\example\service\dashboard\DashboardServiceImpl.class
 com\example\service\task\TaskServiceImpl.class

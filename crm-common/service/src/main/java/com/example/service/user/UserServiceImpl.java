@@ -34,6 +34,11 @@ public class UserServiceImpl implements UserService {
 
   private final EmailNotificationService mailService;
 
+  private static final String REGISTER_SUBJECT = "Registration";
+
+  private static final String REGISTRATION_MESSAGE =
+          "Dear, %s! \n\nThank you for registration on our service. \n\nWith kind regards, CRM Team";
+
   @Override
   public User getCurrentUser() throws UserNotFoundException {
 
@@ -64,7 +69,8 @@ public class UserServiceImpl implements UserService {
     user.setRole(userRole);
 
     User storedUser = userRepository.save(user);
-    mailService.sendRegistrationNotification(storedUser.getEmail());
+    String message = String.format(REGISTRATION_MESSAGE, user.getEmail());
+    mailService.sendNotification(user.getEmail(), message, REGISTER_SUBJECT);
 
     return storedUser;
   }
