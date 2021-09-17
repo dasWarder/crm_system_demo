@@ -6,7 +6,9 @@ com\example\exception\AuthorityNotFoundException.class
 com\example\repository\ReportRepository.class
 com\example\repository\TodoListRepository.class
 com\example\exception\TaskNotFoundException.class
+com\example\repository\PasswordResetTokenRepository.class
 com\example\repository\TaskRepository.class
+com\example\exception\PasswordResetTokenNotFoundException.class
 com\example\exception\UnsupportedParameterException.class
 com\example\repository\UserRepository.class
 com\example\exception\TodoListNotFoundException.class
@@ -15,4 +17,5 @@ com\example\exception\TokenNotFoundException.class
 com\example\repository\ContactRepository.class
 com\example\repository\AuthorityRepository.class
 com\example\repository\TokenRepository.class
+com\example\exception\ResetTokenExpiryException.class
 com\example\exception\TokenRefreshException.class
