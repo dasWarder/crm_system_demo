@@ -155,7 +155,7 @@ GET /manage/todo/tasks/between?start={startDate}&end={endDate}
 GET /manage/todo/tasks?filters={filterFields}&query=*&sort=*
 ```
 ### *Reports:*
-####[User]:
+#### [User]:
 - Create a new report
 ```
 POST /manage/reports/report
