@@ -52,7 +52,7 @@ public class ForgotPasswordServiceImpl implements ForgotPasswordService {
         PasswordResetToken.builder()
             .token(UUID.randomUUID().toString())
             .user(userByEmail)
-            .expiryDate(Instant.now().minusSeconds(1800))
+            .expiryDate(Instant.now().plusSeconds(180))
             .build();
 
     PasswordResetToken storedResetToken = resetTokenRepository.save(resetToken);
@@ -95,7 +95,7 @@ public class ForgotPasswordServiceImpl implements ForgotPasswordService {
     user.setPassword(encodedPass);
     User updatedPassUser = userService.updateUserByEmail(user.getEmail(), user);
     String message = String.format(PASS_CHANGED_MESSAGE, updatedPassUser.getEmail());
-    mailService.sendNotification(updatedPassUser.getEmail(), message, RESET_PASS_SUBJECT);
+    mailService.sendNotification(updatedPassUser.getEmail(), message, PASS_CHANGED_SUBJECT);
 
     resetTokenRepository.delete(resetToken);
 
