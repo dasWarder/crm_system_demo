@@ -57,7 +57,7 @@ public class ForgotPasswordServiceImpl implements ForgotPasswordService {
 
     PasswordResetToken storedResetToken = resetTokenRepository.save(resetToken);
 
-    String resetUrl = String.format("%s/reset?token=%s", baseUrl, storedResetToken.getToken());
+    String resetUrl = String.format("%s/login/forget/reset?token=%s", baseUrl, storedResetToken.getToken());
     String message = String.format(RESET_PASS_MESSAGE, resetUrl);
     mailService.sendNotification(email, message, RESET_PASS_SUBJECT);
   }

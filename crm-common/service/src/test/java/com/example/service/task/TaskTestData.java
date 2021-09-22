@@ -11,17 +11,6 @@ public class TaskTestData {
 
   public static final Long WRONG_ID = 123456789L;
 
-  public static final TodoList TEST_TODO = TodoList.builder().id(1L).build();
-
-  public static final User TEST_USER_1 =
-      User.builder()
-          .id(1L)
-          .email("user@gmail.com")
-          .enabled(true)
-          .registrationDate(LocalDate.of(2021, 1, 1))
-          .password("12345")
-          .build();
-
   public static final Task TEST_TASK_1 =
       Task.builder()
           .id(1L)
