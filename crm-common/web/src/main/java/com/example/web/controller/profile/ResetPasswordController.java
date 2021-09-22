@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/login/forget")
 public class ResetPasswordController {
 
   private final UserMapper userMapper;
@@ -35,7 +36,8 @@ public class ResetPasswordController {
   }
 
   @GetMapping("/reset")
-  public ResponseEntity<ResetTokenDto> resetTokenValidation(@RequestParam("token") String token) throws PasswordResetTokenNotFoundException, ResetTokenExpiryException {
+  public ResponseEntity<ResetTokenDto> resetTokenValidation(@RequestParam("token") String token)
+      throws PasswordResetTokenNotFoundException, ResetTokenExpiryException {
 
     String resetToken = forgotPasswordService.directResetPassword(token);
     ResetTokenDto resetTokenDto = tokenMapper.stringToResetTokenDto(resetToken);
@@ -44,9 +46,12 @@ public class ResetPasswordController {
   }
 
   @PutMapping("/reset")
-  public ResponseEntity<BaseUserDto> resetPassword(@RequestBody ResetPasswordDto dto) throws UserNotFoundException, PasswordResetTokenNotFoundException, WrongPasswordException {
+  public ResponseEntity<BaseUserDto> resetPassword(@RequestBody ResetPasswordDto dto)
+      throws UserNotFoundException, PasswordResetTokenNotFoundException, WrongPasswordException {
 
-    User updatedUser = forgotPasswordService.resetUserPassword(dto.getPassword(), dto.getConfirmPassword(), dto.getToken());
+    User updatedUser =
+        forgotPasswordService.resetUserPassword(
+            dto.getPassword(), dto.getConfirmPassword(), dto.getToken());
     BaseUserDto baseUserDto = userMapper.userToBaseUserDto(updatedUser);
 
     return ResponseEntity.ok(baseUserDto);

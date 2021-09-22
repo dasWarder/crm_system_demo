@@ -1,7 +1,6 @@
 package com.example.service.todoList;
 
 import com.example.exception.TodoListNotFoundException;
-import com.example.exception.UserNotFoundException;
 import com.example.model.todoList.TodoList;
 import com.example.repository.TodoListRepository;
 import com.example.service.user.UserService;
