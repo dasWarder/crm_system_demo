@@ -16,13 +16,12 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static com.example.service.report.ReportTestData.*;
 import static com.example.service.user.UserTestData.TEST_USER_1;
+import static com.example.service.util.TestUtil.getListOfObjects;
 
 @Slf4j
 class UserReportServiceImplTest {
@@ -106,7 +105,7 @@ class UserReportServiceImplTest {
 
     log.info("Test getReportsForCurrentUser() method");
 
-    List<Report> reports = getReportsList(TEST_REPORT_1, TEST_REPORT_2);
+    List<Report> reports = getListOfObjects(TEST_REPORT_1, TEST_REPORT_2);
     PageImpl<Report> allReports = new PageImpl<>(reports);
 
     Mockito.when(userService.getCurrentUser()).thenReturn(TEST_USER_1);
@@ -124,7 +123,7 @@ class UserReportServiceImplTest {
 
     log.info("Test getReportsByTopicForCurrentUser() method");
 
-    List<Report> vacationReports = getReportsList(TEST_REPORT_1);
+    List<Report> vacationReports = getListOfObjects(TEST_REPORT_1);
     PageImpl<Report> reports = new PageImpl<>(vacationReports);
 
     Mockito.when(userService.getCurrentUser()).thenReturn(TEST_USER_1);
@@ -145,7 +144,7 @@ class UserReportServiceImplTest {
 
     log.info("Test getReportsByStatusForCurrentUser() method");
 
-    List<Report> reports = getReportsList(TEST_REPORT_1, TEST_REPORT_4);
+    List<Report> reports = getListOfObjects(TEST_REPORT_1, TEST_REPORT_4);
     PageImpl<Report> reportsPage = new PageImpl<>(reports);
 
     Mockito.when(userService.getCurrentUser()).thenReturn(TEST_USER_1);
@@ -167,7 +166,7 @@ class UserReportServiceImplTest {
     log.info("Test getLastCurrentUserReport() method");
 
     List<Report> reportsList =
-        getReportsList(TEST_REPORT_1, TEST_REPORT_2, TEST_REPORT_3, TEST_REPORT_4);
+        getListOfObjects(TEST_REPORT_1, TEST_REPORT_2, TEST_REPORT_3, TEST_REPORT_4);
     PageImpl<Report> reports = new PageImpl<>(reportsList);
 
     Mockito.when(userService.getCurrentUser()).thenReturn(TEST_USER_1);
@@ -176,10 +175,5 @@ class UserReportServiceImplTest {
     List<Report> lastCurrentUserReports = reportService.getLastCurrentUserReports(TEST_PAGEABLE);
 
     Assertions.assertNotNull(lastCurrentUserReports);
-  }
-
-  private List<Report> getReportsList(Report... reports) {
-
-    return Arrays.stream(reports).collect(Collectors.toList());
   }
 }
