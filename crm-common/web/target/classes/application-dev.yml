@@ -22,14 +22,6 @@ spring:
           starttls:
             enable: true
 
-  security:
-    oauth2:
-      client:
-        registration:
-          github:
-            client-id: 3822d0d2ee84de68710e
-            client-secret: da19a59b6559b23980030de4abfbfd5c92db695b
-
 email:
   author: ${MAIL_NAME}
 

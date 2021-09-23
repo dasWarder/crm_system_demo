@@ -78,6 +78,7 @@ public class TokenServiceImpl implements TokenService {
   }
 
   @Override
+  @Transactional
   public void deleteTokenById(Long id) {
 
     log.info("Delete a token by its id = {}", id);
@@ -85,6 +86,7 @@ public class TokenServiceImpl implements TokenService {
   }
 
   @Override
+  @Transactional
   public void deleteTokenBySubject(String subject) {
 
     log.info("Delete a token by its subject = {}", subject);

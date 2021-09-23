@@ -1,0 +1,5 @@
+com\example\web\AbstractTest.class
+com\example\web\data\TestContactData.class
+com\example\web\data\TestTaskData.class
+com\example\web\controller\AbstractContextController.class
+com\example\web\data\TestData.class

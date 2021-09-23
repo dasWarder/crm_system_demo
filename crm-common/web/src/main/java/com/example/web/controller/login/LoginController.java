@@ -77,6 +77,7 @@ public class LoginController {
     UserDetails details = securityService.loadUserByUsername(dto.getEmail());
     String token = tokenProvider.generateToken(details.getUsername());
 
+    tokenService.deleteTokenBySubject(dto.getEmail());
     Token refreshToken = tokenService.createToken(details.getUsername());
     TokenDto tokenDto = tokenMapper.fromStringsToToken(token, refreshToken.getToken());
 
