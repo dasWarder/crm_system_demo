@@ -140,7 +140,7 @@ class ManagerReportServiceImplTest {
 
   @Test
   public void shouldGetAlreadyFinishedReportsProperly() {
-    
+
     log.info("Test getAlreadyFinishedReports() method");
 
     List<Report> approvedReports = getListOfObjects(TEST_REPORT_2);

@@ -10,6 +10,7 @@ com\example\service\dashboard\DashboardService.class
 com\example\service\security\UserDetailsSecurityService.class
 com\example\service\security\AdditionalConfiguration.class
 com\example\service\task\TaskService.class
+com\example\service\report\UserReportServiceImpl.class
 com\example\service\report\ManagerReportServiceImpl.class
 com\example\service\user\authority\AuthorityServiceImpl.class
 com\example\service\user\token\TokenService.class
@@ -18,7 +19,6 @@ com\example\service\user\authority\AuthorityService.class
 com\example\service\notification\EmailNotificationServiceImpl.class
 com\example\service\security\CustomUserDetails.class
 com\example\service\user\token\TokenServiceImpl.class
-com\example\service\report\UserUserReportServiceImpl.class
 com\example\service\report\ManagerReportService.class
 com\example\service\todoList\TodoListServiceImpl.class
 com\example\service\user\ForgotPasswordService.class
