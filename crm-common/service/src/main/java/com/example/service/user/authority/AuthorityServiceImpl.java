@@ -56,7 +56,7 @@ public class AuthorityServiceImpl implements AuthorityService {
             .orElseThrow(
                 () ->
                     new AuthorityNotFoundException(
-                        String.format("The authority with a name %s not found")));
+                        String.format("The authority with a name %s not found", authority)));
     return userAuthorityByAuthorityName;
   }
 
