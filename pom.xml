@@ -30,7 +30,7 @@
         <spring.test.version>2.3.4.RELEASE</spring.test.version>
         <jackson.version>2.12.5</jackson.version>
         <jws.version>0.9.1</jws.version>
-        <spring-security-test.version>3.2.1</spring-security-test.version>
+        <spring-security-test.version>5.4.5</spring-security-test.version>
     </properties>
 
     <dependencies>

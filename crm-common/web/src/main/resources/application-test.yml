@@ -14,5 +14,23 @@ spring:
     hibernate:
       ddl-auto: create
 
+  mail:
+    host: smtp.gmail.com
+    username: ${MAIL_NAME}
+    password: ${MAIL_PASS}
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
   liquibase:
     enabled: false
+
+email:
+  author: ${MAIL_NAME}
+
+url:
+  base: http://localhost:8080
