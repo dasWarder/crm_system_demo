@@ -29,13 +29,7 @@ public class TodoListServiceImpl implements TodoListService {
   public TodoList createTodoList() throws UserNotFoundException {
 
     log.info("Save a new todo list");
-    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    String authEmail =
-            principal instanceof UserDetails
-                    ? ((UserDetails) principal).getUsername()
-                    : principal.toString();
-
-    User loggedUser = userService.getUserByEmail(authEmail);
+    User loggedUser = userService.getCurrentUser();
     TodoList todoList =
             todoListRepository
                     .findById(loggedUser.getId())
@@ -46,7 +40,7 @@ public class TodoListServiceImpl implements TodoListService {
                                     .tasks(new ArrayList<>())
                                     .build());
     loggedUser.setTodoList(todoList);
-    User updatedUser = userService.updateUserByEmail(authEmail, loggedUser);
+    User updatedUser = userService.updateUserByEmail(loggedUser.getEmail(), loggedUser);
 
     return updatedUser.getTodoList();
   }

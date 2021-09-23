@@ -1,5 +1,11 @@
+com\example\web\integration\TaskServiceIntegrationTest.class
+com\example\web\integration\UserServiceIntegrationTest.class
+com\example\web\data\TestTaskData.class
+com\example\web\data\TestData.class
+com\example\web\data\TestTodoListData.class
+com\example\web\data\TestUserData.class
+com\example\web\integration\ContactServiceIntegrationTest.class
 com\example\web\AbstractTest.class
 com\example\web\data\TestContactData.class
-com\example\web\data\TestTaskData.class
+com\example\web\integration\TodoListIntegrationTest.class
 com\example\web\controller\AbstractContextController.class
-com\example\web\data\TestData.class
