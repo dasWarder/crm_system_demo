@@ -2,11 +2,18 @@ DELETE FROM task;
 DELETE FROM todo_list;
 DELETE FROM password_reset_token;
 DELETE FROM usr;
+DELETE FROM authority;
 
 ALTER SEQUENCE task_seq RESTART WITH 1;
 ALTER SEQUENCE pass_res_seq RESTART WITH 1;
 ALTER SEQUENCE usr_seq RESTART WITH 1;
+ALTER SEQUENCE auth_seq RESTART WITH 100000;
 
+INSERT INTO authority(id, authority) VALUES
+    (100000, 'USER'),
+    (100001, 'ADMIN');
+
+ALTER SEQUENCE auth_seq RESTART WITH 100002;
 
 INSERT INTO usr(id, email, password, enabled) VALUES
     (1, 'test@gmail.com', '12345', true),
