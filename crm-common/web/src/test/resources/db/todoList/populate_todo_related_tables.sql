@@ -1,8 +1,10 @@
 DELETE FROM task;
 DELETE FROM todo_list;
+DELETE FROM password_reset_token;
 DELETE FROM usr;
 
 ALTER SEQUENCE task_seq RESTART WITH 1;
+ALTER SEQUENCE pass_res_seq RESTART WITH 1;
 ALTER SEQUENCE usr_seq RESTART WITH 1;
 
 
