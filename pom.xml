@@ -31,6 +31,7 @@
         <jackson.version>2.12.5</jackson.version>
         <jws.version>0.9.1</jws.version>
         <spring-security-test.version>5.4.5</spring-security-test.version>
+        <greenmail.version>1.6.1</greenmail.version>
     </properties>
 
     <dependencies>
