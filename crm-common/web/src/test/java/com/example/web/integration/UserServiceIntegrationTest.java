@@ -3,6 +3,7 @@ package com.example.web.integration;
 import com.example.exception.AuthorityNotFoundException;
 import com.example.exception.UserAlreadyExistException;
 import com.example.exception.UserNotFoundException;
+import com.example.exception.WrongPasswordException;
 import com.example.model.user.User;
 import com.example.service.user.UserService;
 import com.example.web.AbstractTest;
@@ -16,8 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 
-import static com.example.web.data.TestUserData.TEST_SAVE_USER;
-import static com.example.web.data.TestUserData.TEST_USER_1;
+import static com.example.web.data.TestUserData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -26,11 +26,6 @@ public class UserServiceIntegrationTest extends AbstractTest {
 
   @Autowired private UserService userService;
 
-  /*
-  ONLY AFTER IMPLEMENTATION AUTHORITIES!
-
-  updateUserByEmail  updateUserPassByEmail
-   updateUserEmail  */
 
   @Test
   @WithMockUser(username = "test@gmail.com", authorities = "USER")
@@ -43,21 +38,50 @@ public class UserServiceIntegrationTest extends AbstractTest {
     Assert.assertNotNull(currentUser);
     assertThat(currentUser)
         .usingRecursiveComparison()
-        .ignoringFields("role", "registrationDate", "todoList", "contact", "reports", "enabled")
+        .ignoringFields("password", "role", "registrationDate", "todoList", "contact", "reports", "enabled")
         .isEqualTo(TEST_USER_1);
   }
 
-//    @Test
-//    public void shouldSaveUserProperly() throws UserAlreadyExistException,
-//            AuthorityNotFoundException {
-//
-//      log.info("Test saveUser() method");
-//
-//      User storedUser = userService.saveUser(TEST_SAVE_USER);
-//      Assert.assertNotNull(storedUser);
-//
-//   assertThat(storedUser).usingRecursiveComparison().ignoringFields("role").isEqualTo(TEST_SAVE_USER);
-//    }
+  @Test
+  public void shouldSaveUserProperly()
+      throws UserAlreadyExistException, AuthorityNotFoundException {
+
+    log.info("Test saveUser() method");
+
+    User storedUser = userService.saveUser(TEST_SAVE_USER);
+    Assert.assertNotNull(storedUser);
+
+    assertThat(storedUser)
+        .usingRecursiveComparison()
+        .ignoringFields("role", "registrationDate")
+        .isEqualTo(TEST_SAVE_USER);
+  }
+
+  @Test
+  public void shouldUpdateUserByEmailProperly() throws UserNotFoundException {
+
+    log.info("Test updateUserByEmail() method");
+
+    User updatedUser = userService.updateUserByEmail(TEST_USER_2.getEmail(), TEST_UPDATE_USER);
+
+    Assert.assertNotNull(updatedUser);
+    assertThat(updatedUser)
+        .usingRecursiveComparison()
+        .ignoringFields("role", "registrationDate", "todoList", "contact", "reports", "enabled")
+        .isEqualTo(TEST_UPDATE_USER);
+  }
+
+  @Test
+  public void shouldUpdateUserPassByEmailProperly() throws UserNotFoundException, WrongPasswordException {
+
+    log.info("Test updateUserPassByEmail() method");
+
+    String newPass = "updatedPass";
+    User updatedPassUser = userService.updateUserPassByEmail(TEST_USER_1.getEmail(), TEST_USER_1.getPassword(), newPass);
+
+    Assert.assertNotNull(updatedPassUser);
+  }
+
 
   @Test
   public void shouldGetUserByEmailProperly() throws UserNotFoundException {
@@ -69,7 +93,7 @@ public class UserServiceIntegrationTest extends AbstractTest {
     Assert.assertNotNull(userByEmail);
     assertThat(userByEmail)
         .usingRecursiveComparison()
-        .ignoringFields("role", "registrationDate", "todoList", "contact", "reports", "enabled")
+        .ignoringFields("password", "role", "registrationDate", "todoList", "contact", "reports", "enabled")
         .isEqualTo(TEST_USER_1);
   }
 

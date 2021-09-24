@@ -1,12 +1,5 @@
 package com.example.service.report;
 
-/*
-
-   Page<Report> getReportsByCreatedAt(LocalDateTime createdAt);
-
-   Page<Report> getReportsByReportStatus(String status);
-*/
-
 import com.example.exception.ReportNotFoundException;
 import com.example.exception.UserNotFoundException;
 import com.example.model.report.Report;
@@ -15,7 +8,6 @@ import com.example.model.report.ReportTopic;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface UserReportService {

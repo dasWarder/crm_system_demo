@@ -29,8 +29,6 @@ public class UserAuthority {
 
   @OneToMany(
       fetch = FetchType.LAZY,
-      cascade = CascadeType.ALL,
-      orphanRemoval = true,
       mappedBy = "role")
   private Set<User> users;
 
