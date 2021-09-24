@@ -8,7 +8,7 @@ public class TestUserData {
       User.builder().id(1L).email("test@gmail.com").password("12345").build();
 
   public static final User TEST_USER_2 =
-      User.builder().id(2L).email("test2gmail.com").password("12345").build();
+      User.builder().id(2L).email("test2@gmail.com").password("12345").build();
 
   public static final User TEST_SAVE_USER =
       User.builder().id(3L).email("test3_gmail.com").password("12345").enabled(true).build();

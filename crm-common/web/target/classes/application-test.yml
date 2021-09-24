@@ -15,16 +15,12 @@ spring:
       ddl-auto: create
 
   mail:
-    host: smtp.gmail.com
-    username: ${MAIL_NAME}
-    password: ${MAIL_PASS}
+    password: 12345
+    username: tester
+    host: 127.0.0.1
+    port: 3025
     protocol: smtp
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+    test-connection: true
 
   liquibase:
     enabled: false
