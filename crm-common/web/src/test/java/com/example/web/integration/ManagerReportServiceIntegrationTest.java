@@ -22,7 +22,7 @@ import static com.example.web.data.TestReportData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-@WithMockUser(username = "test@gmail.com", authorities = "USER")
+@WithMockUser(username = "test2@gmail.com", authorities = "MANAGER")
 @Sql(
     scripts = {
       "classpath:/db/todoList/populate_todo_related_tables.sql",

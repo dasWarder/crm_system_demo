@@ -53,7 +53,7 @@ public class UserServiceIntegrationTest extends AbstractTest {
 
     assertThat(storedUser)
         .usingRecursiveComparison()
-        .ignoringFields("role")
+        .ignoringFields("role", "registrationDate")
         .isEqualTo(TEST_SAVE_USER);
   }
 

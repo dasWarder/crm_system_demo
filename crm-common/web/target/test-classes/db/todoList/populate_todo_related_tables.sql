@@ -17,9 +17,9 @@ INSERT INTO authority(id, authority) VALUES
 
 ALTER SEQUENCE auth_seq RESTART WITH 100002;
 
-INSERT INTO usr(id, email, password, enabled) VALUES
-    (1, 'test@gmail.com', '$2a$10$cTiwE6/krBErrzuEeL3TZuiqrgSQDi.faOVIYCmYhdPWrLxk2TXyC', true),
-    (2, 'test2@gmail.com', '$2a$10$cTiwE6/krBErrzuEeL3TZuiqrgSQDi.faOVIYCmYhdPWrLxk2TXyC', true);
+INSERT INTO usr(id, email, password, registration_date, enabled) VALUES
+    (1, 'test@gmail.com', '$2a$10$cTiwE6/krBErrzuEeL3TZuiqrgSQDi.faOVIYCmYhdPWrLxk2TXyC', '2021-01-01', true),
+    (2, 'test2@gmail.com', '$2a$10$cTiwE6/krBErrzuEeL3TZuiqrgSQDi.faOVIYCmYhdPWrLxk2TXyC', '2021-01-01',true);
 
 ALTER SEQUENCE usr_seq RESTART WITH 3;
 
