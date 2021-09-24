@@ -7,13 +7,9 @@ import com.example.exception.WrongPasswordException;
 import com.example.model.user.User;
 import com.example.service.user.ForgotPasswordService;
 import com.example.web.AbstractTest;
-import com.icegreen.greenmail.configuration.GreenMailConfiguration;
-import com.icegreen.greenmail.junit5.GreenMailExtension;
-import com.icegreen.greenmail.util.ServerSetupTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.jdbc.Sql;
@@ -37,12 +33,6 @@ public class ForgotPasswordServiceIntegrationTest extends AbstractTest {
   private PasswordEncoder passwordEncoder;
 
   @Autowired private ForgotPasswordService forgotPasswordService;
-
-  @RegisterExtension
-  static GreenMailExtension greenMailExtension =
-      new GreenMailExtension(ServerSetupTest.SMTP)
-          .withConfiguration(GreenMailConfiguration.aConfig().withUser("tester", "12345"))
-          .withPerMethodLifecycle(false);
 
   @Test
   public void shouldProcessForgotPasswordProperly()
