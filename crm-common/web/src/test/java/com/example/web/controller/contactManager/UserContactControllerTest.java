@@ -1,7 +1,6 @@
 package com.example.web.controller.contactManager;
 
 import com.example.web.controller.AbstractContextController;
-import com.example.web.data.TestData;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
