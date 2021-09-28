@@ -10,7 +10,6 @@ import com.example.mapper.dto.contact.ContactDetailsDto;
 import com.example.mapper.dto.contact.SaveContactDto;
 import com.example.mapper.dto.profile.ProfileDto;
 import com.example.mapper.dto.user.BaseUserDto;
-import com.example.mapper.dto.user.DetailsUserDto;
 import com.example.mapper.dto.user.UpdateUserEmailDto;
 import com.example.mapper.dto.user.UpdateUserPasswordDto;
 import com.example.model.contactManager.Contact;

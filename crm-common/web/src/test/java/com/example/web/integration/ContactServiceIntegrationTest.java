@@ -22,7 +22,11 @@ import static com.example.web.data.TestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-@Sql(scripts = {"classpath:/db/contactManager/populate_contact.sql"})
+@Sql(
+    scripts = {
+      "classpath:/db/todoList/populate_todo_related_tables.sql",
+      "classpath:/db/contactManager/populate_contact.sql"
+    })
 public class ContactServiceIntegrationTest extends AbstractTest {
 
   @Autowired private ContactService contactService;
