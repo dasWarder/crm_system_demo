@@ -53,7 +53,7 @@ public class LoginController {
 
   private final UserMapperWithAuthority customMapper;
 
-  private static final String BASE_URL = "http://localhost:8080/registration";
+  private static final String BASE_URL = "http://localhost:8080/login";
 
   @PostMapping("/registration/common")
   public ResponseEntity<BaseUserDto> registrationNewUser(

@@ -1,6 +1,5 @@
 package com.example.web.controller.report;
 
-import com.example.exception.ContactNotFoundException;
 import com.example.exception.ReportNotFoundException;
 import com.example.mapper.ManageReportMapper;
 import com.example.mapper.dto.report.manager.ManagerReportDto;
