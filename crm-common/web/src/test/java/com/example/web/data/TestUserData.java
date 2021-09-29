@@ -15,7 +15,7 @@ public class TestUserData {
           User.builder().id(3L).email("test3@gmail.com").password("12345").contact(TestContactData.TEST_CONTACT_1).build();
 
   public static final User TEST_SAVE_USER =
-      User.builder().id(3L).email("test4_gmail.com").password("12345").enabled(true).build();
+      User.builder().id(3L).email("test4@gmail.com").password("12345").enabled(true).build();
 
   public static final User TEST_UPDATE_USER =
       User.builder()

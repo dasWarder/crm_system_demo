@@ -1,20 +1,14 @@
 package com.example.web.controller.profile;
 
-import com.example.mapper.ResetTokenMapper;
-import com.example.mapper.TokenMapper;
 import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.ResetPasswordDto;
 import com.example.mapper.dto.user.token.ResetTokenDto;
-import com.example.model.user.Token;
 import com.example.web.controller.AbstractContextController;
-import com.example.web.data.TestTokenData;
-import com.example.web.data.TestUserData;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 
 import static com.example.web.data.TestTokenData.TEST_TOKEN_1;
@@ -32,10 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
       "classpath:/db/token/populate_refresh_token_table.sql"
     })
 class ResetPasswordControllerTest extends AbstractContextController {
-
-  @Autowired private TokenMapper tokenMapper;
-
-  @Autowired private ResetTokenMapper resetTokenMapper;
 
   @Autowired private ObjectMapper objectMapper;
 
