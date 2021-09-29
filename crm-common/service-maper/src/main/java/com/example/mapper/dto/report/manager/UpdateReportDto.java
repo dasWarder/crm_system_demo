@@ -3,7 +3,7 @@ package com.example.mapper.dto.report.manager;
 import com.example.model.report.ReportStatus;
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class UpdateReportDto {
 
-  @NotBlank(message = "The field is mandatory")
+  @NotNull(message = "The field is mandatory")
   private ReportStatus status;
 
   private String response;

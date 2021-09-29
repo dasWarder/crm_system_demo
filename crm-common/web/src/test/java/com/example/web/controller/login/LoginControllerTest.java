@@ -1,14 +1,10 @@
 package com.example.web.controller.login;
 
 import com.example.mapper.UserMapper;
-import com.example.mapper.dto.user.AuthUserDto;
 import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
 import com.example.mapper.dto.user.token.TokenRefreshRequest;
 import com.example.web.controller.AbstractContextController;
-import com.example.web.data.TestContactData;
-import com.example.web.data.TestTokenData;
-import com.example.web.data.TestUserData;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -16,12 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.jdbc.Sql;
 
-import static com.example.web.data.TestContactData.TEST_CONTACT_1;
 import static com.example.web.data.TestContactData.TEST_SAVE_CONTACT;
-import static com.example.web.data.TestTokenData.*;
+import static com.example.web.data.TestTokenData.TEST_TOKEN_1;
 import static com.example.web.data.TestUserData.TEST_SAVE_USER;
-import static com.example.web.data.TestUserData.TEST_USER_1;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

@@ -4,6 +4,7 @@ import com.example.mapper.dto.report.CreateReportDto;
 import com.example.mapper.dto.report.ResponseReportDto;
 import com.example.mapper.dto.report.DetailsReportDto;
 import com.example.mapper.dto.report.ReportDto;
+import com.example.mapper.dto.report.manager.UpdateReportDto;
 import com.example.model.report.Report;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -30,4 +31,10 @@ public interface ReportMapper {
     @Mapping(target = "createdAt", source = "createdAt")
     @Mapping(target = "statusChanged", source = "statusChanged")
     DetailsReportDto reportToDetailsReportDto(Report report);
+
+    @Mapping(target = "topic", source = "topic")
+    @Mapping(target = "comment", source = "comment")
+    CreateReportDto reportToCreateReportDto(Report report);
+
+    UpdateReportDto reportToUpdateReportDto(Report report);
 }
