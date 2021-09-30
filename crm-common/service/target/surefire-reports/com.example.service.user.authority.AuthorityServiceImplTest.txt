@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.example.service.user.authority.AuthorityServiceImplTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.082 s - in com.example.service.user.authority.AuthorityServiceImplTest
+=======
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.203 s - in com.example.service.user.authority.AuthorityServiceImplTest
+>>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7

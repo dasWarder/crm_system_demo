@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.example.web.controller.todoList.TodoListControllerTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.427 s - in com.example.web.controller.todoList.TodoListControllerTest
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.391 s - in com.example.web.controller.todoList.TodoListControllerTest
+>>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7

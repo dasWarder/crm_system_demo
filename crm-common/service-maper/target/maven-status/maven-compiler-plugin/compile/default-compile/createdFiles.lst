@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 com\example\mapper\CustomUserMapperImpl.class
 com\example\mapper\dto\user\admin\CreateUserDto.class
+=======
+>>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7
 com\example\mapper\dto\user\DetailsUserDto.class
 com\example\mapper\dto\report\ReportDto.class
 com\example\mapper\dto\user\token\TokenDto$TokenDtoBuilder.class
@@ -11,12 +14,18 @@ com\example\mapper\UserMapperImpl.class
 com\example\mapper\dto\user\UpdateUserPasswordDto.class
 com\example\mapper\ProfileMapper.class
 com\example\mapper\dto\user\token\TokenDto.class
+<<<<<<< HEAD
 com\example\mapper\AuthorityMapper.class
+=======
+>>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7
 com\example\mapper\dto\dashboard\DashboardDto.class
 com\example\mapper\TokenMapperImpl.class
 com\example\mapper\dto\contact\ContactDto.class
 com\example\mapper\dto\report\ReportDto$ReportDtoBuilder.class
+<<<<<<< HEAD
 com\example\mapper\dto\user\admin\UpdateUserDetailsDto.class
+=======
+>>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7
 com\example\mapper\dto\report\manager\ManagerReportDto.class
 com\example\mapper\dto\user\BaseUserDto.class
 com\example\mapper\dto\user\token\TokenRefreshRequest.class
@@ -24,13 +33,20 @@ com\example\mapper\dto\user\UpdateUserEmailDto.class
 com\example\mapper\dto\user\SaveUserDto.class
 com\example\mapper\ResetTokenMapperImpl.class
 com\example\mapper\dto\report\CreateReportDto.class
+<<<<<<< HEAD
+=======
+com\example\mapper\UserMapperWithAuthorityImpl.class
+>>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7
 com\example\mapper\dto\report\manager\ManagerReportDto$ManagerReportDtoBuilder.class
 com\example\mapper\ManageReportMapper.class
 com\example\mapper\dto\task\TaskDto.class
 com\example\mapper\dto\report\BaseDateDto.class
 com\example\mapper\dto\dashboard\DashboardDto$DashboardDtoBuilder.class
 com\example\mapper\dto\report\manager\ManagerResponseReportDto$ManagerResponseReportDtoBuilder.class
+<<<<<<< HEAD
 com\example\mapper\AuthorityMapperImpl.class
+=======
+>>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7
 com\example\mapper\dto\report\manager\UpdateReportDto$UpdateReportDtoBuilder.class
 com\example\mapper\dto\report\CreateReportDto$CreateReportDtoBuilder.class
 com\example\mapper\ContactMapperImpl.class
@@ -44,10 +60,16 @@ com\example\mapper\ReportMapperImpl.class
 com\example\mapper\ReportMapper.class
 com\example\mapper\ManageReportMapperImpl.class
 com\example\mapper\DashboardMapperImpl.class
+<<<<<<< HEAD
 com\example\mapper\dto\profile\ProfileDto.class
 com\example\mapper\dto\report\ResponseReportDto$ResponseReportDtoBuilder.class
 com\example\mapper\dto\user\admin\AdminDetailsUserDto.class
 com\example\mapper\CustomUserMapper.class
+=======
+com\example\mapper\UserMapperWithAuthority.class
+com\example\mapper\dto\profile\ProfileDto.class
+com\example\mapper\dto\report\ResponseReportDto$ResponseReportDtoBuilder.class
+>>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7
 com\example\mapper\ContactMapper.class
 com\example\mapper\dto\report\ResponseReportDto.class
 com\example\mapper\DashboardMapper.class

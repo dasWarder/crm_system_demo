@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.example.web.controller.todoList.UserTaskControllerTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.7 s - in com.example.web.controller.todoList.UserTaskControllerTest
+=======
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.852 s - in com.example.web.controller.todoList.UserTaskControllerTest
+>>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7

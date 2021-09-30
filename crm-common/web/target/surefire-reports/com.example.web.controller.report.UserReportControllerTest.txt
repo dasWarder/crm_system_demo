@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.example.web.controller.report.UserReportControllerTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.441 s - in com.example.web.controller.report.UserReportControllerTest
+=======
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.456 s - in com.example.web.controller.report.UserReportControllerTest
+>>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7

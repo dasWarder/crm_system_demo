@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.example.service.contact.ContactServiceImplTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.857 s - in com.example.service.contact.ContactServiceImplTest
+=======
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.501 s - in com.example.service.contact.ContactServiceImplTest
+>>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7

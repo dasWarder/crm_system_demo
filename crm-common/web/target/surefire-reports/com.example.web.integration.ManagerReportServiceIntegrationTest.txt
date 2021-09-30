@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.example.web.integration.ManagerReportServiceIntegrationTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.63 s - in com.example.web.integration.ManagerReportServiceIntegrationTest
+=======
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.626 s - in com.example.web.integration.ManagerReportServiceIntegrationTest
+>>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7
