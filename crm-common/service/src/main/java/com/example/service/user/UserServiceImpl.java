@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService {
       "Dear, %s! \n\nThank you for registration on our service. \n\nWith kind regards, CRM Team";
 
   @Override
+  @Transactional(readOnly = true)
   public User getCurrentUser() throws UserNotFoundException {
 
     Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -79,6 +80,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional
   public User saveDefaultPasswordUser(User user, String role) throws UserAlreadyExistException, AuthorityNotFoundException {
 
     log.info("Store a user with default password and role = {}", role);
@@ -123,6 +125,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional
   public User updateUserPassByEmail(String email, String oldPass, String newPass)
       throws UserNotFoundException, WrongPasswordException {
 
@@ -141,6 +144,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional
   public User updateUserEmail(String oldEmail, String email) throws UserNotFoundException {
 
     log.info("Update an email for a user with a current email = {}", oldEmail);
@@ -162,6 +166,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional
   public void deleteCommonUserByEmail(String email) throws UserNotFoundException, NotPossibleDeleteException {
 
     log.info("Delete a common user by an email = {}", email);
@@ -199,6 +204,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional
   public User updateUserRole(String email, String role) throws UserNotFoundException, AuthorityNotFoundException {
 
     log.info("Update a role = {} for a user with the email = {}", role, email);

@@ -1,9 +1,6 @@
 package com.example.web.controller.users;
 
-import com.example.exception.AuthorityNotFoundException;
-import com.example.exception.ContactNotFoundException;
-import com.example.exception.UserAlreadyExistException;
-import com.example.exception.UserNotFoundException;
+import com.example.exception.*;
 import com.example.mapper.CustomUserMapper;
 import com.example.mapper.UserMapper;
 import com.example.mapper.dto.user.BaseUserDto;
@@ -82,9 +79,10 @@ public class AdminUsersController {
   }
 
   @DeleteMapping("/user")
-  public ResponseEntity<Void> deleteCommonUsers(@RequestParam("email") String email) {
+  public ResponseEntity<Void> deleteCommonUsers(@RequestParam("email") String email)
+      throws UserNotFoundException, NotPossibleDeleteException {
 
-    userService.deleteUserByEmail(email);
+    userService.deleteCommonUserByEmail(email);
 
     return ResponseEntity.noContent().build();
   }
