@@ -1,0 +1,17 @@
+com\example\model\user\Token.class
+com\example\model\report\ReportTopic.class
+com\example\model\report\Report$ReportBuilder.class
+com\example\model\todoList\Task.class
+com\example\model\user\User$UserBuilder.class
+com\example\model\user\PasswordResetToken.class
+com\example\model\user\Token$TokenBuilder.class
+com\example\model\user\User.class
+com\example\model\report\Report.class
+com\example\model\todoList\TodoList.class
+com\example\model\contactManager\Contact.class
+com\example\model\user\UserAuthority.class
+com\example\model\contactManager\Contact$ContactBuilder.class
+com\example\model\user\PasswordResetToken$PasswordResetTokenBuilder.class
+com\example\model\report\ReportStatus.class
+com\example\model\todoList\TodoList$TodoListBuilder.class
+com\example\model\todoList\Task$TaskBuilder.class
