@@ -14,7 +14,6 @@ public interface UserMapper {
   @Mapping(target = "email", source = "email")
   BaseUserDto userToBaseUserDto(User user);
 
-
   @Mapping(target = "email", source = "email")
   @Mapping(target = "enabled", source = "enabled")
   @Mapping(target = "registrationDate", source = "registrationDate")

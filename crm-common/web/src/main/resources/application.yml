@@ -13,3 +13,7 @@ jwt:
   expirationMs: 1200000
   refreshExpirationMs: 3200000
 
+user:
+  password:
+    default: ${POSTGRE_PASS}
+

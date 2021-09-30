@@ -11,6 +11,7 @@ import com.example.service.notification.EmailNotificationService;
 import com.example.service.user.authority.AuthorityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,11 +21,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+
+  @Value("${user.password.default}")
+  private String defaultPassword;
 
   private final UserRepository userRepository;
 
@@ -37,7 +42,7 @@ public class UserServiceImpl implements UserService {
   private static final String REGISTER_SUBJECT = "Registration";
 
   private static final String REGISTRATION_MESSAGE =
-          "Dear, %s! \n\nThank you for registration on our service. \n\nWith kind regards, CRM Team";
+      "Dear, %s! \n\nThank you for registration on our service. \n\nWith kind regards, CRM Team";
 
   @Override
   public User getCurrentUser() throws UserNotFoundException {
@@ -71,6 +76,18 @@ public class UserServiceImpl implements UserService {
     User storedUser = userRepository.save(user);
     String message = String.format(REGISTRATION_MESSAGE, user.getEmail());
     mailService.sendNotification(user.getEmail(), message, REGISTER_SUBJECT);
+
+    return storedUser;
+  }
+
+  @Override
+  public User saveDefaultPasswordUser(User user, String role) throws UserAlreadyExistException, AuthorityNotFoundException {
+
+    log.info("Store a user with default password and role = {}", role);
+    UserAuthority authority = authorityService.getUserAuthorityByAuthorityName(role);
+    user.setRole(authority);
+    user.setPassword(passwordEncoder.encode(defaultPassword));
+    User storedUser = this.saveUser(user);
 
     return storedUser;
   }
@@ -153,6 +170,37 @@ public class UserServiceImpl implements UserService {
     Page<User> users = userRepository.findAll(pageable);
 
     return users;
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public Page<User> getUsersByRole(String role, Pageable pageable)
+      throws AuthorityNotFoundException {
+
+    log.info("Get a page of users by role");
+    UserAuthority authorityByName = authorityService.getUserAuthorityByAuthorityName(role);
+    Page<User> usersByRole =
+        userRepository.getUsersByRole_Authority(authorityByName.getAuthority(), pageable);
+
+    return usersByRole;
+  }
+
+  @Override
+  public User updateUserRole(String email, String role) throws UserNotFoundException, AuthorityNotFoundException {
+
+    log.info("Update a role = {} for a user with the email = {}", role, email);
+    User user =
+        userRepository
+            .getUserByEmail(email)
+            .orElseThrow(
+                () ->
+                    new UserNotFoundException(
+                        String.format("The user with the email = %s not found", email)));
+    UserAuthority authority = authorityService.getUserAuthorityByAuthorityName(role);
+    user.setRole(authority);
+    User updatedUser = userRepository.save(user);
+
+    return updatedUser;
   }
 
   private void checkUserAlreadyExistOrThrowException(User user) throws UserAlreadyExistException {

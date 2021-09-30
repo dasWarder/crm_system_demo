@@ -14,6 +14,8 @@ public interface UserService {
 
   User saveUser(User user) throws UserAlreadyExistException, AuthorityNotFoundException;
 
+  User saveDefaultPasswordUser(User user, String role) throws UserAlreadyExistException, AuthorityNotFoundException;
+
   User getUserByEmail(String email) throws UserNotFoundException;
 
   User updateUserByEmail(String email, User user) throws UserNotFoundException;
@@ -25,4 +27,8 @@ public interface UserService {
   void deleteUserByEmail(String email);
 
   Page<User> getUsers(Pageable pageable);
+
+  Page<User> getUsersByRole(String role, Pageable pageable) throws AuthorityNotFoundException;
+
+  User updateUserRole(String email, String role) throws UserNotFoundException, AuthorityNotFoundException;
 }

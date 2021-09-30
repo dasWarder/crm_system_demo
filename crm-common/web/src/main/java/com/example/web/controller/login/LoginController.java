@@ -2,9 +2,9 @@ package com.example.web.controller.login;
 
 import com.example.exception.AuthorityNotFoundException;
 import com.example.exception.UserAlreadyExistException;
+import com.example.mapper.CustomUserMapper;
 import com.example.mapper.TokenMapper;
 import com.example.mapper.UserMapper;
-import com.example.mapper.UserMapperWithAuthority;
 import com.example.mapper.dto.user.AuthUserDto;
 import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
@@ -51,7 +51,7 @@ public class LoginController {
 
   private final UserService userService;
 
-  private final UserMapperWithAuthority customMapper;
+  private final CustomUserMapper customMapper;
 
   private static final String BASE_URL = "http://localhost:8080/login";
 

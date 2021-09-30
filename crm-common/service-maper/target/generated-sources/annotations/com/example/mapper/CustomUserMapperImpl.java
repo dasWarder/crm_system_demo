@@ -9,5 +9,5 @@ import org.springframework.stereotype.Component;
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.10 (AdoptOpenJDK)"
 )
 @Component
-public class UserMapperWithAuthorityImpl extends UserMapperWithAuthority {
+public class CustomUserMapperImpl extends CustomUserMapper {
 }

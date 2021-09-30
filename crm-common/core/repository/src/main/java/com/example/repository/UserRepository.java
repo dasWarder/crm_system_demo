@@ -15,4 +15,6 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
   Page<User> findAll(Pageable pageable);
 
   void deleteUserByEmail(String email);
+
+  Page<User> getUsersByRole_Authority(String role, Pageable pageable);
 }

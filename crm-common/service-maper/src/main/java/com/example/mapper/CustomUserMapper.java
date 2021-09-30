@@ -2,6 +2,7 @@ package com.example.mapper;
 
 import com.example.mapper.dto.user.SaveUserDto;
 import com.example.mapper.dto.user.UpdateUserPasswordDto;
+import com.example.mapper.dto.user.admin.CreateUserDto;
 import com.example.model.contactManager.Contact;
 import com.example.model.user.User;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 
 @Slf4j
 @Mapper
-public abstract class UserMapperWithAuthority {
+public abstract class CustomUserMapper {
 
   @Autowired private PasswordEncoder passwordEncoder;
 
@@ -29,7 +30,29 @@ public abstract class UserMapperWithAuthority {
             .registrationDate(LocalDate.now())
             .build();
 
-    Contact userContactCard =
+    Contact contact = populateContactCard(dto, user);
+
+    user.setContact(contact);
+
+    return user;
+  }
+
+  public User createUserDtoToDefaultUser(CreateUserDto dto) {
+
+    log.info("Map a CreateUserDto to user");
+
+    User user = User.builder().email(dto.getEmail()).enabled(dto.isEnabled()).build();
+
+    Contact contact = populateContactCard(dto, user);
+
+    user.setContact(contact);
+
+    return user;
+  }
+
+  private <T extends CreateUserDto> Contact populateContactCard(T dto, User user) {
+
+    Contact contact =
         Contact.builder()
             .firstName(dto.getFirstName())
             .lastName(dto.getLastName())
@@ -41,9 +64,6 @@ public abstract class UserMapperWithAuthority {
             .user(user)
             .build();
 
-    user.setContact(userContactCard);
-
-    return user;
+    return contact;
   }
-
 }
