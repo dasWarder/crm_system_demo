@@ -45,7 +45,6 @@ class UserReportControllerTest extends AbstractContextController {
     Report saveReport = TEST_SAVE_REPORT;
     saveReport.setStatus(RECEIVED);
     CreateReportDto dto = reportMapper.reportToCreateReportDto(saveReport);
-    ResponseReportDto responseDto = reportMapper.reportToResponseReportDto(saveReport);
 
     mockMvc
         .perform(
@@ -54,7 +53,6 @@ class UserReportControllerTest extends AbstractContextController {
                 .content(objectMapper.writeValueAsString(dto)))
         .andDo(print())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(content().json(objectMapper.writeValueAsString(responseDto)))
         .andExpect(status().isCreated())
         .andReturn();
   }
