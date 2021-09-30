@@ -1,9 +1,6 @@
 package com.example.service.user;
 
-import com.example.exception.AuthorityNotFoundException;
-import com.example.exception.UserAlreadyExistException;
-import com.example.exception.UserNotFoundException;
-import com.example.exception.WrongPasswordException;
+import com.example.exception.*;
 import com.example.model.user.User;
 import com.example.model.user.UserAuthority;
 import com.example.repository.UserRepository;
@@ -20,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -87,6 +85,7 @@ public class UserServiceImpl implements UserService {
     UserAuthority authority = authorityService.getUserAuthorityByAuthorityName(role);
     user.setRole(authority);
     user.setPassword(passwordEncoder.encode(defaultPassword));
+    user.setRegistrationDate(LocalDate.now());
     User storedUser = this.saveUser(user);
 
     return storedUser;
@@ -159,6 +158,20 @@ public class UserServiceImpl implements UserService {
   public void deleteUserByEmail(String email) {
 
     log.info("Delete a user by email = {}", email);
+    userRepository.deleteUserByEmail(email);
+  }
+
+  @Override
+  public void deleteCommonUserByEmail(String email) throws UserNotFoundException, NotPossibleDeleteException {
+
+    log.info("Delete a common user by an email = {}", email);
+    User user = this.getUserByEmail(email);
+    String role = user.getRole().getAuthority();
+
+    if (role.equals("ADMIN") || role.equals("SUPER_ADMIN")) {
+      throw new NotPossibleDeleteException(String.format("The user %s with role = %s can't be removed", email, role));
+    }
+
     userRepository.deleteUserByEmail(email);
   }
 

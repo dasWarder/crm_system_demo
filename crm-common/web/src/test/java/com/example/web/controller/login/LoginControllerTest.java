@@ -1,9 +1,13 @@
 package com.example.web.controller.login;
 
+import com.example.exception.AuthorityNotFoundException;
 import com.example.mapper.UserMapper;
 import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
 import com.example.mapper.dto.user.token.TokenRefreshRequest;
+import com.example.model.user.User;
+import com.example.service.user.UserService;
+import com.example.service.user.authority.AuthorityService;
 import com.example.web.controller.AbstractContextController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -33,15 +37,19 @@ class LoginControllerTest extends AbstractContextController {
 
   @Autowired private UserMapper userMapper;
 
+  @Autowired private AuthorityService authorityService;
+
   private static final String BASE_URL = "http://localhost:8080/login";
 
   @Test
-  public void shouldRegistrationNewUserProperly() throws Exception {
+  public void shouldRegistrationNewUserProperly() throws Exception, AuthorityNotFoundException {
 
     log.info("Test registrationNewUser() method for POST /registration/common endpoint");
 
-    SaveUserDto userDto = userMapper.userToSaveUserDto(TEST_SAVE_CONTACT, TEST_SAVE_USER);
-    BaseUserDto responseDto = userMapper.userToBaseUserDto(TEST_SAVE_USER);
+    User saveUser = TEST_SAVE_USER;
+    saveUser.setRole(authorityService.getUserAuthorityByAuthorityName("USER"));
+    SaveUserDto userDto = userMapper.userToSaveUserDto(TEST_SAVE_CONTACT, saveUser);
+    BaseUserDto responseDto = userMapper.userToBaseUserDto(saveUser);
 
     mockMvc
         .perform(

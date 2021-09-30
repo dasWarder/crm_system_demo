@@ -42,9 +42,7 @@ public abstract class CustomUserMapper {
     log.info("Map a CreateUserDto to user");
 
     User user = User.builder().email(dto.getEmail()).enabled(dto.isEnabled()).build();
-
     Contact contact = populateContactCard(dto, user);
-
     user.setContact(contact);
 
     return user;
