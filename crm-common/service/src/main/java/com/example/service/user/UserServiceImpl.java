@@ -1,25 +1,35 @@
 package com.example.service.user;
 
 import com.example.exception.*;
+import com.example.model.contactManager.Contact;
 import com.example.model.user.User;
 import com.example.model.user.UserAuthority;
 import com.example.repository.UserRepository;
+import com.example.service.contact.ContactService;
 import com.example.service.notification.EmailNotificationService;
+import com.example.service.specification.ContactSpecification;
+import com.example.service.specification.UserSpecification;
 import com.example.service.user.authority.AuthorityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Slf4j
 @Service
@@ -31,9 +41,13 @@ public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
 
+  private final ContactService contactService;
+
   private final PasswordEncoder passwordEncoder;
 
   private final AuthorityService authorityService;
+
+  private final UserSpecification userSpecification;
 
   private final EmailNotificationService mailService;
 
@@ -81,7 +95,8 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional
-  public User saveDefaultPasswordUser(User user, String role) throws UserAlreadyExistException, AuthorityNotFoundException {
+  public User saveDefaultPasswordUser(User user, String role)
+      throws UserAlreadyExistException, AuthorityNotFoundException {
 
     log.info("Store a user with default password and role = {}", role);
     UserAuthority authority = authorityService.getUserAuthorityByAuthorityName(role);
@@ -167,14 +182,16 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional
-  public void deleteCommonUserByEmail(String email) throws UserNotFoundException, NotPossibleDeleteException {
+  public void deleteCommonUserByEmail(String email)
+      throws UserNotFoundException, NotPossibleDeleteException {
 
     log.info("Delete a common user by an email = {}", email);
     User user = this.getUserByEmail(email);
     String role = user.getRole().getAuthority();
 
     if (role.equals("ADMIN") || role.equals("SUPER_ADMIN")) {
-      throw new NotPossibleDeleteException(String.format("The user %s with role = %s can't be removed", email, role));
+      throw new NotPossibleDeleteException(
+          String.format("The user %s with role = %s can't be removed", email, role));
     }
 
     userRepository.deleteUserByEmail(email);
@@ -205,7 +222,8 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional
-  public User updateUserRole(String email, String role) throws UserNotFoundException, AuthorityNotFoundException {
+  public User updateUserRole(String email, String role)
+      throws UserNotFoundException, AuthorityNotFoundException {
 
     log.info("Update a role = {} for a user with the email = {}", role, email);
     User user =
@@ -222,6 +240,34 @@ public class UserServiceImpl implements UserService {
     return updatedUser;
   }
 
+  @Override
+  public Page<User> getUsersByParam(String param, String query, Pageable pageable)
+      throws UnsupportedParameterException {
+
+    log.info("Get users by param = {}", param);
+    List<String> usersFields = getDeclareFields(User.class);
+    List<String> contactFields = getDeclareFields(Contact.class);
+    Page<User> responseCollection = null;
+
+    if (usersFields.contains(param.toLowerCase().trim())) {
+
+      Specification<User> userByParam = userSpecification.findUserByParam(param, query);
+      responseCollection = userRepository.findAll(userByParam, pageable);
+
+    } else if (contactFields.contains(param.toLowerCase().trim())) {
+
+      responseCollection =
+          contactService.findAllByParam(param, query, pageable).map(Contact::getUser);
+
+    } else {
+
+      throw new UnsupportedParameterException(
+          String.format("A parameter with name %s is unsupported", param));
+    }
+
+    return responseCollection;
+  }
+
   private void checkUserAlreadyExistOrThrowException(User user) throws UserAlreadyExistException {
 
     User validUser = userRepository.getUserByEmail(user.getEmail()).orElse(null);
@@ -229,5 +275,17 @@ public class UserServiceImpl implements UserService {
       throw new UserAlreadyExistException(
           String.format("The user with this email = %s already exist", user.getEmail()));
     }
+  }
+
+  private List<String> getDeclareFields(Class aClass) {
+
+    Field[] declaredFields = aClass.getDeclaredFields();
+    List<String> fieldsNames =
+        Arrays.stream(declaredFields)
+            .map(Field::getName)
+            .map(String::toLowerCase)
+            .collect(Collectors.toList());
+
+    return fieldsNames;
   }
 }

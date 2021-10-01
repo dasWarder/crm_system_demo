@@ -5,13 +5,16 @@ import com.example.exception.UserAlreadyExistException;
 import com.example.exception.UserNotFoundException;
 import com.example.model.user.User;
 import com.example.repository.UserRepository;
+import com.example.service.contact.ContactService;
 import com.example.service.notification.EmailNotificationService;
+import com.example.service.specification.UserSpecification;
 import com.example.service.user.authority.AuthorityService;
 import com.example.service.user.authority.AuthorityServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -29,7 +32,11 @@ import static com.example.service.user.UserTestData.*;
 @Slf4j
 class UserServiceImplTest {
 
+  @Autowired private UserSpecification userSpecification;
+
   private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+  private final ContactService contactService = Mockito.mock(ContactService.class);
 
   private final UserRepository userRepository = Mockito.mock(UserRepository.class);
 
@@ -40,7 +47,12 @@ class UserServiceImplTest {
 
   private final UserService userService =
       new UserServiceImpl(
-          userRepository, passwordEncoder, authorityService, emailNotificationService);
+          userRepository,
+          contactService,
+          passwordEncoder,
+          authorityService,
+          userSpecification,
+          emailNotificationService);
 
   @Test
   public void shouldSaveUserProperly()

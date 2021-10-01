@@ -78,6 +78,19 @@ public class AdminUsersController {
     return ResponseEntity.ok(responsePage);
   }
 
+  @GetMapping("/filter")
+  public ResponseEntity<Page<BaseUserDto>> getUsersByParam(
+      @RequestParam("param") String param,
+      @RequestParam("query") String query,
+      @PageableDefault(size = 20, sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
+      throws UnsupportedParameterException {
+
+    Page<BaseUserDto> responseUsers =
+        userService.getUsersByParam(param, query, pageable).map(userMapper::userToBaseUserDto);
+
+    return ResponseEntity.ok(responseUsers);
+  }
+
   @DeleteMapping("/user")
   public ResponseEntity<Void> deleteCommonUsers(@RequestParam("email") String email)
       throws UserNotFoundException, NotPossibleDeleteException {

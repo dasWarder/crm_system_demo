@@ -13,21 +13,23 @@ public interface UserService {
 
   User saveDefaultPasswordUser(User user, String role) throws UserAlreadyExistException, AuthorityNotFoundException;
 
-  User getUserByEmail(String email) throws UserNotFoundException;
+  User getUserByEmail(final String email) throws UserNotFoundException;
 
-  User updateUserByEmail(String email, User user) throws UserNotFoundException;
+  User updateUserByEmail(final String email, User user) throws UserNotFoundException;
 
-  User updateUserPassByEmail(String email, String oldPass, String newPass) throws UserNotFoundException, WrongPasswordException;
+  User updateUserPassByEmail(final String email, final String oldPass, final String newPass) throws UserNotFoundException, WrongPasswordException;
 
-  User updateUserEmail(String oldEmail, String email) throws UserNotFoundException;
+  User updateUserEmail(final String oldEmail, final String email) throws UserNotFoundException;
 
-  void deleteUserByEmail(String email);
+  void deleteUserByEmail(final String email);
 
-  void deleteCommonUserByEmail(String email) throws UserNotFoundException, NotPossibleDeleteException;
+  void deleteCommonUserByEmail(final String email) throws UserNotFoundException, NotPossibleDeleteException;
 
-  Page<User> getUsers(Pageable pageable);
+  Page<User> getUsers(final Pageable pageable);
 
-  Page<User> getUsersByRole(String role, Pageable pageable) throws AuthorityNotFoundException;
+  Page<User> getUsersByRole(final String role, final Pageable pageable) throws AuthorityNotFoundException;
 
-  User updateUserRole(String email, String role) throws UserNotFoundException, AuthorityNotFoundException;
+  User updateUserRole(final String email, final String role) throws UserNotFoundException, AuthorityNotFoundException;
+
+  Page<User> getUsersByParam(final String param, final String query, final Pageable pageable) throws UnsupportedParameterException;
 }
