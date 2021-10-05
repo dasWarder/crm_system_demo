@@ -2,21 +2,22 @@ package com.example.web.controller.login;
 
 import com.example.exception.AuthorityNotFoundException;
 import com.example.exception.UserAlreadyExistException;
-import com.example.mapper.CustomUserMapper;
-import com.example.mapper.TokenMapper;
-import com.example.mapper.UserMapper;
+import com.example.mapper.*;
 import com.example.mapper.dto.user.AuthUserDto;
 import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
 import com.example.mapper.dto.user.token.TokenDto;
 import com.example.mapper.dto.user.token.TokenRefreshRequest;
+import com.example.model.contactManager.Contact;
 import com.example.model.user.Token;
 import com.example.model.user.User;
+import com.example.service.contact.ContactService;
 import com.example.service.security.UserDetailsSecurityService;
 import com.example.service.user.UserService;
 import com.example.service.user.token.TokenService;
 import com.example.web.config.security.token.TokenProvider;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,6 +32,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.net.URI;
 
+@Slf4j
 @Validated
 @RestController
 @RequiredArgsConstructor
@@ -51,7 +53,9 @@ public class LoginController {
 
   private final UserService userService;
 
-  private final CustomUserMapper customMapper;
+  private final ContactMapper contactMapper;
+
+  private final IntUserMapper customMapper;
 
   private static final String BASE_URL = "http://localhost:8080/login";
 
@@ -60,8 +64,9 @@ public class LoginController {
       @RequestBody @Valid @NotNull SaveUserDto dto)
       throws AuthorityNotFoundException, UserAlreadyExistException {
 
-    User userToStore = customMapper.saveUserDtoToUser(dto);
-    User storedUser = userService.saveUser(userToStore);
+    Contact contact = contactMapper.saveUserDtoToContact(dto);
+    User userToStore = customMapper.saveUserDtoToUser(contact, dto);
+    User storedUser = userService.saveUser(userToStore, contact);
     BaseUserDto responseUser = userMapper.userToBaseUserDto(storedUser);
 
     return ResponseEntity.created(URI.create(BASE_URL)).body(responseUser);

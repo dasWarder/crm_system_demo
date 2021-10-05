@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.example.web.integration.ContactServiceIntegrationTest
--------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.585 s - in com.example.web.integration.ContactServiceIntegrationTest
-=======
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.591 s - in com.example.web.integration.ContactServiceIntegrationTest
->>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7

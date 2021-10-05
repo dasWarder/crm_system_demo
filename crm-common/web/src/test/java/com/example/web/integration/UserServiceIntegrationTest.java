@@ -7,6 +7,7 @@ import com.example.exception.WrongPasswordException;
 import com.example.model.user.User;
 import com.example.service.user.UserService;
 import com.example.web.AbstractTest;
+import com.example.web.data.TestContactData;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 
+import static com.example.web.data.TestContactData.*;
 import static com.example.web.data.TestUserData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -48,7 +50,7 @@ public class UserServiceIntegrationTest extends AbstractTest {
 
     log.info("Test saveUser() method");
 
-    User storedUser = userService.saveUser(TEST_SAVE_USER);
+    User storedUser = userService.saveUser(TEST_SAVE_USER, TEST_SAVE_CONTACT);
     Assert.assertNotNull(storedUser);
 
     assertThat(storedUser)

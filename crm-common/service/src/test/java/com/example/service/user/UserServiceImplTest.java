@@ -6,6 +6,7 @@ import com.example.exception.UserNotFoundException;
 import com.example.model.user.User;
 import com.example.repository.UserRepository;
 import com.example.service.contact.ContactService;
+import com.example.service.contact.ContactTestData;
 import com.example.service.notification.EmailNotificationService;
 import com.example.service.specification.UserSpecification;
 import com.example.service.user.authority.AuthorityService;
@@ -27,6 +28,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.example.service.contact.ContactTestData.TEST_CONTACT_1;
 import static com.example.service.user.UserTestData.*;
 
 @Slf4j
@@ -65,7 +67,7 @@ class UserServiceImplTest {
         .thenReturn(Optional.ofNullable(null));
     Mockito.when(userRepository.save(TEST_SAVE_USER)).thenReturn(TEST_SAVE_USER);
 
-    User storedUser = userService.saveUser(TEST_SAVE_USER);
+    User storedUser = userService.saveUser(TEST_SAVE_USER, TEST_CONTACT_1);
 
     Assertions.assertNotNull(storedUser);
     Assertions.assertEquals(TEST_SAVE_USER, storedUser);

@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.example.service.todoList.TodoListServiceImplTest
--------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.039 s - in com.example.service.todoList.TodoListServiceImplTest
-=======
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.043 s - in com.example.service.todoList.TodoListServiceImplTest
->>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7

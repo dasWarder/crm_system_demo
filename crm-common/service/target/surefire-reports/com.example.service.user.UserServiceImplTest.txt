@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.example.service.user.UserServiceImplTest
--------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.08 s - in com.example.service.user.UserServiceImplTest
-=======
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.153 s - in com.example.service.user.UserServiceImplTest
->>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7

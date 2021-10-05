@@ -1,6 +1,7 @@
 package com.example.service.user;
 
 import com.example.exception.*;
+import com.example.model.contactManager.Contact;
 import com.example.model.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,7 +10,7 @@ public interface UserService {
 
   User getCurrentUser() throws UserNotFoundException;
 
-  User saveUser(User user) throws UserAlreadyExistException, AuthorityNotFoundException;
+  User saveUser(User user, Contact contact) throws UserAlreadyExistException, AuthorityNotFoundException;
 
   User saveDefaultPasswordUser(User user, String role) throws UserAlreadyExistException, AuthorityNotFoundException;
 

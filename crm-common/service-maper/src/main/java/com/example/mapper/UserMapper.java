@@ -9,7 +9,7 @@ import com.example.model.user.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(uses = {ContactMapper.class, AuthorityMapper.class})
+@Mapper(uses = { ContactMapper.class, AuthorityMapper.class })
 public interface UserMapper {
 
   @Mapping(target = "email", source = "email")

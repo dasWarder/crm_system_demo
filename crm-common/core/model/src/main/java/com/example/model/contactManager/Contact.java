@@ -43,6 +43,7 @@ public class Contact {
   @Column(name = "mobile_phone")
   private String mobilePhone;
 
+  @JoinColumn(name = "user_id")
   @OneToOne(fetch = FetchType.LAZY)
   private User user;
 }

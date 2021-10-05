@@ -7,7 +7,6 @@ import com.example.model.user.UserAuthority;
 import com.example.repository.UserRepository;
 import com.example.service.contact.ContactService;
 import com.example.service.notification.EmailNotificationService;
-import com.example.service.specification.ContactSpecification;
 import com.example.service.specification.UserSpecification;
 import com.example.service.user.authority.AuthorityService;
 import lombok.RequiredArgsConstructor;
@@ -27,9 +26,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Slf4j
 @Service
@@ -79,12 +76,15 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional
-  public User saveUser(User user) throws UserAlreadyExistException, AuthorityNotFoundException {
+  public User saveUser(User user, Contact contact)
+      throws UserAlreadyExistException, AuthorityNotFoundException {
 
     log.info("Store a new user");
     checkUserAlreadyExistOrThrowException(user);
     UserAuthority userRole = authorityService.getUserAuthorityByAuthorityName("USER");
     user.setRole(userRole);
+    contact.setUser(user);
+    user.setContact(contact);
 
     User storedUser = userRepository.save(user);
     String message = String.format(REGISTRATION_MESSAGE, user.getEmail());
@@ -96,14 +96,14 @@ public class UserServiceImpl implements UserService {
   @Override
   @Transactional
   public User saveDefaultPasswordUser(User user, String role)
-      throws UserAlreadyExistException, AuthorityNotFoundException {
+      throws AuthorityNotFoundException {
 
     log.info("Store a user with default password and role = {}", role);
     UserAuthority authority = authorityService.getUserAuthorityByAuthorityName(role);
     user.setRole(authority);
     user.setPassword(passwordEncoder.encode(defaultPassword));
     user.setRegistrationDate(LocalDate.now());
-    User storedUser = this.saveUser(user);
+    User storedUser = userRepository.save(user);
 
     return storedUser;
   }

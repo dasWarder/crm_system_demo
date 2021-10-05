@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.example.web.integration.UserReportServiceIntegrationTest
--------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.682 s - in com.example.web.integration.UserReportServiceIntegrationTest
-=======
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.778 s - in com.example.web.integration.UserReportServiceIntegrationTest
->>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7

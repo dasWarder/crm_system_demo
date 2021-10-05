@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.example.web.controller.login.LoginControllerTest
--------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.893 s - in com.example.web.controller.login.LoginControllerTest
-=======
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.823 s - in com.example.web.controller.login.LoginControllerTest
->>>>>>> 1ee3f8c527335e208121d478ad3785854e7263b7
