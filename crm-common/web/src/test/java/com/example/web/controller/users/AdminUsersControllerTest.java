@@ -98,18 +98,6 @@ class AdminUsersControllerTest extends AbstractContextController {
         .andReturn();
   }
 
-  @Test
-  @Sql(scripts = "classpath:/db/user/populate_user_table_with_auth.sql")
-  public void shouldDeleteCommonUsersProperly() throws Exception {
-
-    log.info("Test deleteCommonUsers() method on DELETE /user endpoint");
-
-    mockMvc
-        .perform(delete(BASE_URL + "/user").param("email", TEST_USER_1.getEmail()))
-        .andDo(print())
-        .andExpect(status().isNoContent())
-        .andReturn();
-  }
 
   @Test
   public void shouldChangeUserRoleProperly() throws Exception {
