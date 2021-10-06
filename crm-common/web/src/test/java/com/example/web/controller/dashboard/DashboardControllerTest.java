@@ -1,11 +1,8 @@
 package com.example.web.controller.dashboard;
 
-import com.example.mapper.DashboardMapper;
 import com.example.web.controller.AbstractContextController;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;

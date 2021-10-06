@@ -1,7 +1,7 @@
 package com.example.web.controller.report;
 
 import com.example.exception.ReportNotFoundException;
-import com.example.mapper.ManagerReportMapper;
+import com.example.mapper.report.ManagerReportMapper;
 import com.example.mapper.dto.report.manager.ManagerReportDto;
 import com.example.mapper.dto.report.manager.ManagerResponseReportDto;
 import com.example.mapper.dto.report.manager.UpdateReportDto;
@@ -41,8 +41,7 @@ public class ManagerReportController {
     Report usersReportById = reportService.getUsersReportById(id);
     Report requestReport = mapper.updateReportDtoToReport(usersReportById, dto);
     Report updatedReport = reportService.updateUsersReport(requestReport);
-    ManagerResponseReportDto reportDto =
-        mapper.reportToManagerResponseReportDto(updatedReport);
+    ManagerResponseReportDto reportDto = mapper.reportToManagerResponseReportDto(updatedReport);
 
     return ResponseEntity.ok(reportDto);
   }
@@ -53,8 +52,7 @@ public class ManagerReportController {
       throws ReportNotFoundException {
 
     Report usersReportById = reportService.getUsersReportById(id);
-    ManagerResponseReportDto reportDto =
-        mapper.reportToManagerResponseReportDto(usersReportById);
+    ManagerResponseReportDto reportDto = mapper.reportToManagerResponseReportDto(usersReportById);
 
     return ResponseEntity.ok(reportDto);
   }
@@ -94,7 +92,8 @@ public class ManagerReportController {
   public ResponseEntity<Page<ManagerReportDto>> getReportsByDate(
       @PathVariable("date")
           @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss", iso = DateTimeFormat.ISO.DATE_TIME)
-          @NotNull(message = "The param must be not null") LocalDateTime date,
+          @NotNull(message = "The param must be not null")
+          LocalDateTime date,
       @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC)
           Pageable pageable) {
 

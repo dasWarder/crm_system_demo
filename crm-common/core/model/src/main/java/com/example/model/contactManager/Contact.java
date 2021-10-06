@@ -44,6 +44,6 @@ public class Contact {
   private String mobilePhone;
 
   @JoinColumn(name = "user_id")
-  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+  @OneToOne(fetch = FetchType.LAZY)
   private User user;
 }

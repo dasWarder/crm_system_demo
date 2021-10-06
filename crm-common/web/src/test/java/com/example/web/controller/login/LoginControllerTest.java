@@ -1,12 +1,11 @@
 package com.example.web.controller.login;
 
 import com.example.exception.AuthorityNotFoundException;
-import com.example.mapper.UserMapper;
+import com.example.mapper.user.UserMapper;
 import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
 import com.example.mapper.dto.user.token.TokenRefreshRequest;
 import com.example.model.user.User;
-import com.example.service.user.UserService;
 import com.example.service.user.authority.AuthorityService;
 import com.example.web.controller.AbstractContextController;
 import com.fasterxml.jackson.databind.ObjectMapper;

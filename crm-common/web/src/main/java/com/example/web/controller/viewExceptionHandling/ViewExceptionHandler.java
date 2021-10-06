@@ -35,7 +35,10 @@ public class ViewExceptionHandler {
         TokenRefreshException.class,
         ReportNotFoundException.class,
         BadCredentialsException.class,
-        WrongPasswordException.class
+        WrongPasswordException.class,
+        ResetTokenExpiryException.class,
+        PasswordResetTokenNotFoundException.class,
+        NotPossibleDeleteException.class
       })
   public ResponseEntity<ExceptionResponse> servicesExceptionsResponse(Exception e) {
 

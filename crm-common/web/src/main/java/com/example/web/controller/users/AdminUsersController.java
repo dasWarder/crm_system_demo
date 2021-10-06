@@ -1,9 +1,9 @@
 package com.example.web.controller.users;
 
 import com.example.exception.*;
-import com.example.mapper.ContactMapper;
-import com.example.mapper.CreateUserMapper;
-import com.example.mapper.UserMapper;
+import com.example.mapper.contact.ContactMapper;
+import com.example.mapper.user.CreateUserMapper;
+import com.example.mapper.user.UserMapper;
 import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.admin.AdminDetailsUserDto;
 import com.example.mapper.dto.user.admin.CreateUserDto;
@@ -18,11 +18,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.net.URI;
 import java.util.Objects;
 
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/manage/admin/users")
@@ -42,7 +46,7 @@ public class AdminUsersController {
   private final CreateUserMapper customUserMapper;
 
   @PostMapping("/user")
-  public ResponseEntity<BaseUserDto> createUser(@RequestBody CreateUserDto dto)
+  public ResponseEntity<BaseUserDto> createUser(@RequestBody @Valid CreateUserDto dto)
       throws UserAlreadyExistException, AuthorityNotFoundException {
 
     User defaultUser = customUserMapper.createUserDtoToDefaultUser(dto);
@@ -55,7 +59,8 @@ public class AdminUsersController {
   }
 
   @GetMapping("/user")
-  public ResponseEntity<AdminDetailsUserDto> getUsersDetails(@RequestParam("email") String email)
+  public ResponseEntity<AdminDetailsUserDto> getUsersDetails(
+      @RequestParam("email") @NotNull(message = "The email is mandatory") String email)
       throws UserNotFoundException, ContactNotFoundException {
 
     User userByEmail = userService.getUserByEmail(email);
@@ -84,8 +89,8 @@ public class AdminUsersController {
 
   @GetMapping("/filter")
   public ResponseEntity<Page<BaseUserDto>> getUsersByParam(
-      @RequestParam("param") String param,
-      @RequestParam("query") String query,
+      @RequestParam("param") @NotNull(message = "The filtering param is mandatory") String param,
+      @RequestParam("query") @NotNull(message = "The filtering query is mandatory") String query,
       @PageableDefault(size = 20, sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
       throws UnsupportedParameterException {
 
@@ -96,7 +101,7 @@ public class AdminUsersController {
   }
 
   @DeleteMapping("/user")
-  public ResponseEntity<Void> deleteCommonUsers(@RequestParam("email") String email)
+  public ResponseEntity<Void> deleteCommonUsers(@RequestParam("email") @NotNull String email)
       throws UserNotFoundException, NotPossibleDeleteException {
 
     userService.deleteCommonUserByEmail(email);
@@ -106,7 +111,7 @@ public class AdminUsersController {
 
   @PutMapping("/user/role")
   public ResponseEntity<BaseUserDto> changeUserRole(
-      @RequestParam("email") String email, @RequestParam("role") String role)
+      @RequestParam("email") @NotNull String email, @RequestParam("role") @NotNull String role)
       throws UserNotFoundException, AuthorityNotFoundException {
 
     User updatedUser = userService.updateUserRole(email, role);

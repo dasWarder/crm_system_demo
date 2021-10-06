@@ -2,7 +2,7 @@ package com.example.web.controller.report;
 
 import com.example.exception.ReportNotFoundException;
 import com.example.exception.UserNotFoundException;
-import com.example.mapper.ReportMapper;
+import com.example.mapper.report.ReportMapper;
 import com.example.mapper.dto.report.CreateReportDto;
 import com.example.mapper.dto.report.DetailsReportDto;
 import com.example.mapper.dto.report.ReportDto;
@@ -39,7 +39,7 @@ public class UserReportController {
 
   @PostMapping("/report")
   public ResponseEntity<ResponseReportDto> createNewReport(
-      @RequestBody @Valid @NotNull CreateReportDto reportDto) throws UserNotFoundException {
+      @RequestBody @Valid CreateReportDto reportDto) throws UserNotFoundException {
 
     Report requestReport = mapper.createReportDtoToReport(reportDto);
     Report createdReport = userReportService.createReport(requestReport);
@@ -62,7 +62,7 @@ public class UserReportController {
   @PutMapping("/report")
   public ResponseEntity<ResponseReportDto> updateReport(
       @RequestParam("id") @Min(value = 1, message = "The id must be greater than 0") Long id,
-      @RequestBody @Valid @NotNull CreateReportDto updateDto)
+      @RequestBody @Valid CreateReportDto updateDto)
       throws UserNotFoundException, ReportNotFoundException {
 
     Report report = mapper.createReportDtoToReport(updateDto);
@@ -95,7 +95,7 @@ public class UserReportController {
 
   @GetMapping("/topic")
   public ResponseEntity<Page<ReportDto>> getReportsByTopic(
-      @RequestParam("topic") @NotNull ReportTopic topic,
+      @RequestParam(value = "topic") @NotNull ReportTopic topic,
       @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC)
           Pageable pageable)
       throws UserNotFoundException {

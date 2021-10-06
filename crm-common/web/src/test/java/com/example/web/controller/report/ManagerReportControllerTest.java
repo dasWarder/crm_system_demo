@@ -1,6 +1,6 @@
 package com.example.web.controller.report;
 
-import com.example.mapper.ReportMapper;
+import com.example.mapper.report.ReportMapper;
 import com.example.mapper.dto.report.manager.UpdateReportDto;
 import com.example.web.controller.AbstractContextController;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,8 +1,7 @@
 package com.example.web.controller.report;
 
-import com.example.mapper.ReportMapper;
+import com.example.mapper.report.ReportMapper;
 import com.example.mapper.dto.report.CreateReportDto;
-import com.example.mapper.dto.report.ResponseReportDto;
 import com.example.model.report.Report;
 import com.example.model.report.ReportTopic;
 import com.example.web.controller.AbstractContextController;

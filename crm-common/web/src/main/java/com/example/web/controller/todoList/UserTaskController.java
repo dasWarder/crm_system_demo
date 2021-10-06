@@ -4,7 +4,7 @@ import com.example.exception.TaskNotFoundException;
 import com.example.exception.TodoListNotFoundException;
 import com.example.exception.UnsupportedParameterException;
 import com.example.exception.UserNotFoundException;
-import com.example.mapper.TaskMapper;
+import com.example.mapper.task.TaskMapper;
 import com.example.mapper.dto.task.TaskDto;
 import com.example.model.todoList.Task;
 import com.example.service.task.TaskService;
@@ -37,7 +37,7 @@ public class UserTaskController {
   private static final String BASE_URL = "http://localhost:8080/manage/tasks";
 
   @PostMapping("/task")
-  public ResponseEntity<TaskDto> saveTask(@RequestBody @Valid @NotNull TaskDto taskDto)
+  public ResponseEntity<TaskDto> saveTask(@RequestBody @Valid TaskDto taskDto)
       throws UserNotFoundException, TodoListNotFoundException {
 
     Task mappedTask = taskMapper.taskDtoToTask(taskDto);
@@ -70,7 +70,7 @@ public class UserTaskController {
   @PutMapping("/task")
   public ResponseEntity<TaskDto> updateTaskById(
       @RequestParam("id") @Min(value = 1, message = "The id must be greater than 0") Long id,
-      @RequestBody @Valid @NotNull TaskDto updateDto)
+      @RequestBody @Valid TaskDto updateDto)
       throws TaskNotFoundException {
 
     Task task = taskMapper.taskDtoToTask(updateDto);

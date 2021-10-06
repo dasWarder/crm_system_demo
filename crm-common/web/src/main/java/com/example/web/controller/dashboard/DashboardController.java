@@ -1,7 +1,7 @@
 package com.example.web.controller.dashboard;
 
 import com.example.exception.UserNotFoundException;
-import com.example.mapper.DashboardMapper;
+import com.example.mapper.dashboard.DashboardMapper;
 import com.example.mapper.dto.dashboard.DashboardDto;
 import com.example.model.report.Report;
 import com.example.model.todoList.Task;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 
 @RestController
 @RequiredArgsConstructor

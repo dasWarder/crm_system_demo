@@ -1,6 +1,6 @@
 package com.example.web.controller.todoList;
 
-import com.example.mapper.TaskMapper;
+import com.example.mapper.task.TaskMapper;
 import com.example.mapper.dto.task.TaskDto;
 import com.example.web.controller.AbstractContextController;
 import com.fasterxml.jackson.databind.ObjectMapper;
