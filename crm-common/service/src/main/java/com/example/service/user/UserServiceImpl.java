@@ -95,6 +95,22 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional
+  public User saveFullUser(Contact contact, String role, User user)
+      throws UserAlreadyExistException, AuthorityNotFoundException {
+
+    log.info("Save a full user");
+    checkUserAlreadyExistOrThrowException(user);
+    UserAuthority authority = authorityService.getUserAuthorityByAuthorityName(role);
+    user.setRole(authority);
+    contact.setUser(user);
+    user.setContact(contact);
+    User storedUser = userRepository.save(user);
+
+    return storedUser;
+  }
+
+  @Override
+  @Transactional
   public User saveDefaultPasswordUser(User user, String role, Contact contact)
       throws AuthorityNotFoundException {
 

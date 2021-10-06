@@ -61,12 +61,11 @@ public class AdminUsersController {
   @GetMapping("/user")
   public ResponseEntity<AdminDetailsUserDto> getUsersDetails(
       @RequestParam("email") @NotNull(message = "The email is mandatory") String email)
-      throws UserNotFoundException, ContactNotFoundException {
+      throws UserNotFoundException {
 
     User userByEmail = userService.getUserByEmail(email);
-    Contact contactById = contactService.getContactById(userByEmail.getId());
     AdminDetailsUserDto responseDto =
-        userMapper.userToAdminDetailsUserDto(contactById, userByEmail);
+        userMapper.userToAdminDetailsUserDto(userByEmail);
 
     return ResponseEntity.ok(responseDto);
   }

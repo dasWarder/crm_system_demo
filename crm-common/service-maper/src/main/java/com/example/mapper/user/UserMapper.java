@@ -7,6 +7,7 @@ import com.example.mapper.dto.user.DetailsUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
 import com.example.mapper.dto.user.admin.AdminDetailsUserDto;
 import com.example.mapper.dto.user.admin.CreateUserDto;
+import com.example.mapper.dto.user.superadmin.SuperAdminUserDetailsDto;
 import com.example.model.contactManager.Contact;
 import com.example.model.user.User;
 import org.mapstruct.Mapper;
@@ -43,15 +44,22 @@ public interface UserMapper {
   @Mapping(target = "mobilePhone", source = "contact.mobilePhone")
   CreateUserDto userToCreateUserDto(Contact contact, User user);
 
-  @Mapping(target = "firstName", source = "contact.firstName")
-  @Mapping(target = "lastName", source = "contact.lastName")
-  @Mapping(target = "jobTitle", source = "contact.jobTitle")
-  @Mapping(target = "company", source = "contact.company")
-  @Mapping(target = "email", source = "user.email")
-  @Mapping(target = "country", source = "contact.country")
-  @Mapping(target = "mobilePhone", source = "contact.mobilePhone")
+  @Mapping(target = "firstName", source = "user.contact.firstName")
+  @Mapping(target = "lastName", source = "user.contact.lastName")
+  @Mapping(target = "jobTitle", source = "user.contact.jobTitle")
+  @Mapping(target = "company", source = "user.contact.company")
+  @Mapping(target = "country", source = "user.contact.country")
+  @Mapping(target = "mobilePhone", source = "user.contact.mobilePhone")
   @Mapping(target = "enabled", source = "user.enabled")
-  @Mapping(target = "registrationDate", source = "user.registrationDate")
   @Mapping(target = "role", source = "user.role.authority")
-  AdminDetailsUserDto userToAdminDetailsUserDto(Contact contact, User user);
+  AdminDetailsUserDto userToAdminDetailsUserDto(User user);
+
+
+  @Mapping(target = "firstName", source = "user.contact.firstName")
+  @Mapping(target = "lastName", source = "user.contact.lastName")
+  @Mapping(target = "jobTitle", source = "user.contact.jobTitle")
+  @Mapping(target = "company", source = "user.contact.company")
+  @Mapping(target = "country", source = "user.contact.country")
+  @Mapping(target = "mobilePhone", source = "user.contact.mobilePhone")
+  SuperAdminUserDetailsDto userToSuperAdminUserDetailsDto(User user);
 }

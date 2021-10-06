@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 
 public interface UserService {
 
+  User saveFullUser(Contact contact, String role, User user) throws UserAlreadyExistException, AuthorityNotFoundException;
+
   User getCurrentUser() throws UserNotFoundException;
 
   User saveUser(User user, Contact contact) throws UserAlreadyExistException, AuthorityNotFoundException;

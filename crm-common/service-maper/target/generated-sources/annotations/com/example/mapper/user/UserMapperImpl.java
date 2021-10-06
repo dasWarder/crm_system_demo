@@ -6,17 +6,21 @@ import com.example.mapper.dto.user.DetailsUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
 import com.example.mapper.dto.user.admin.AdminDetailsUserDto;
 import com.example.mapper.dto.user.admin.CreateUserDto;
+import com.example.mapper.dto.user.superadmin.SuperAdminUserDetailsDto;
 import com.example.model.contactManager.Contact;
+import com.example.model.report.Report;
 import com.example.model.user.User;
 import com.example.model.user.UserAuthority;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-10-06T16:30:05+0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
+    date = "2021-10-06T17:22:34+0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.10 (AdoptOpenJDK)"
 )
 @Component
 public class UserMapperImpl implements UserMapper {
@@ -104,29 +108,53 @@ public class UserMapperImpl implements UserMapper {
     }
 
     @Override
-    public AdminDetailsUserDto userToAdminDetailsUserDto(Contact contact, User user) {
-        if ( contact == null && user == null ) {
+    public AdminDetailsUserDto userToAdminDetailsUserDto(User user) {
+        if ( user == null ) {
             return null;
         }
 
         AdminDetailsUserDto adminDetailsUserDto = new AdminDetailsUserDto();
 
-        if ( contact != null ) {
-            adminDetailsUserDto.setFirstName( contact.getFirstName() );
-            adminDetailsUserDto.setLastName( contact.getLastName() );
-            adminDetailsUserDto.setJobTitle( contact.getJobTitle() );
-            adminDetailsUserDto.setCompany( contact.getCompany() );
-            adminDetailsUserDto.setCountry( contact.getCountry() );
-            adminDetailsUserDto.setMobilePhone( contact.getMobilePhone() );
-        }
-        if ( user != null ) {
-            adminDetailsUserDto.setEmail( user.getEmail() );
-            adminDetailsUserDto.setEnabled( user.isEnabled() );
-            adminDetailsUserDto.setRegistrationDate( user.getRegistrationDate() );
-            adminDetailsUserDto.setRole( userRoleAuthority( user ) );
-        }
+        adminDetailsUserDto.setFirstName( userContactFirstName( user ) );
+        adminDetailsUserDto.setLastName( userContactLastName( user ) );
+        adminDetailsUserDto.setJobTitle( userContactJobTitle( user ) );
+        adminDetailsUserDto.setCompany( userContactCompany( user ) );
+        adminDetailsUserDto.setCountry( userContactCountry( user ) );
+        adminDetailsUserDto.setMobilePhone( userContactMobilePhone( user ) );
+        adminDetailsUserDto.setEnabled( user.isEnabled() );
+        adminDetailsUserDto.setRole( userRoleAuthority( user ) );
+        adminDetailsUserDto.setEmail( user.getEmail() );
+        adminDetailsUserDto.setRegistrationDate( user.getRegistrationDate() );
 
         return adminDetailsUserDto;
+    }
+
+    @Override
+    public SuperAdminUserDetailsDto userToSuperAdminUserDetailsDto(User user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        SuperAdminUserDetailsDto superAdminUserDetailsDto = new SuperAdminUserDetailsDto();
+
+        superAdminUserDetailsDto.setFirstName( userContactFirstName( user ) );
+        superAdminUserDetailsDto.setLastName( userContactLastName( user ) );
+        superAdminUserDetailsDto.setJobTitle( userContactJobTitle( user ) );
+        superAdminUserDetailsDto.setCompany( userContactCompany( user ) );
+        superAdminUserDetailsDto.setCountry( userContactCountry( user ) );
+        superAdminUserDetailsDto.setMobilePhone( userContactMobilePhone( user ) );
+        superAdminUserDetailsDto.setEmail( user.getEmail() );
+        superAdminUserDetailsDto.setEnabled( user.isEnabled() );
+        superAdminUserDetailsDto.setRegistrationDate( user.getRegistrationDate() );
+        superAdminUserDetailsDto.setRole( authorityMapper.roleNameToRole( user.getRole() ) );
+        superAdminUserDetailsDto.setId( user.getId() );
+        superAdminUserDetailsDto.setTodoList( user.getTodoList() );
+        List<Report> list = user.getReports();
+        if ( list != null ) {
+            superAdminUserDetailsDto.setReports( new ArrayList<Report>( list ) );
+        }
+
+        return superAdminUserDetailsDto;
     }
 
     private String userRoleAuthority(User user) {
@@ -142,5 +170,95 @@ public class UserMapperImpl implements UserMapper {
             return null;
         }
         return authority;
+    }
+
+    private String userContactFirstName(User user) {
+        if ( user == null ) {
+            return null;
+        }
+        Contact contact = user.getContact();
+        if ( contact == null ) {
+            return null;
+        }
+        String firstName = contact.getFirstName();
+        if ( firstName == null ) {
+            return null;
+        }
+        return firstName;
+    }
+
+    private String userContactLastName(User user) {
+        if ( user == null ) {
+            return null;
+        }
+        Contact contact = user.getContact();
+        if ( contact == null ) {
+            return null;
+        }
+        String lastName = contact.getLastName();
+        if ( lastName == null ) {
+            return null;
+        }
+        return lastName;
+    }
+
+    private String userContactJobTitle(User user) {
+        if ( user == null ) {
+            return null;
+        }
+        Contact contact = user.getContact();
+        if ( contact == null ) {
+            return null;
+        }
+        String jobTitle = contact.getJobTitle();
+        if ( jobTitle == null ) {
+            return null;
+        }
+        return jobTitle;
+    }
+
+    private String userContactCompany(User user) {
+        if ( user == null ) {
+            return null;
+        }
+        Contact contact = user.getContact();
+        if ( contact == null ) {
+            return null;
+        }
+        String company = contact.getCompany();
+        if ( company == null ) {
+            return null;
+        }
+        return company;
+    }
+
+    private String userContactCountry(User user) {
+        if ( user == null ) {
+            return null;
+        }
+        Contact contact = user.getContact();
+        if ( contact == null ) {
+            return null;
+        }
+        String country = contact.getCountry();
+        if ( country == null ) {
+            return null;
+        }
+        return country;
+    }
+
+    private String userContactMobilePhone(User user) {
+        if ( user == null ) {
+            return null;
+        }
+        Contact contact = user.getContact();
+        if ( contact == null ) {
+            return null;
+        }
+        String mobilePhone = contact.getMobilePhone();
+        if ( mobilePhone == null ) {
+            return null;
+        }
+        return mobilePhone;
     }
 }
