@@ -1,7 +1,6 @@
 package com.example.web.controller.report;
 
 import com.example.exception.ReportNotFoundException;
-import com.example.mapper.ManageReportMapper;
 import com.example.mapper.ManagerReportMapper;
 import com.example.mapper.dto.report.manager.ManagerReportDto;
 import com.example.mapper.dto.report.manager.ManagerResponseReportDto;
@@ -29,8 +28,6 @@ import java.time.LocalDateTime;
 @RequestMapping("/manage/manager/reports")
 public class ManagerReportController {
 
-  private final ManageReportMapper customMapper;
-
   private final ManagerReportMapper mapper;
 
   private final ManagerReportService reportService;
@@ -41,7 +38,8 @@ public class ManagerReportController {
       @RequestBody @Valid @NotNull UpdateReportDto dto)
       throws ReportNotFoundException {
 
-    Report requestReport = customMapper.updateReportDtoToReport(id, dto);
+    Report usersReportById = reportService.getUsersReportById(id);
+    Report requestReport = mapper.updateReportDtoToReport(usersReportById, dto);
     Report updatedReport = reportService.updateUsersReport(requestReport);
     ManagerResponseReportDto reportDto =
         mapper.reportToManagerResponseReportDto(updatedReport);

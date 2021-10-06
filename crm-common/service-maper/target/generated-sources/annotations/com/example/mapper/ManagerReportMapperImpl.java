@@ -2,15 +2,17 @@ package com.example.mapper;
 
 import com.example.mapper.dto.report.manager.ManagerReportDto;
 import com.example.mapper.dto.report.manager.ManagerResponseReportDto;
+import com.example.mapper.dto.report.manager.UpdateReportDto;
 import com.example.model.contactManager.Contact;
 import com.example.model.report.Report;
+import com.example.model.report.Report.ReportBuilder;
 import com.example.model.user.User;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-10-06T14:36:22+0300",
+    date = "2021-10-06T14:46:22+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.10 (AdoptOpenJDK)"
 )
 @Component
@@ -54,6 +56,30 @@ public class ManagerReportMapperImpl implements ManagerReportMapper {
         managerReportDto.setCreatedAt( report.getCreatedAt() );
 
         return managerReportDto;
+    }
+
+    @Override
+    public Report updateReportDtoToReport(Report reportById, UpdateReportDto dto) {
+        if ( reportById == null && dto == null ) {
+            return null;
+        }
+
+        ReportBuilder report = Report.builder();
+
+        if ( reportById != null ) {
+            report.id( reportById.getId() );
+            report.topic( reportById.getTopic() );
+            report.comment( reportById.getComment() );
+            report.createdAt( reportById.getCreatedAt() );
+            report.statusChanged( reportById.getStatusChanged() );
+            report.user( reportById.getUser() );
+        }
+        if ( dto != null ) {
+            report.status( dto.getStatus() );
+            report.response( dto.getResponse() );
+        }
+
+        return report.build();
     }
 
     private String reportUserContactEmail(Report report) {

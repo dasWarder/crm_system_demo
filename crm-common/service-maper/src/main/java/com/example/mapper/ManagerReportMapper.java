@@ -2,6 +2,7 @@ package com.example.mapper;
 
 import com.example.mapper.dto.report.manager.ManagerReportDto;
 import com.example.mapper.dto.report.manager.ManagerResponseReportDto;
+import com.example.mapper.dto.report.manager.UpdateReportDto;
 import com.example.model.report.Report;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,4 +19,8 @@ public interface ManagerReportMapper {
   @Mapping(target = "authorFirstName", source = "report.user.contact.firstName")
   @Mapping(target = "authorLastName", source = "report.user.contact.lastName")
   ManagerReportDto reportToManagerReportDto(Report report);
+
+  @Mapping(target = "status", source = "dto.status")
+  @Mapping(target = "response", source = "dto.response")
+  Report updateReportDtoToReport(Report reportById, UpdateReportDto dto);
 }
