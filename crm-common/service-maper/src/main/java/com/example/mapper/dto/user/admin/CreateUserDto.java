@@ -1,13 +1,14 @@
 package com.example.mapper.dto.user.admin;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-@Data
+@Getter
+@Setter
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateUserDto {

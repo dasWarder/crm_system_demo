@@ -5,6 +5,7 @@ import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.DetailsUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
 import com.example.mapper.dto.user.admin.AdminDetailsUserDto;
+import com.example.mapper.dto.user.admin.CreateUserDto;
 import com.example.model.contactManager.Contact;
 import com.example.model.user.User;
 import com.example.model.user.UserAuthority;
@@ -14,8 +15,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-10-06T15:13:14+0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
+    date = "2021-10-06T15:42:06+0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.10 (AdoptOpenJDK)"
 )
 @Component
 public class UserMapperImpl implements UserMapper {
@@ -75,6 +76,31 @@ public class UserMapperImpl implements UserMapper {
         }
 
         return saveUserDto;
+    }
+
+    @Override
+    public CreateUserDto userToCreateUserDto(Contact contact, User user) {
+        if ( contact == null && user == null ) {
+            return null;
+        }
+
+        CreateUserDto createUserDto = new CreateUserDto();
+
+        if ( contact != null ) {
+            createUserDto.setFirstName( contact.getFirstName() );
+            createUserDto.setLastName( contact.getLastName() );
+            createUserDto.setJobTitle( contact.getJobTitle() );
+            createUserDto.setCompany( contact.getCompany() );
+            createUserDto.setCountry( contact.getCountry() );
+            createUserDto.setMobilePhone( contact.getMobilePhone() );
+        }
+        if ( user != null ) {
+            createUserDto.setEmail( user.getEmail() );
+            createUserDto.setRole( userRoleAuthority( user ) );
+            createUserDto.setEnabled( user.isEnabled() );
+        }
+
+        return createUserDto;
     }
 
     @Override

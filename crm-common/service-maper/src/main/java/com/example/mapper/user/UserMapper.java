@@ -6,6 +6,7 @@ import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.DetailsUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
 import com.example.mapper.dto.user.admin.AdminDetailsUserDto;
+import com.example.mapper.dto.user.admin.CreateUserDto;
 import com.example.model.contactManager.Contact;
 import com.example.model.user.User;
 import org.mapstruct.Mapper;
@@ -31,6 +32,16 @@ public interface UserMapper {
   @Mapping(target = "mobilePhone", source = "contact.mobilePhone")
   @Mapping(target = "password", source = "user.password")
   SaveUserDto userToSaveUserDto(Contact contact, User user);
+
+  @Mapping(target = "firstName", source = "contact.firstName")
+  @Mapping(target = "lastName", source = "contact.lastName")
+  @Mapping(target = "jobTitle", source = "contact.jobTitle")
+  @Mapping(target = "company", source = "contact.company")
+  @Mapping(target = "email", source = "user.email")
+  @Mapping(target = "role", source = "user.role.authority")
+  @Mapping(target = "country", source = "contact.country")
+  @Mapping(target = "mobilePhone", source = "contact.mobilePhone")
+  CreateUserDto userToCreateUserDto(Contact contact, User user);
 
   @Mapping(target = "firstName", source = "contact.firstName")
   @Mapping(target = "lastName", source = "contact.lastName")

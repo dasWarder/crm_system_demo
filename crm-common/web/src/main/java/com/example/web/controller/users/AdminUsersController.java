@@ -101,7 +101,7 @@ public class AdminUsersController {
   }
 
   @DeleteMapping("/user")
-  public ResponseEntity<Void> deleteCommonUsers(@RequestParam("email") @NotNull String email)
+  public ResponseEntity<Void> deleteCommonUser(@RequestParam("email") @NotNull String email)
       throws UserNotFoundException, NotPossibleDeleteException {
 
     userService.deleteCommonUserByEmail(email);
