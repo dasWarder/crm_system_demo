@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import com.example.mapper.dto.report.manager.ManagerReportDto;
 import com.example.mapper.dto.report.manager.ManagerResponseReportDto;
 import com.example.model.contactManager.Contact;
 import com.example.model.report.Report;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-10-06T14:23:44+0300",
+    date = "2021-10-06T14:36:22+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.10 (AdoptOpenJDK)"
 )
 @Component
@@ -34,6 +35,25 @@ public class ManagerReportMapperImpl implements ManagerReportMapper {
         managerResponseReportDto.setResponse( report.getResponse() );
 
         return managerResponseReportDto;
+    }
+
+    @Override
+    public ManagerReportDto reportToManagerReportDto(Report report) {
+        if ( report == null ) {
+            return null;
+        }
+
+        ManagerReportDto managerReportDto = new ManagerReportDto();
+
+        managerReportDto.setAuthorEmail( reportUserContactEmail( report ) );
+        managerReportDto.setAuthorFirstName( reportUserContactFirstName( report ) );
+        managerReportDto.setAuthorLastName( reportUserContactLastName( report ) );
+        managerReportDto.setId( report.getId() );
+        managerReportDto.setTopic( report.getTopic() );
+        managerReportDto.setStatus( report.getStatus() );
+        managerReportDto.setCreatedAt( report.getCreatedAt() );
+
+        return managerReportDto;
     }
 
     private String reportUserContactEmail(Report report) {

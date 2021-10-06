@@ -44,7 +44,7 @@ public class ManagerReportController {
     Report requestReport = customMapper.updateReportDtoToReport(id, dto);
     Report updatedReport = reportService.updateUsersReport(requestReport);
     ManagerResponseReportDto reportDto =
-        customMapper.reportToManagerResponseReportDto(updatedReport);
+        mapper.reportToManagerResponseReportDto(updatedReport);
 
     return ResponseEntity.ok(reportDto);
   }
@@ -108,7 +108,7 @@ public class ManagerReportController {
 
   private Page<ManagerReportDto> convertReportsToManagerReportDtos(Page<Report> reports) {
 
-    Page<ManagerReportDto> allReports = reports.map(customMapper::reportToManagerReportDto);
+    Page<ManagerReportDto> allReports = reports.map(mapper::reportToManagerReportDto);
 
     return allReports;
   }
