@@ -95,14 +95,15 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional
-  public User saveDefaultPasswordUser(User user, String role)
+  public User saveDefaultPasswordUser(User user, String role, Contact contact)
       throws AuthorityNotFoundException {
 
     log.info("Store a user with default password and role = {}", role);
     UserAuthority authority = authorityService.getUserAuthorityByAuthorityName(role);
     user.setRole(authority);
+    contact.setUser(user);
+    user.setContact(contact);
     user.setPassword(passwordEncoder.encode(defaultPassword));
-    user.setRegistrationDate(LocalDate.now());
     User storedUser = userRepository.save(user);
 
     return storedUser;

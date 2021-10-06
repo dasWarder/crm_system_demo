@@ -1,7 +1,8 @@
 package com.example.web.controller.users;
 
 import com.example.exception.*;
-import com.example.mapper.CustomUserMapper;
+import com.example.mapper.ContactMapper;
+import com.example.mapper.CreateUserMapper;
 import com.example.mapper.UserMapper;
 import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.admin.AdminDetailsUserDto;
@@ -34,16 +35,19 @@ public class AdminUsersController {
 
   private final UserService userService;
 
+  private final ContactMapper contactMapper;
+
   private final ContactService contactService;
 
-  private final CustomUserMapper customUserMapper;
+  private final CreateUserMapper customUserMapper;
 
   @PostMapping("/user")
   public ResponseEntity<BaseUserDto> createUser(@RequestBody CreateUserDto dto)
       throws UserAlreadyExistException, AuthorityNotFoundException {
 
     User defaultUser = customUserMapper.createUserDtoToDefaultUser(dto);
-    User storedUser = userService.saveDefaultPasswordUser(defaultUser, dto.getRole());
+    Contact contact = contactMapper.createUserDtoToDefaultContact(dto);
+    User storedUser = userService.saveDefaultPasswordUser(defaultUser, dto.getRole(), contact);
     BaseUserDto responseUserDto = userMapper.userToBaseUserDto(storedUser);
 
     return ResponseEntity.created(URI.create(baseUrl + "/manage/admin/users"))

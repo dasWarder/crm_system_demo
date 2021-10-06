@@ -1,2 +1,0 @@
-DROP SEQUENCE IF EXISTS token_seq;
-DROP TABLE IF EXISTS refresh_token;

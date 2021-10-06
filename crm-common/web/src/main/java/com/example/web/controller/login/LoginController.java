@@ -11,7 +11,6 @@ import com.example.mapper.dto.user.token.TokenRefreshRequest;
 import com.example.model.contactManager.Contact;
 import com.example.model.user.Token;
 import com.example.model.user.User;
-import com.example.service.contact.ContactService;
 import com.example.service.security.UserDetailsSecurityService;
 import com.example.service.user.UserService;
 import com.example.service.user.token.TokenService;
@@ -55,7 +54,7 @@ public class LoginController {
 
   private final ContactMapper contactMapper;
 
-  private final IntUserMapper customMapper;
+  private final CreateUserMapper customMapper;
 
   private static final String BASE_URL = "http://localhost:8080/login";
 
@@ -65,7 +64,7 @@ public class LoginController {
       throws AuthorityNotFoundException, UserAlreadyExistException {
 
     Contact contact = contactMapper.saveUserDtoToContact(dto);
-    User userToStore = customMapper.saveUserDtoToUser(contact, dto);
+    User userToStore = customMapper.saveUserDtoToUser(dto);
     User storedUser = userService.saveUser(userToStore, contact);
     BaseUserDto responseUser = userMapper.userToBaseUserDto(storedUser);
 

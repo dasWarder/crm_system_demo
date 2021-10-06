@@ -12,7 +12,7 @@ public interface UserService {
 
   User saveUser(User user, Contact contact) throws UserAlreadyExistException, AuthorityNotFoundException;
 
-  User saveDefaultPasswordUser(User user, String role) throws UserAlreadyExistException, AuthorityNotFoundException;
+  User saveDefaultPasswordUser(User user, String role, Contact contact) throws UserAlreadyExistException, AuthorityNotFoundException;
 
   User getUserByEmail(final String email) throws UserNotFoundException;
 

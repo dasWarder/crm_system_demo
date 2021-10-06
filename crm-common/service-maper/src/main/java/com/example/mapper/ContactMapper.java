@@ -4,6 +4,7 @@ import com.example.mapper.dto.contact.ContactDetailsDto;
 import com.example.mapper.dto.contact.ContactDto;
 import com.example.mapper.dto.contact.SaveContactDto;
 import com.example.mapper.dto.user.SaveUserDto;
+import com.example.mapper.dto.user.admin.CreateUserDto;
 import com.example.model.contactManager.Contact;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,6 +19,7 @@ public interface ContactMapper {
   @Mapping(target = "email", ignore = true)
   Contact saveContactDtoToContact(SaveContactDto contactDto);
 
-
   Contact saveUserDtoToContact(SaveUserDto dto);
+
+  Contact createUserDtoToDefaultContact(CreateUserDto dto);
 }
