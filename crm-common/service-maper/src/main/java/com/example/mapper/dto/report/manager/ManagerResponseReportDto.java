@@ -4,22 +4,18 @@ import com.example.mapper.dto.report.BaseDateDto;
 import com.example.model.report.ReportStatus;
 import com.example.model.report.ReportTopic;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ManagerResponseReportDto extends BaseDateDto {
-
-  public ManagerResponseReportDto(LocalDateTime startedAt, LocalDateTime statusChanged) {
-    super(startedAt, statusChanged);
-  }
 
   @NotBlank(message = "The field is mandatory")
   private ReportTopic topic;
@@ -40,4 +36,6 @@ public class ManagerResponseReportDto extends BaseDateDto {
   private ReportStatus status;
 
   private String response;
+
+
 }

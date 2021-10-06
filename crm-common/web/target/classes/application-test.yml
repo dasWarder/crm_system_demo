@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+    hibernate:
+      ddl-auto: create
+
+  mail:
+    password: 12345
+    username: tester
+    host: 127.0.0.1
+    port: 3025
+    protocol: smtp
+    test-connection: true
+
+  liquibase:
+    enabled: false
+
+email:
+  author: ${MAIL_NAME}
+
+url:
+  base: http://localhost:8080

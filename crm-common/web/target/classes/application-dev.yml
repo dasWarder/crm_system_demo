@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    username: user
+    password: pass
+    url: jdbc:postgresql://localhost:9999/crm
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  mail:
+    host: smtp.gmail.com
+    username: ${MAIL_NAME}
+    password: ${MAIL_PASS}
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+email:
+  author: ${MAIL_NAME}
+
+url:
+  base: http://localhost:8080

@@ -10,7 +10,9 @@ import org.mapstruct.MappingTarget;
 
 import java.time.LocalDate;
 
-@Mapper(uses = { PasswordEncoderMapper.class }, imports = LocalDate.class)
+@Mapper(
+    uses = {PasswordEncoderMapper.class},
+    imports = LocalDate.class)
 public interface CreateUserMapper {
 
   @Mapping(target = "role", ignore = true)

@@ -28,9 +28,9 @@ public abstract class ManageReportMapper {
             .comment(report.getComment())
             .status(report.getStatus())
             .response(report.getResponse())
+            .createdAt(report.getCreatedAt())
+            .statusChanged(report.getStatusChanged())
             .build();
-    reportDto.setCreatedAt(report.getCreatedAt());
-    reportDto.setStatusChanged(report.getStatusChanged());
 
     return reportDto;
   }

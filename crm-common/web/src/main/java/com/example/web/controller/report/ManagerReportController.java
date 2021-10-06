@@ -2,6 +2,7 @@ package com.example.web.controller.report;
 
 import com.example.exception.ReportNotFoundException;
 import com.example.mapper.ManageReportMapper;
+import com.example.mapper.ManagerReportMapper;
 import com.example.mapper.dto.report.manager.ManagerReportDto;
 import com.example.mapper.dto.report.manager.ManagerResponseReportDto;
 import com.example.mapper.dto.report.manager.UpdateReportDto;
@@ -30,6 +31,8 @@ public class ManagerReportController {
 
   private final ManageReportMapper customMapper;
 
+  private final ManagerReportMapper mapper;
+
   private final ManagerReportService reportService;
 
   @PutMapping("/report")
@@ -53,7 +56,7 @@ public class ManagerReportController {
 
     Report usersReportById = reportService.getUsersReportById(id);
     ManagerResponseReportDto reportDto =
-        customMapper.reportToManagerResponseReportDto(usersReportById);
+        mapper.reportToManagerResponseReportDto(usersReportById);
 
     return ResponseEntity.ok(reportDto);
   }

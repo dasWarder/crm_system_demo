@@ -1,0 +1,6 @@
+CREATE SEQUENCE auth_seq START WITH 100000;
+
+CREATE TABLE authority (
+    id BIGINT NOT NULL PRIMARY KEY DEFAULT nextval('auth_seq'),
+    authority VARCHAR(128) NOT NULL UNIQUE
+);

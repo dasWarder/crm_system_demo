@@ -1,0 +1,2 @@
+DROP SEQUENCE IF EXISTS contact_seq;
+DROP TABLE IF EXISTS contact;
