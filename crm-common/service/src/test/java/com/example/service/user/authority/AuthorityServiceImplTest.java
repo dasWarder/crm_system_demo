@@ -3,6 +3,7 @@ package com.example.service.user.authority;
 import com.example.exception.AuthorityNotFoundException;
 import com.example.model.user.UserAuthority;
 import com.example.repository.AuthorityRepository;
+import com.example.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,9 +16,11 @@ import static com.example.service.user.authority.AuthorityTestData.*;
 @Slf4j
 class AuthorityServiceImplTest {
 
+  private final UserRepository userRepository = Mockito.mock(UserRepository.class);
+
   private final AuthorityRepository authorityRepository = Mockito.mock(AuthorityRepository.class);
 
-  private final AuthorityService authorityService = new AuthorityServiceImpl(authorityRepository);
+  private final AuthorityService authorityService = new AuthorityServiceImpl(authorityRepository, userRepository);
 
   @Test
   public void shouldSaveUserAuthorityProperly() {

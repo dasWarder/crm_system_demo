@@ -1,5 +1,6 @@
 com\example\exception\WrongPasswordException.class
 com\example\exception\ReportNotFoundException.class
+com\example\exception\NotPossibleSetRoleException.class
 com\example\exception\ContactNotFoundException.class
 com\example\exception\UserNotFoundException.class
 com\example\exception\AuthorityNotFoundException.class

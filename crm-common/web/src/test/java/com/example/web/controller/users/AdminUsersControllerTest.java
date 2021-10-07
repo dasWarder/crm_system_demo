@@ -16,8 +16,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 
 import static com.example.web.data.TestContactData.TEST_SAVE_CONTACT;
-import static com.example.web.data.TestUserData.TEST_SAVE_USER;
-import static com.example.web.data.TestUserData.TEST_USER_1;
+import static com.example.web.data.TestUserData.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -98,8 +97,12 @@ class AdminUsersControllerTest extends AbstractContextController {
         .andReturn();
   }
 
-
   @Test
+  @Sql(
+      scripts = {
+        "classpath:/db/clean_up_all.sql",
+        "classpath:/db/user/populate_user_table_with_auth.sql"
+      })
   public void shouldChangeUserRoleProperly() throws Exception {
 
     log.info("Test changeUserRole() method on PUT /user/role endpoint");
@@ -108,7 +111,7 @@ class AdminUsersControllerTest extends AbstractContextController {
         .perform(
             put(BASE_URL + "/user/role")
                 .param("email", TEST_USER_1.getEmail())
-                .param("role", "ADMIN"))
+                .param("role", "USER"))
         .andDo(print())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())

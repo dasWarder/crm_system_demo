@@ -33,6 +33,7 @@ com\example\mapper\dto\user\UpdateUserEmailDto.class
 com\example\mapper\dto\user\SaveUserDto.class
 com\example\mapper\token\ResetTokenMapper.class
 com\example\mapper\dto\report\CreateReportDto.class
+com\example\mapper\dto\authority\AuthorityDetailsDto.class
 com\example\mapper\user\CreateUserMapper.class
 com\example\mapper\dto\report\manager\ManagerReportDto$ManagerReportDtoBuilder.class
 com\example\mapper\report\ManagerReportMapper.class

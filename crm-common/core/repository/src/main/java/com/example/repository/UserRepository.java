@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository extends PagingAndSortingRepository<User, Long>, JpaSpecificationExecutor<User> {
@@ -19,6 +20,8 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long>, 
   void deleteUserByEmail(String email);
 
   Page<User> getUsersByRole_Authority(String role, Pageable pageable);
+
+  List<User> getUsersByRole_Authority(String role);
 
   @Override
   Page<User> findAll(Specification<User> specification, Pageable pageable);

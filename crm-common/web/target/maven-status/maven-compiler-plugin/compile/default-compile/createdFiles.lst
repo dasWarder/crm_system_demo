@@ -14,6 +14,7 @@ com\example\web\config\security\token\TokenProvider.class
 com\example\web\controller\contactManager\UserContactController.class
 com\example\web\controller\users\SuperAdminUsersController.class
 com\example\web\controller\todoList\UserTaskController.class
+com\example\web\controller\authority\SuperAdminAuthorityController.class
 com\example\web\controller\profile\ResetPasswordController.class
 com\example\web\config\security\UserJwtAuthEntryPoint.class
 com\example\web\controller\viewExceptionHandling\ViewExceptionHandler.class
