@@ -34,5 +34,7 @@ public interface UserService {
 
   User updateUserRole(final String email, final String role) throws UserNotFoundException, AuthorityNotFoundException;
 
+  User updateCommonUserRole(final String email, final String role) throws UserNotFoundException, AuthorityNotFoundException, NotPossibleSetRoleException;
+
   Page<User> getUsersByParam(final String param, final String query, final Pageable pageable) throws UnsupportedParameterException;
 }

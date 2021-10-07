@@ -2,14 +2,13 @@ package com.example.web.controller.users;
 
 import com.example.exception.*;
 import com.example.mapper.contact.ContactMapper;
-import com.example.mapper.user.CreateUserMapper;
-import com.example.mapper.user.UserMapper;
 import com.example.mapper.dto.user.BaseUserDto;
 import com.example.mapper.dto.user.admin.AdminDetailsUserDto;
 import com.example.mapper.dto.user.admin.CreateUserDto;
+import com.example.mapper.user.CreateUserMapper;
+import com.example.mapper.user.UserMapper;
 import com.example.model.contactManager.Contact;
 import com.example.model.user.User;
-import com.example.service.contact.ContactService;
 import com.example.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,8 +40,6 @@ public class AdminUsersController {
 
   private final ContactMapper contactMapper;
 
-  private final ContactService contactService;
-
   private final CreateUserMapper customUserMapper;
 
   @PostMapping("/user")
@@ -64,8 +61,7 @@ public class AdminUsersController {
       throws UserNotFoundException {
 
     User userByEmail = userService.getUserByEmail(email);
-    AdminDetailsUserDto responseDto =
-        userMapper.userToAdminDetailsUserDto(userByEmail);
+    AdminDetailsUserDto responseDto = userMapper.userToAdminDetailsUserDto(userByEmail);
 
     return ResponseEntity.ok(responseDto);
   }
@@ -88,13 +84,13 @@ public class AdminUsersController {
 
   @GetMapping("/filter")
   public ResponseEntity<Page<BaseUserDto>> getUsersByParam(
-      @RequestParam("param") @NotNull(message = "The filtering param is mandatory") String param,
-      @RequestParam("query") @NotNull(message = "The filtering query is mandatory") String query,
-      @PageableDefault(size = 20, sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
+          @RequestParam("param") @NotNull(message = "The filtering param is mandatory") String param,
+          @RequestParam("query") @NotNull(message = "The filtering query is mandatory") String query,
+          @PageableDefault(size = 20, sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
       throws UnsupportedParameterException {
 
     Page<BaseUserDto> responseUsers =
-        userService.getUsersByParam(param, query, pageable).map(userMapper::userToBaseUserDto);
+            userService.getUsersByParam(param, query, pageable).map(userMapper::userToBaseUserDto);
 
     return ResponseEntity.ok(responseUsers);
   }
@@ -111,9 +107,9 @@ public class AdminUsersController {
   @PutMapping("/user/role")
   public ResponseEntity<BaseUserDto> changeUserRole(
       @RequestParam("email") @NotNull String email, @RequestParam("role") @NotNull String role)
-      throws UserNotFoundException, AuthorityNotFoundException {
+      throws UserNotFoundException, AuthorityNotFoundException, NotPossibleSetRoleException {
 
-    User updatedUser = userService.updateUserRole(email, role);
+    User updatedUser = userService.updateCommonUserRole(email, role);
     BaseUserDto responseUserDto = userMapper.userToBaseUserDto(updatedUser);
 
     return ResponseEntity.ok(responseUserDto);

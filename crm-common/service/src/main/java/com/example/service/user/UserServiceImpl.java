@@ -258,6 +258,40 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  public User updateCommonUserRole(String email, String role)
+      throws UserNotFoundException, AuthorityNotFoundException, NotPossibleSetRoleException {
+
+    log.info("Update a role = {} for a user with the email = {}", role, email);
+    User user =
+        userRepository
+            .getUserByEmail(email)
+            .orElseThrow(
+                () ->
+                    new UserNotFoundException(
+                        String.format("The user with the email = %s not found", email)));
+
+    String userAuthority = user.getRole().getAuthority();
+
+    if (userAuthority.equals("SUPER_ADMIN") || userAuthority.equals("ADMIN")) {
+      throw new NotPossibleSetRoleException(
+          String.format("Not possible to set a role for a user with role = %s", userAuthority));
+    }
+
+    UserAuthority authority = authorityService.getUserAuthorityByAuthorityName(role);
+    String newAuthority = authority.getAuthority();
+
+    if (newAuthority.equals("SUPER_ADMIN") || newAuthority.equals("ADMIN")) {
+      throw new NotPossibleSetRoleException(
+          String.format("Not possible to set this role = %s", newAuthority));
+    }
+
+    user.setRole(authority);
+    User updatedUser = userRepository.save(user);
+
+    return updatedUser;
+  }
+
+  @Override
   public Page<User> getUsersByParam(String param, String query, Pageable pageable)
       throws UnsupportedParameterException {
 

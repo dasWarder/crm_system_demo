@@ -8,4 +8,7 @@ import org.mapstruct.Mapping;
 public interface AuthorityMapper {
 
     String roleNameToRole(UserAuthority authority);
+
+    @Mapping(target = "authority", source = "authority")
+    UserAuthority authorityNameToUserAuthority(String authority);
 }
