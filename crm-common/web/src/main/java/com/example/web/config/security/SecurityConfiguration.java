@@ -26,7 +26,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   private final JwtFilter jwtFilter;
 
-
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -56,6 +55,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         .antMatchers("/manage/manager/**")
         .hasAuthority("MANAGER")
+        .and()
+        .authorizeRequests()
+        .antMatchers("/manage/admin/**")
+        .hasAuthority("ADMIN")
+        .and()
+        .authorizeRequests()
+        .antMatchers("/manage/leader/**")
+        .hasAuthority("SUPER_ADMIN")
         .and()
         .exceptionHandling()
         .authenticationEntryPoint(authEntryPoint)
