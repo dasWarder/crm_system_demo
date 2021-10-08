@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.example.web.controller.login.LoginControllerTest" time="0.701" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.example.web.controller.authority.SuperAdminAuthorityControllerTest" time="7.863" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="16"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -56,6 +56,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="60.0"/>
   </properties>
-  <testcase name="shouldRegistrationNewUserProperly" classname="com.example.web.controller.login.LoginControllerTest" time="0.176"/>
-  <testcase name="shouldRefreshTokenProperly" classname="com.example.web.controller.login.LoginControllerTest" time="0.141"/>
+  <testcase name="shouldGetAuthorityDetailsProperly" classname="com.example.web.controller.authority.SuperAdminAuthorityControllerTest" time="0.588"/>
+  <testcase name="shouldCreateAuthorityProperly" classname="com.example.web.controller.authority.SuperAdminAuthorityControllerTest" time="0.207"/>
+  <testcase name="shouldUpdateAuthorityProperly" classname="com.example.web.controller.authority.SuperAdminAuthorityControllerTest" time="0.133"/>
+  <testcase name="shouldDeleteAuthorityProperly" classname="com.example.web.controller.authority.SuperAdminAuthorityControllerTest" time="0.115"/>
+  <testcase name="shouldGetAuthoritiesProperly" classname="com.example.web.controller.authority.SuperAdminAuthorityControllerTest" time="0.152"/>
 </testsuite>

@@ -8,6 +8,7 @@ C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\test\java\com\example\w
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\test\java\com\example\web\controller\login\LoginControllerTest.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\test\java\com\example\web\integration\TokenServiceIntegrationTest.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\test\java\com\example\web\integration\AuthorityServiceIntegrationTest.java
+C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\test\java\com\example\web\controller\authority\SuperAdminAuthorityControllerTest.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\test\java\com\example\web\controller\todoList\UserTaskControllerTest.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\test\java\com\example\web\controller\users\AdminUsersControllerTest.java
 C:\Users\user\IdeaProjects\crm-system\crm-common\web\src\test\java\com\example\web\integration\ContactServiceIntegrationTest.java
