@@ -6,6 +6,7 @@ import com.example.mapper.dto.user.DetailsUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
 import com.example.mapper.dto.user.admin.AdminDetailsUserDto;
 import com.example.mapper.dto.user.admin.CreateUserDto;
+import com.example.mapper.dto.user.superadmin.CreateFullUserDto;
 import com.example.mapper.dto.user.superadmin.SuperAdminUserDetailsDto;
 import com.example.model.contactManager.Contact;
 import com.example.model.report.Report;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-10-07T10:29:14+0300",
+    date = "2021-10-08T16:46:15+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
@@ -148,13 +149,35 @@ public class UserMapperImpl implements UserMapper {
         superAdminUserDetailsDto.setRegistrationDate( user.getRegistrationDate() );
         superAdminUserDetailsDto.setRole( authorityMapper.roleNameToRole( user.getRole() ) );
         superAdminUserDetailsDto.setId( user.getId() );
-        superAdminUserDetailsDto.setTodoList( user.getTodoList() );
         List<Report> list = user.getReports();
         if ( list != null ) {
             superAdminUserDetailsDto.setReports( new ArrayList<Report>( list ) );
         }
 
         return superAdminUserDetailsDto;
+    }
+
+    @Override
+    public CreateFullUserDto userToCreateFullUserDto(User user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        CreateFullUserDto createFullUserDto = new CreateFullUserDto();
+
+        createFullUserDto.setFirstName( userContactFirstName( user ) );
+        createFullUserDto.setLastName( userContactLastName( user ) );
+        createFullUserDto.setJobTitle( userContactJobTitle( user ) );
+        createFullUserDto.setCompany( userContactCompany( user ) );
+        createFullUserDto.setCountry( userContactCountry( user ) );
+        createFullUserDto.setMobilePhone( userContactMobilePhone( user ) );
+        createFullUserDto.setRole( userRoleAuthority( user ) );
+        createFullUserDto.setEmail( user.getEmail() );
+        createFullUserDto.setEnabled( user.isEnabled() );
+        createFullUserDto.setPassword( user.getPassword() );
+        createFullUserDto.setRegistrationDate( user.getRegistrationDate() );
+
+        return createFullUserDto;
     }
 
     private String userRoleAuthority(User user) {

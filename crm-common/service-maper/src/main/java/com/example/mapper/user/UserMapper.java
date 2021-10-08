@@ -7,13 +7,15 @@ import com.example.mapper.dto.user.DetailsUserDto;
 import com.example.mapper.dto.user.SaveUserDto;
 import com.example.mapper.dto.user.admin.AdminDetailsUserDto;
 import com.example.mapper.dto.user.admin.CreateUserDto;
+import com.example.mapper.dto.user.superadmin.CreateFullUserDto;
 import com.example.mapper.dto.user.superadmin.SuperAdminUserDetailsDto;
+import com.example.mapper.task.TaskMapper;
 import com.example.model.contactManager.Contact;
 import com.example.model.user.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(uses = { ContactMapper.class, AuthorityMapper.class })
+@Mapper(uses = {ContactMapper.class, AuthorityMapper.class, TaskMapper.class})
 public interface UserMapper {
 
   @Mapping(target = "email", source = "email")
@@ -54,7 +56,6 @@ public interface UserMapper {
   @Mapping(target = "role", source = "user.role.authority")
   AdminDetailsUserDto userToAdminDetailsUserDto(User user);
 
-
   @Mapping(target = "firstName", source = "user.contact.firstName")
   @Mapping(target = "lastName", source = "user.contact.lastName")
   @Mapping(target = "jobTitle", source = "user.contact.jobTitle")
@@ -62,4 +63,13 @@ public interface UserMapper {
   @Mapping(target = "country", source = "user.contact.country")
   @Mapping(target = "mobilePhone", source = "user.contact.mobilePhone")
   SuperAdminUserDetailsDto userToSuperAdminUserDetailsDto(User user);
+
+  @Mapping(target = "firstName", source = "user.contact.firstName")
+  @Mapping(target = "lastName", source = "user.contact.lastName")
+  @Mapping(target = "jobTitle", source = "user.contact.jobTitle")
+  @Mapping(target = "company", source = "user.contact.company")
+  @Mapping(target = "country", source = "user.contact.country")
+  @Mapping(target = "mobilePhone", source = "user.contact.mobilePhone")
+  @Mapping(target = "role", source = "user.role.authority")
+  CreateFullUserDto userToCreateFullUserDto(User user);
 }

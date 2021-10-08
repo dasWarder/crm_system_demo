@@ -21,7 +21,5 @@ public class SuperAdminUserDetailsDto extends AdminDetailsUserDto {
 
     private Long id;
 
-    private TodoList todoList;
-
     private List<Report> reports;
 }

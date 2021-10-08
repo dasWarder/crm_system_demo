@@ -8,6 +8,7 @@ com\example\web\integration\TokenServiceIntegrationTest.class
 com\example\web\controller\contactManager\UserContactControllerTest.class
 com\example\web\AbstractTest.class
 com\example\web\data\TestContactData.class
+com\example\web\controller\users\SuperAdminUsersControllerTest.class
 com\example\web\integration\TodoListServiceIntegrationTest.class
 com\example\web\integration\UserReportServiceIntegrationTest.class
 com\example\web\data\TestTokenData.class

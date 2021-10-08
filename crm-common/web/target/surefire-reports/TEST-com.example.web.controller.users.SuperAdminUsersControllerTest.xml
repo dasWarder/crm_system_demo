@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.example.web.integration.TaskServiceIntegrationTest" time="0.58" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.example.web.controller.users.SuperAdminUsersControllerTest" time="1.159" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="16"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -56,14 +56,10 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="60.0"/>
   </properties>
-  <testcase name="shouldGetMissedTasksProperly" classname="com.example.web.integration.TaskServiceIntegrationTest" time="0.018"/>
-  <testcase name="shouldGetTasksFroDateProperly" classname="com.example.web.integration.TaskServiceIntegrationTest" time="0.029"/>
-  <testcase name="shouldGetActualTasksProperly" classname="com.example.web.integration.TaskServiceIntegrationTest" time="0.032"/>
-  <testcase name="shouldGetTasksByParamProperly" classname="com.example.web.integration.TaskServiceIntegrationTest" time="0.027"/>
-  <testcase name="shouldGetActualTasksBetweenProperly" classname="com.example.web.integration.TaskServiceIntegrationTest" time="0.021"/>
-  <testcase name="shouldSaveTaskProperly" classname="com.example.web.integration.TaskServiceIntegrationTest" time="0.09"/>
-  <testcase name="shouldGetTaskByIdProperly" classname="com.example.web.integration.TaskServiceIntegrationTest" time="0.028"/>
-  <testcase name="shouldGetTasksProperly" classname="com.example.web.integration.TaskServiceIntegrationTest" time="0.019"/>
-  <testcase name="shouldDeleteTaskByIdProperly" classname="com.example.web.integration.TaskServiceIntegrationTest" time="0.058"/>
-  <testcase name="shouldUpdateTaskByIdProperly" classname="com.example.web.integration.TaskServiceIntegrationTest" time="0.024"/>
+  <testcase name="shouldGetUserDetailsProperly" classname="com.example.web.controller.users.SuperAdminUsersControllerTest" time="0.176"/>
+  <testcase name="shouldGetUsersByParamProperly" classname="com.example.web.controller.users.SuperAdminUsersControllerTest" time="0.178"/>
+  <testcase name="shouldDeleteUserProperly" classname="com.example.web.controller.users.SuperAdminUsersControllerTest" time="0.173"/>
+  <testcase name="shouldGetUsersProperly" classname="com.example.web.controller.users.SuperAdminUsersControllerTest" time="0.08"/>
+  <testcase name="shouldUpdateUserRoleProperly" classname="com.example.web.controller.users.SuperAdminUsersControllerTest" time="0.16"/>
+  <testcase name="shouldSaveUserProperly" classname="com.example.web.controller.users.SuperAdminUsersControllerTest" time="0.164"/>
 </testsuite>
